@@ -1,0 +1,69 @@
+;; Documentation: https://jtroo.github.io/config.html
+;; --------------------------------------------------
+
+#|
+ВНИМАНИЕ! Файл не должен содержать секцию (defcfg), так как эта секция
+всегда формируется автоматически и может быть дополнена через параметр
+services.kanata.keyboards.<name>.extraDefCfg в configuration.nix
+|#
+
+;; (defcfg
+;;   process-unmapped-keys yes
+;; )
+
+;; -----------------------------------------------
+
+(defsrc
+  caps            a   s   d   f   j   k   l   ;
+  lsft                                       rsft
+)
+
+(deflayer base
+  @advanced-caps  @a  @s  @d  @f  @j  @k  @l  @;
+  @eng                                       @rus
+)
+
+;; -----------------------------------------------
+
+;; Клавиши для переключения раскладок клавиатуры
+
+(defalias
+  to-eng C-S-M-f11
+  to-rus C-S-M-f12
+)
+(defalias
+  eng (tap-hold 200 200 @to-eng lsft)
+  rus (tap-hold 200 200 @to-rus rsft)
+)
+
+;; Клавиша CapsLock
+
+(defalias
+  advanced-caps (tap-hold 200 200 (macro esc @to-eng) (layer-while-held nav))
+)
+
+(deflayermap (nav)
+  h left
+  j down
+  k up
+  l right
+)
+
+;; Home Row Mode
+
+(defvar
+  tap-time 300
+  hold-time 275
+)
+
+(defalias
+  a (tap-hold $tap-time $hold-time a lmet)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j rctl)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l ralt)
+  ; (tap-hold $tap-time $hold-time ; rmet)
+)
+

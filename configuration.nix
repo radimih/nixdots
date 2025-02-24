@@ -7,7 +7,7 @@
       ./hardware-configuration.nix
   ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -101,7 +101,6 @@
   };
   programs.virt-manager.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.radimir = {
     isNormalUser = true;
     description = "Radimir";
