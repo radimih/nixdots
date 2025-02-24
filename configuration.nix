@@ -4,7 +4,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
   ];
 
   # Bootloader
@@ -105,14 +105,6 @@
     isNormalUser = true;
     description = "Radimir";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; [
-      firefox
-      git
-      kubectl
-      kubernetes-helm
-      helmfile
-      telegram-desktop
-    ];
   };
 
   # Allow unfree packages
