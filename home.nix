@@ -5,12 +5,8 @@
   home.homeDirectory = "/home/radimir";
 
   home.packages = with pkgs; [
-    firefox
     git
-    kubectl
-    kubernetes-helm
-    helmfile
-    telegram-desktop
+    google-chrome
   ];
 
   home.stateVersion = "24.11";
