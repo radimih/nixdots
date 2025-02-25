@@ -58,7 +58,6 @@
   environment.systemPackages = with pkgs; [
     git
     vim
-    wl-clipboard
   ];
 
   # Open ports in the firewall

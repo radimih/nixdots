@@ -5,8 +5,7 @@
   home.homeDirectory = "/home/radimir";
 
   home.packages = with pkgs; [
-    git
-    google-chrome
+    wl-clipboard
   ];
 
   home.stateVersion = "24.11";
