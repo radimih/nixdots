@@ -13,8 +13,7 @@
   let
     hostSettings = {
       name = "vm-test";
-      timeZone = "Europe/Moscow";
-      # timeZone = "Asia/Novokuznetsk";
+      timeZone = "Asia/Novokuznetsk";
     };
     userSettings = {
       name = "radimir";
