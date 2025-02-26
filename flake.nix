@@ -9,7 +9,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs: {
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+  let
+    username = "radimir";
+  in {
     nixosConfigurations = {
       vm-test = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -18,7 +21,7 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.radimir = import ./home.nix;
+            home-manager.users.${username} = import ./home.nix;
           }
         ];
       };
