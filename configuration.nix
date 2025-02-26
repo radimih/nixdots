@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -46,9 +46,9 @@
     pulse.enable = true;
   };
 
-  users.users.radimir = {
+  users.users.${userSettings.name} = {
     isNormalUser = true;
-    description = "Radimir";
+    description = userSettings.desc;
     extraGroups = [ "networkmanager" "wheel" ];
   };
 

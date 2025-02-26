@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
-  home.username = "radimir";
-  home.homeDirectory = "/home/radimir";
+  home.username = userSettings.name;
+  home.homeDirectory = "/home/${userSettings.name}";
 
   home.packages = with pkgs; [
+    eza
     wl-clipboard
   ];
 

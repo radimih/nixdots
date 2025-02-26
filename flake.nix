@@ -11,7 +11,10 @@
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
-    username = "radimir";
+    userSettings = {
+      name = "radimir";
+      desc = "Radimir";
+    };
   in {
     nixosConfigurations = {
       vm-test = nixpkgs.lib.nixosSystem {
@@ -21,9 +24,15 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home.nix;
+            home-manager.users.${userSettings.name} = import ./home.nix;
+            home-manager.extraSpecialArgs = {
+              inherit userSettings;
+            };
           }
         ];
+        specialArgs = {
+          inherit userSettings;
+        }
       };
     };
   };
