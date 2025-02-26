@@ -32,7 +32,7 @@
         ];
         specialArgs = {
           inherit userSettings;
-        }
+        };
       };
     };
   };
