@@ -1,17 +1,17 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, hostSettings, userSettings, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [
-      ./hosts/vm-test.nix
+      ./hosts/${hostSettings.name}.nix
   ];
 
   # # Bootloader
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "vm-test";
+  networking.hostName = hostSettings.name;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 
   networking.networkmanager.enable = true;
@@ -19,7 +19,7 @@
   # For WireGuard client
   networking.firewall.checkReversePath = false;
 
-  time.timeZone = "Asia/Novokuznetsk";
+  time.timeZone = hostSettings.timeZone;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

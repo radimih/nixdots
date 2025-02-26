@@ -11,26 +11,34 @@
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
+    hostSettings = {
+      name = "vm-test";
+      timeZone = "Europe/Moscow";
+      # timeZone = "Asia/Novokuznetsk";
+    };
     userSettings = {
       name = "radimir";
       desc = "Radimir";
     };
   in {
     nixosConfigurations = {
-      vm-test = nixpkgs.lib.nixosSystem {
+      ${hostSettings.name} = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${userSettings.name} = import ./home.nix;
-            home-manager.extraSpecialArgs = {
-              inherit userSettings;
+            home-manager = {
+              extraSpecialArgs = {
+                inherit userSettings;
+              };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${userSettings.name} = import ./home.nix;
             };
           }
         ];
         specialArgs = {
+          inherit hostSettings;
           inherit userSettings;
         };
       };
