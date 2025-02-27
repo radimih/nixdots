@@ -1,10 +1,14 @@
 { config, pkgs, hostSettings, userSettings, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+    warn-dirty = false;
+  };
 
   imports = [
-      ./hosts/${hostSettings.name}.nix
+    ./hosts/${hostSettings.name}.nix
   ];
 
   # # Bootloader
