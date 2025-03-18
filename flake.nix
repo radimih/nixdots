@@ -25,7 +25,8 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager {
+          home-manager.nixosModules.home-manager
+          ({
             home-manager = {
               extraSpecialArgs = {
                 inherit userSettings;
@@ -34,7 +35,7 @@
               useUserPackages = true;
               users.${userSettings.name} = import ./home.nix;
             };
-          }
+          })
         ];
         specialArgs = {
           inherit hostSettings;
