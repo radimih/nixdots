@@ -34,7 +34,6 @@
               };
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${userSettings.name} = import ./home.nix;
             };
           })
           # Настройки Home Manager для отдельных пользователей
