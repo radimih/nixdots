@@ -26,6 +26,7 @@
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          # Общие настройки Home Manager
           ({
             home-manager = {
               extraSpecialArgs = {
@@ -35,6 +36,10 @@
               useUserPackages = true;
               users.${userSettings.name} = import ./home.nix;
             };
+          })
+          # Настройки Home Manager для отдельных пользователей
+          ({
+            home-manager.users.${userSettings.name} = import ./home.nix;
           })
         ];
         specialArgs = {
