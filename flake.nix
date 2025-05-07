@@ -11,13 +11,12 @@
 
   outputs = { self, nixpkgs, home-manager, ... } @ inputs:
   let
-    hostSettings = {
-      name = "vm-test";
+    globalSpec = {
       timeZone = "Asia/Novokuznetsk";
+      user = {
+        name = "radimir";
+        desc = "Radimir";
     };
-    userSettings = {
-      name = "radimir";
-      desc = "Radimir";
     };
   in {
     nixosConfigurations = {
@@ -30,7 +29,7 @@
           ({
             home-manager = {
               extraSpecialArgs = {
-                inherit userSettings;
+                inherit globalSpec;
               };
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -38,12 +37,11 @@
           })
           # Настройки Home Manager для отдельных пользователей
           ({
-            home-manager.users.${userSettings.name} = import ./home.nix;
+            home-manager.users.${globalSpec.user.name} = import ./home.nix;
           })
         ];
         specialArgs = {
-          inherit hostSettings;
-          inherit userSettings;
+          inherit globalSpec;
         };
       };
     };
