@@ -15,7 +15,6 @@
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = hostSettings.name;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
 
   networking.networkmanager.enable = true;
@@ -50,9 +49,9 @@
     pulse.enable = true;
   };
 
-  users.users.${userSettings.name} = {
+  users.users.${globalSpec.user.name} = {
     isNormalUser = true;
-    description = userSettings.desc;
+    description = globalSpec.user.desc;
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
