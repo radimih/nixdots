@@ -1,9 +1,18 @@
-{ config, pkgs, globalSpec, ... }:
+{
+  config,
+  pkgs,
+  globalSpec,
+  ...
+}:
 
 {
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "flakes" "nix-command" "pipe-operators" ];
+    experimental-features = [
+      "flakes"
+      "nix-command"
+      "pipe-operators"
+    ];
     warn-dirty = false;
   };
 
@@ -52,7 +61,10 @@
   users.users.${globalSpec.user.name} = {
     isNormalUser = true;
     description = globalSpec.user.desc;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Allow unfree packages

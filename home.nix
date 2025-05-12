@@ -1,4 +1,9 @@
-{ config, pkgs, globalSpec, ... }:
+{
+  config,
+  pkgs,
+  globalSpec,
+  ...
+}:
 
 {
   home.username = globalSpec.user.name;
