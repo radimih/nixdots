@@ -1,34 +1,74 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, pkgs, globalSpec, ... }:
 
 {
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "flakes" "nix-command" "pipe-operators" ];
+    warn-dirty = false;
+  };
+
   imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
+    ./hardware-configuration.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  # # Bootloader
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.loader.grub = {
+  networking.hostName = hostSettings.name;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
+
+  networking.networkmanager.enable = true;
+
+  # For WireGuard client
+  networking.firewall.checkReversePath = false;
+
+  time.timeZone = globalSpec.timeZone;
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "ru_RU.UTF-8";
+      LC_IDENTIFICATION = "ru_RU.UTF-8";
+      LC_MEASUREMENT = "ru_RU.UTF-8";
+      LC_MONETARY = "ru_RU.UTF-8";
+      LC_NAME = "ru_RU.UTF-8";
+      LC_NUMERIC = "ru_RU.UTF-8";
+      LC_PAPER = "ru_RU.UTF-8";
+      LC_TELEPHONE = "ru_RU.UTF-8";
+      LC_TIME = "ru_RU.UTF-8";
+    };
+  };
+
+  # Enable sound with PipeWire
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    device = "/dev/vda";
-    useOSProber = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
-  fileSystems."/" = {
-    device = "/dev/vda1";
-    fsType = "ext4";
+  users.users.${userSettings.name} = {
+    isNormalUser = true;
+    description = userSettings.desc;
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  swapDevices = [ ];
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+  ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # Open ports in the firewall
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  system.stateVersion = "24.11";
 }

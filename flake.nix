@@ -17,7 +17,6 @@
         name = "radimir";
         desc = "Radimir";
     };
-    };
   in {
     nixosConfigurations = {
       ${hostSettings.name} = nixpkgs.lib.nixosSystem {
