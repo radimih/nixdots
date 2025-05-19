@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ./home.nix
+    ./home-manager.nix
     ./nix.nix
     ./user.nix
   ];

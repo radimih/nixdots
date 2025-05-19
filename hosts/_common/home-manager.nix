@@ -21,5 +21,5 @@
   };
 
   # TODO: путь к файлу сделать более универсальным
-  home-manager.users.${globalSpec.user.name} = import ./../../home.nix; }
+  home-manager.users.${globalSpec.user.name} = import ./../../users/${globalSpec.user.name}.nix;
 }
