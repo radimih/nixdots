@@ -7,9 +7,6 @@
 }:
 
 {
-  home.username = globalSpec.user.name;
-  home.homeDirectory = "/home/${globalSpec.user.name}";
-
   home.packages = with pkgs; [
     wl-clipboard
   ];

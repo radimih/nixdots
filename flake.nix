@@ -13,7 +13,6 @@
     {
       self,
       nixpkgs,
-      home-manager,
       ...
     }@inputs:
     let
@@ -40,24 +39,9 @@
           mkHost = host: {
             name = host;
             value = nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
               modules = [
-                ./hosts/${host}
                 { networking.hostName = host; }
-                home-manager.nixosModules.home-manager
-                # Общие настройки Home Manager
-                {
-                  home-manager = {
-                    extraSpecialArgs = {
-                      inherit globalSpec;
-                      inherit inputs;
-                    };
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-                  };
-                }
-                # Настройки Home Manager для отдельных пользователей
-                { home-manager.users.${globalSpec.user.name} = import ./home.nix; }
+                ./hosts/${host}
               ];
               specialArgs = {
                 inherit globalSpec;
