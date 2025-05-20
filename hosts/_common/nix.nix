@@ -4,6 +4,8 @@
 }:
 
 {
+  nix.channel.enable = false;
+
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = [
