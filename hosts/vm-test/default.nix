@@ -12,15 +12,6 @@
     ./../_common
   ];
 
-  # # Bootloader
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant
-
-  # For WireGuard client
-  networking.firewall.checkReversePath = false;
-
   # Enable sound with PipeWire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -35,12 +26,4 @@
     git
     vim
   ];
-
-  # Open ports in the firewall
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  system.stateVersion = "24.11";
 }

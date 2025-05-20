@@ -10,7 +10,7 @@
   imports = [
     ./home-manager.nix
     ./nix.nix
-    ./user.nix
+    ./users.nix
   ];
 
   i18n = {
@@ -34,5 +34,5 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = globalSpec.stateVersion;
 }

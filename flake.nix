@@ -1,5 +1,5 @@
 {
-  description = "Minimal Nixos configuration flake";
+  description = "My Nixos configuration flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
@@ -17,11 +17,12 @@
     }@inputs:
     let
       globalSpec = {
-        timeZone = "Asia/Novokuznetsk";
-        user = {
+        admin = {
           name = "radimir";
           desc = "Radimir";
         };
+        stateVersion = "24.11";
+        timeZone = "Asia/Novokuznetsk";
       };
     in
     {

@@ -19,5 +19,8 @@
     useUserPackages = true;
   };
 
-  home-manager.users.${globalSpec.user.name} = import ${self}/users/${globalSpec.user.name}.nix;
+  # Let home Manager install and manage itself
+  programs.home-manager.enable = true;
+
+  home-manager.users.${globalSpec.admin.name} = import "${self}/users/${globalSpec.admin.name}.nix";
 }

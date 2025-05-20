@@ -1,17 +1,15 @@
 {
-  config,
   globalSpec,
   ...
 }:
 
 {
-  users.users.${globalSpec.user.name} = {
+  users.users.${globalSpec.admin.name} = {
     isNormalUser = true;
-    description = globalSpec.user.desc;
+    description = globalSpec.admin.desc;
     extraGroups = [
       "networkmanager"
       "wheel"
     ];
   };
-
 }
