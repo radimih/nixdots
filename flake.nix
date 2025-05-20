@@ -46,6 +46,7 @@
               specialArgs = {
                 inherit globalSpec;
                 inherit inputs;
+                inherit self;
               };
             };
           };

@@ -1,8 +1,7 @@
 {
-  config,
-  pkgs,
   globalSpec,
   inputs,
+  self,
   ...
 }:
 
@@ -20,6 +19,5 @@
     useUserPackages = true;
   };
 
-  # TODO: путь к файлу сделать более универсальным
-  home-manager.users.${globalSpec.user.name} = import ./../../users/${globalSpec.user.name}.nix;
+  home-manager.users.${globalSpec.user.name} = import ${self}/users/${globalSpec.user.name}.nix;
 }
