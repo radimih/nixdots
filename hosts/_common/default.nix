@@ -11,6 +11,7 @@
     ./home-manager.nix
     ./locale.nix
     ./nix.nix
+    ./time.nix
     ./users.nix
   ];
 
@@ -19,6 +20,4 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = globalSpec.stateVersion;
-
-  time.timeZone = globalSpec.timeZone;
 }
