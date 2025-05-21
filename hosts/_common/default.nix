@@ -11,6 +11,7 @@
     ./home-manager.nix
     ./locale.nix
     ./nix.nix
+    ./packages.nix
     ./time.nix
     ./users.nix
   ];
