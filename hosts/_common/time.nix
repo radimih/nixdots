@@ -5,7 +5,8 @@
 
 {
   networking.timeServers = [
-    "2.nixos.pool.ntp.org"
+    "0.nixos.pool.ntp.org"
+    "0.ru.pool.ntp.org"
     "ntp.sstf.nsk.ru"
     "ntp.msk-ix.ru"
   ];
