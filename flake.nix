@@ -41,7 +41,10 @@
             name = host;
             value = nixpkgs.lib.nixosSystem {
               modules = [
-                { networking.hostName = host; }
+                {
+                  networking.hostName = host;
+                  system.stateVersion = globalSpec.stateVersion;
+                }
                 ./hosts/${host}
               ];
               specialArgs = {

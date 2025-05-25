@@ -10,15 +10,10 @@
   imports = [
     ./home-manager.nix
     ./locale.nix
+    ./network.nix
     ./nix.nix
     ./packages.nix
     ./time.nix
     ./users.nix
   ];
-
-  networking.networkmanager.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
-
-  system.stateVersion = globalSpec.stateVersion;
 }
