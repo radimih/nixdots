@@ -10,12 +10,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/vda";
-    useOSProber = true;
-  };
-
   fileSystems."/" = {
     device = "/dev/vda1";
     fsType = "ext4";

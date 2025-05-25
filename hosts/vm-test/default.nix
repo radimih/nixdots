@@ -12,6 +12,12 @@
     ./../_common
   ];
 
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/vda";
+    useOSProber = true;
+  };
+
   # Enable sound with PipeWire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
