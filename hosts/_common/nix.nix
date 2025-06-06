@@ -1,9 +1,12 @@
 {
-  config,
+  pkgs,
   ...
 }:
 
 {
+  # Для работы flakes нужен git
+  environment.systemPackages = [ pkgs.git ];
+
   nix.channel.enable = false;
 
   nix.settings = {
