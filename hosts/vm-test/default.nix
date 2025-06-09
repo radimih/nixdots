@@ -31,4 +31,13 @@
   environment.systemPackages = with pkgs; [
     wget
   ];
+
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "doom";
+      clock = "%d.%m.%Y %T";
+      vi_mode = true;
+    };
+  };
 }
