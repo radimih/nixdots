@@ -3,6 +3,12 @@
 }:
 
 {
+  # Включить кириллицу в консоле TTY
+  console = {
+    font = "UniCyr_8x16";
+    keymap = "us";
+  };
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
