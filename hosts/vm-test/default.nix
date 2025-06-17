@@ -29,6 +29,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    alacritty
+    fuzzel
+    waybar
     wget
   ];
 
@@ -40,4 +43,6 @@
       vi_mode = true;
     };
   };
+
+  programs.niri.enable = true;
 }
