@@ -32,5 +32,8 @@ in
       };
     };
 
+    # Сделать такую же раскладку и для текстовой консоли (/dev/ttyN)
+    console.useXkbConfig = lib.mkForce true;
+
   };
 }
