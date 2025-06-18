@@ -4,6 +4,6 @@
 
 {
   imports = [
-    ./uni-layout.nix
+    ./uni-layout
   ];
 }
