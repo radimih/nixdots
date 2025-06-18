@@ -46,6 +46,7 @@
                   system.stateVersion = globalSpec.stateVersion;
                 }
                 ./hosts/${host}
+                ./modules/nixos
               ];
               specialArgs = {
                 inherit globalSpec;

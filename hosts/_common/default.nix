@@ -12,4 +12,6 @@
     ./time.nix
     ./users.nix
   ];
+
+  keyboard.universal-layout.enable = true;
 }
