@@ -4,6 +4,7 @@
 
 {
   imports = [
+    ./kanata
     ./uni-layout
   ];
 }

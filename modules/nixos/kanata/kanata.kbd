@@ -16,11 +16,13 @@ services.kanata.keyboards.<name>.extraDefCfg в configuration.nix
 (defsrc
   caps            a   s   d   f   j   k   l   ;
   lsft                                       rsft
+                  spc
 )
 
 (deflayer base
   @advanced-caps  @a  @s  @d  @f  @j  @k  @l  @;
   @eng                                       @rus
+                  @spc-mod
 )
 
 ;; -----------------------------------------------
@@ -49,6 +51,12 @@ services.kanata.keyboards.<name>.extraDefCfg в configuration.nix
   l right
 )
 
+;; Клавиша Space как модификатор AltGr
+
+(defalias
+    spc-mod (tap-hold 200 200 spc ralt)
+)
+
 ;; Home Row Mode
 
 (defvar
@@ -66,4 +74,3 @@ services.kanata.keyboards.<name>.extraDefCfg в configuration.nix
   l (tap-hold $tap-time $hold-time l ralt)
   ; (tap-hold $tap-time $hold-time ; rmet)
 )
-

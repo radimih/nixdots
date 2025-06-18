@@ -13,5 +13,6 @@
     ./users.nix
   ];
 
+  keyboard.kanata.enable = true;
   keyboard.universal-layout.enable = true;
 }
