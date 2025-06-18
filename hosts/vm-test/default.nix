@@ -38,7 +38,7 @@
   services.displayManager.ly = {
     enable = true;
     settings = {
-      animation = "doom";
+      animation = "matrix";
       clock = "%d.%m.%Y %T";
       vi_mode = true;
     };
