@@ -8,7 +8,7 @@
   console = {
     # font = "UniCyr_8x16";  # шрифт из стандартной поставки
     font = "ter-u16n";
-    packages = [ pkgs.terminus_font ]
+    packages = [ pkgs.terminus_font ];
   };
 
   i18n = {
