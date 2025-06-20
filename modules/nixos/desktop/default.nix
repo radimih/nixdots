@@ -11,7 +11,7 @@ in
 {
   options.modules.desktop = {
 
-    enable = lib.mkEnableOption "";
+    enable = lib.mkEnableOption "System components of desktop environment";
 
   };
 
