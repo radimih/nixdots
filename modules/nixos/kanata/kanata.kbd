@@ -41,7 +41,7 @@ services.kanata.keyboards.<name>.extraDefCfg в configuration.nix
 ;; Клавиша CapsLock
 
 (defalias
-  advanced-caps (tap-hold 200 200 (macro esc @to-eng) (layer-while-held nav))
+  advanced-caps (tap-hold 200 200 esc (layer-while-held nav))
 )
 
 (deflayermap (nav)
