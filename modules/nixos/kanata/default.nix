@@ -5,10 +5,10 @@
 }:
 
 let
-  cfg = config.keyboard.kanata;
+  cfg = config.modules.kanata;
 in
 {
-  options.keyboard.kanata = {
+  options.modules.kanata = {
 
     enable = lib.mkEnableOption "Keyboard customization by https://github.com/jtroo/kanata";
 

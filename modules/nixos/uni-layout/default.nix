@@ -5,10 +5,10 @@
 }:
 
 let
-  cfg = config.keyboard.universal-layout;
+  cfg = config.modules.universal-layout;
 in
 {
-  options.keyboard.universal-layout = {
+  options.modules.universal-layout = {
 
     enable = lib.mkEnableOption "Universal Layout like the https://github.com/braindefender/universal-layout";
 
