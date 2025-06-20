@@ -25,21 +25,5 @@
     pulse.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    alacritty
-    fuzzel
-    waybar
-    wget
-  ];
-
-  services.displayManager.ly = {
-    enable = true;
-    settings = {
-      animation = "matrix";
-      clock = "%d.%m.%Y %T";
-      vi_mode = true;
-    };
-  };
-
-  programs.niri.enable = true;
+  modules.desktop.enable = true;
 }
