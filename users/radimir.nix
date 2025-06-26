@@ -5,6 +5,10 @@
 }:
 
 {
+  imports = [
+    ./modules/home
+  ];
+
   /*
     Нет необходимости устанавливать параметры home.username|homeDirectory, так как
     Home Manager в режиме NixOS-модуля устанавливает их автоматически:
@@ -19,4 +23,8 @@
 
   # Let home Manager install and manage itself
   programs.home-manager.enable = true;
+
+  # ------------------------------------------------------------------
+
+  modules.home.niri.enable = true;
 }
