@@ -23,7 +23,7 @@ in
       input {
           keyboard {
               xkb {
-                  layout "En,Ru"
+                  layout "${osConfig.services.xserver.xkb.layout}"
               }
           }
 
