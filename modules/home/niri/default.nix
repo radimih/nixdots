@@ -243,9 +243,9 @@ in
 
           Mod+W { toggle-column-tabbed-display; }
 
-          // Actions to switch layouts.
-          // Mod+Space       { switch-layout "next"; }
-          // Mod+Shift+Space { switch-layout "prev"; }
+          // Custom
+          Mod+Space       { switch-layout "next"; }
+          Mod+Shift+Space { switch-layout "prev"; }
 
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
