@@ -1,6 +1,7 @@
 {
   config,
   osConfig,
+  inputs,
   lib,
   pkgs,
   ...
@@ -20,6 +21,9 @@ in
 
     # https://github.com/YaLTeR/niri/blob/main/resources/default-config.kdl
     xdg.configFile."niri/config.kdl".text = ''
+      spawn-at-startup "waybar"
+      spawn-at-startup "sh" "-c" "${lib.getExe pkgs.swaybg} --image ${inputs.wallpaper}"
+
       input {
           keyboard {
               xkb {
@@ -86,8 +90,6 @@ in
           struts {
           }
       }
-
-      spawn-at-startup "waybar"
 
       screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
