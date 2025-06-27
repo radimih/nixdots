@@ -10,7 +10,7 @@
     };
 
     wallpaper = {
-      url = "file:./wallpapers/cold-coast.jpg";
+      url = "path:wallpapers/cold-coast.jpg";
       flake = false;
     };
   };

@@ -22,7 +22,7 @@ in
     # https://github.com/YaLTeR/niri/blob/main/resources/default-config.kdl
     xdg.configFile."niri/config.kdl".text = ''
       spawn-at-startup "waybar"
-      spawn-at-startup "sh" "-c" "${lib.getExe pkgs.swaybg} --image ${inputs.wallpaper}"
+      spawn-at-startup "${lib.getExe pkgs.swaybg}" "--image" "${inputs.wallpaper}"
 
       input {
           keyboard {
@@ -247,8 +247,8 @@ in
 
           // Немодальное переключение раскладки клавиатуры
           // TODO: комбинации клавиш и раскладки клавиатуры сделать через параметры
-          Ctrl+Shift+Mod+F11 { switch-layout 0; }
-          Ctrl+Shift+Mod+F12 { switch-layout 1; }
+          Ctrl+Shift+Mod+F11 { switch-layout "0"; }
+          Ctrl+Shift+Mod+F12 { switch-layout "1"; }
 
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
