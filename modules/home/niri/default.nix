@@ -245,8 +245,8 @@ in
 
           // Немодальное переключение раскладки клавиатуры
           // TODO: комбинации клавиш и раскладки клавиатуры сделать через параметры
-          Ctrl+Shift+Mod+F11 { switch-layout "En"; }
-          Ctrl+Shift+Mod+F12 { switch-layout "Ru"; }
+          Ctrl+Shift+Mod+F11 { switch-layout 0; }
+          Ctrl+Shift+Mod+F12 { switch-layout 1; }
 
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
