@@ -243,9 +243,10 @@ in
 
           Mod+W { toggle-column-tabbed-display; }
 
-          // Custom
-          Mod+Space       { switch-layout "next"; }
-          Mod+Shift+Space { switch-layout "prev"; }
+          // Немодальное переключение раскладки клавиатуры
+          // TODO: комбинации клавиш и раскладки клавиатуры сделать через параметры
+          Ctrl+Shift+Mod+F11 { switch-layout "En"; }
+          Ctrl+Shift+Mod+F12 { switch-layout "Ru"; }
 
           Print { screenshot; }
           Ctrl+Print { screenshot-screen; }
