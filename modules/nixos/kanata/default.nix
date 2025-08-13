@@ -12,6 +12,7 @@ in
 
     enable = lib.mkEnableOption "Keyboard customization by https://github.com/jtroo/kanata";
 
+    # TODO: горячие клавиши для переключения раскладок через опции модуля
   };
 
   config = lib.mkIf cfg.enable {

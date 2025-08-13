@@ -12,6 +12,8 @@ in
 
     enable = lib.mkEnableOption "Universal Layout like the https://github.com/braindefender/universal-layout";
 
+    # TODO: названия раскладок через опции
+
   };
 
   config = lib.mkIf cfg.enable {
