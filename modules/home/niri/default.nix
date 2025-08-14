@@ -28,6 +28,14 @@ in
           # TODO: комбинации клавиш и раскладки клавиатуры сделать через параметры
           "Ctrl+Shift+Mod+F11".action.switch-layout = "0";
           "Ctrl+Shift+Mod+F12".action.switch-layout = "1";
+          "Mod+D" = {
+            action.spawn = "fuzzel";
+            hotkey-overlay.title = "Run an Application";
+          };
+          "Mod+T" = {
+            action.spawn = "alacritty";
+            hotkey-overlay.title = "Open a Terminal";
+          };
         };
 
         environment = {
