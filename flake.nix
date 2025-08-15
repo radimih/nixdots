@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri.url = "github:sodiboo/niri-flake";
+
     wallpaper = {
       url = "path:wallpapers/cold-coast.jpg";
       flake = false;

@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -9,6 +10,10 @@ let
   cfg = config.modules.desktop;
 in
 {
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
   options.modules.desktop = {
 
     enable = lib.mkEnableOption "System components of desktop environment";
@@ -34,7 +39,10 @@ in
       # x11Support = false;
     };
 
-    programs.niri.enable = true;
+    programs.niri = {
+      enable = true;
+      package = pkgs.niri;
+    };
 
   };
 }
