@@ -11,15 +11,14 @@
 {
   flake.nixosConfigurations = {
     vm-test = inputs.nixpkgs.lib.nixosSystem {
-      modules =
+      modules = [
         # ../_hosts/vm-test/default.nix
         ../_hosts/vm-test/hardware-configuration.nix
-        ++ [
-          {
-            networking.hostName = "vm-test";
-            nixpkgs.config.allowUnfree = true;
-          }
-        ];
+        {
+          networking.hostName = "vm-test";
+          nixpkgs.config.allowUnfree = true;
+        }
+      ];
       specialArgs = {
         inherit inputs;
         inherit self;
