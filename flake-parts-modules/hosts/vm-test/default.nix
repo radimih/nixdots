@@ -5,7 +5,7 @@
 }:
 
 {
-  flake.modules.nixos.hosts.vm-test = {
+  flake.modules.nixos.hosts-vm-test = {
 
     imports = with config.flake.modules.nixos; [
       base
