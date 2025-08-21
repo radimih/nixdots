@@ -5,14 +5,14 @@
 }:
 
 {
-  flake.modules.nixos.hosts-vm-test = {
+  flake.modules.nixos.host-vm-test = {
 
     imports = with config.flake.modules.nixos; [
       base
     ];
 
     boot = {
-      # kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages_latest;
       kernelParams = [
       ];
 
