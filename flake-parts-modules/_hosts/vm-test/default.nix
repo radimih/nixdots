@@ -10,7 +10,7 @@
     useOSProber = true;
   };
 
-  imports = { config, ... }: with config.flake.modules.nixos; [
+  imports = with config.flake.modules.nixos; [
     base
   ];
 
