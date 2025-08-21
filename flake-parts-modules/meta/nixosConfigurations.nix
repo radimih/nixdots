@@ -12,7 +12,7 @@
   flake.nixosConfigurations = {
     vm-test = inputs.nixpkgs.lib.nixosSystem {
       modules = [
-        # ../_hosts/vm-test/default.nix
+        ../_hosts/vm-test
         ../_hosts/vm-test/hardware-configuration.nix
         {
           networking.hostName = "vm-test";
