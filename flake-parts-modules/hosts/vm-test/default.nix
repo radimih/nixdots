@@ -7,12 +7,8 @@
   flake.modules.nixos.host-vm-test =
     { pkgs, ...}:
     {
-      imports = with config.flake.modules.nixos; [
-        base
-      ];
-
       boot = {
-        kernelPackages = pkgs.linuxPackages_latest;
+        # kernelPackages = pkgs.linuxPackages_latest;
         kernelParams = [
         ];
 
@@ -25,6 +21,14 @@
           };
         };
       };
+
+      environment.systemPackages = with pkgs; [
+        vim
+      ];
+
+      imports = with config.flake.modules.nixos; [
+        base
+      ];
 
       # Enable sound with PipeWire
       services.pulseaudio.enable = false;
