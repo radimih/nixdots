@@ -12,8 +12,8 @@
   flake.nixosConfigurations = {
     vm-test = inputs.nixpkgs.lib.nixosSystem {
       modules = [
-        ../_hosts/vm-test
-        ../_hosts/vm-test/hardware-configuration.nix
+        ../hosts/vm-test/_hardware-configuration.nix
+        config.flake.modules.hosts.vm-test
         {
           networking.hostName = "vm-test";
           nixpkgs.config.allowUnfree = true;
