@@ -4,15 +4,15 @@
 }:
 
 {
-  imports = with config.flake.modules.nixos; [
-    base
-  ];
-
   boot.loader.grub = {
     enable = true;
     device = "/dev/vda";
     useOSProber = true;
   };
+
+  imports = with config.flake.modules.nixos; [
+    base
+  ];
 
   # Enable sound with PipeWire
   services.pulseaudio.enable = false;
