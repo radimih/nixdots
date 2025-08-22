@@ -5,7 +5,7 @@
 
 {
   flake.modules.nixos.host-qqq =
-    { pkgs, ...}:
+    { lib, pkgs, ...}:
     {
       boot = {
         # kernelPackages = pkgs.linuxPackages_latest;
