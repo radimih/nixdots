@@ -16,7 +16,7 @@
           timeout = 0;
           grub = {
             enable = true;
-            device = "/dev/vda";
+            device = "/dev/qqq";
             useOSProber = true;
           };
         };
@@ -35,5 +35,7 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
+
+      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   };
 }
