@@ -33,8 +33,8 @@
     }@inputs:
     let
       lib = nixpkgs.lib;
-      notImport = lib.hasSuffix "hardware-configuration.nix";
-      flakeParts = import-tree.filterNot notImport ./flake-parts;
+      notImports = lib.hasSuffix "hardware-configuration.nix";
+      flakeParts = import-tree.filterNot notImport ./parts;
     in
     flake-parts.lib.mkFlake { inherit inputs; } flakeParts;
 }
