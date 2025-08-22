@@ -17,7 +17,7 @@
           nixpkgs.config.allowUnfree = true;
         }
         # хосты как flake-parts-модули (рабочий вариант)
-        # ../hosts/vm-test/hardware-configuration.nix
+        ../hosts/vm-test/hardware-configuration.nix
         config.flake.modules.nixos.host-vm-test
       ];
       specialArgs = {
