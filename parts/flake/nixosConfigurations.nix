@@ -25,7 +25,7 @@
           in
           inputs.nixpkgs.lib.nixosSystem {
           modules = [
-            config.flake.modules.nixos.host-${host}
+            config.flake.modules.nixos."host-${host}"
             {
               networking.hostName = host;
               system.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех хостов? 2) вынести в глобальные константы?
