@@ -28,7 +28,7 @@
             config.flake.modules.nixos.host-${host}
             {
               networking.hostName = host;
-              nixpkgs.config.allowUnfree = true;
+              system.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех хостов? 2) вынести в глобальные константы?
             }
           ] ++ lib.optional (builtins.pathExists hardConfFile) hardConfFile;
           specialArgs = {
@@ -38,5 +38,5 @@
         };
       };
     in
-    hosts |> map mkHost |> builtins.listToAttrs;
+    hosts |> builtins.map mkHost |> builtins.listToAttrs;
 }

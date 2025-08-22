@@ -3,8 +3,13 @@
   ...
 }:
 
+let
+  host = "vm-test";
+in
 {
-  flake.modules.nixos.host-vm-test =
+  # --- настройка хоста на уровне NixOS
+
+  flake.modules.nixos."host-${host}" =
     { pkgs, ...}:
     {
       boot = {
@@ -31,4 +36,11 @@
         sound
       ];
   };
+
+  # --- настройка хоста на уровне Home Manager
+
+  flake.modules.homeManager."host-${host}" =
+    { pkgs, ...}:
+    {
+    };
 }
