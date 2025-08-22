@@ -16,12 +16,9 @@
           networking.hostName = "vm-test";
           nixpkgs.config.allowUnfree = true;
         }
-        # хосты как классические NixOS-модули
-        ../_hosts/vm-test
-        ../_hosts/vm-test/hardware-configuration.nix
         # хосты как flake-parts-модули (рабочий вариант)
-        # ../hosts/vm-test/_hardware-configuration.nix
-        # config.flake.modules.nixos.host-vm-test
+        # ../hosts/vm-test/hardware-configuration.nix
+        config.flake.modules.nixos.host-vm-test
       ];
       specialArgs = {
         inherit inputs;

@@ -24,5 +24,18 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./flake-parts-modules);
+  outputs =
+    {
+      flake-parts,
+      import-tree,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      lib = nixpkgs.lib;
+      notImport = lib.hasSuffix "hardware-configuration.nix";
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      (import-tree.filterNot notImport) ./flake-parts-modules
+    );
 }
