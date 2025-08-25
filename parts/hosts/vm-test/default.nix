@@ -34,6 +34,7 @@ in
       imports = with config.flake.modules.nixos; [
         base
         sound
+        user-radimir
       ];
   };
 

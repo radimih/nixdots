@@ -3,6 +3,8 @@ let
 in
 {
   flake.modules.nixos."user-${user}" = {
+  };
 
+  flake.modules.homeManager."user-${user}" = {
   };
 }
