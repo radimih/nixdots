@@ -12,6 +12,16 @@ in
   flake.modules.nixos."host-${host}" =
     { pkgs, ...}:
     {
+      imports = with config.flake.modules.nixos; [
+        # --- аспекты
+        base
+        sound
+
+        # --- пользователи
+        user-radimir
+        user-test
+      ];
+
       boot = {
         # kernelPackages = pkgs.linuxPackages_latest;
         kernelParams = [
@@ -30,18 +40,16 @@ in
       environment.systemPackages = with pkgs; [
         vim
       ];
-
-      imports = with config.flake.modules.nixos; [
-        base
-        sound
-        user-radimir
-      ];
-  };
-
-  # --- настройка хоста на уровне Home Manager
-
-  flake.modules.homeManager."host-${host}" =
-    { pkgs, ...}:
-    {
     };
+
+  # --- настройка пользователей хоста на уровне Home Manager
+
+  # flake.modules.homeManager.user-radimir =
+  #   { pkgs, ...}:
+  #   {
+  #     imports = with config.flake.modules.homeManager; [
+  #       base
+  #       user-radimir
+  #     ];
+  #   };
 }

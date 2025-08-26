@@ -1,7 +1,7 @@
 let
   user = {
-    name = "radimir";
-    desc = "Radimir";
+    name = "test";
+    desc = "Test User";
   };
 in
 {
@@ -11,12 +11,13 @@ in
       users.${user.name} = {
         createHome = true;
         description = user.desc;
-        isNormalUser = true;
         extraGroups = [
           "networkmanager"
           "wheel"
         ];
-        shell = pkgs.fish;
+        initialPassword = "test";
+        isNormalUser = true;
+        shell = pkgs.bash;
       };
     };
 
