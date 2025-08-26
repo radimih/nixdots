@@ -8,7 +8,7 @@ in
   flake.modules.nixos."user-${user.name}" =
     { pkgs, ...}:
     {
-      users.${user.name} = {
+      users.users.${user.name} = {
         createHome = true;
         description = user.desc;
         isNormalUser = true;
