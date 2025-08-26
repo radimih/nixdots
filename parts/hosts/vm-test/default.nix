@@ -18,7 +18,7 @@ in
         sound
 
         # --- пользователи
-        user-radimir
+        # user-radimir
         user-test
       ];
 
