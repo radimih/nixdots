@@ -11,11 +11,11 @@ in
       users.users.${user.name} = {
         createHome = true;
         description = user.desc;
-        isNormalUser = true;
         extraGroups = [
           "networkmanager"
           "wheel"
         ];
+        isNormalUser = true;
         shell = pkgs.fish;
       };
     };
