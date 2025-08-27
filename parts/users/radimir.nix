@@ -13,6 +13,7 @@ in
         description = user.desc;
         extraGroups = [
           "networkmanager"
+          "systemd-journal"
           "wheel"
         ];
         isNormalUser = true;
