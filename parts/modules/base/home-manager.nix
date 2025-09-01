@@ -24,17 +24,18 @@
     };
 
     # TODO: config.users.users.radimir
-    home-manager.users.radimir = {
-      /*
-        Нет необходимости устанавливать параметры home.username|homeDirectory, так как
-        Home Manager в режиме NixOS-модуля устанавливает их автоматически:
-        https://github.com/nix-community/home-manager/blob/master/nixos/common.nix#L53-L54
-      */
-      home.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
+    # home-manager.users.radimir = {
+    #   /*
+    #     Нет необходимости устанавливать параметры home.username|homeDirectory, так как
+    #     Home Manager в режиме NixOS-модуля устанавливает их автоматически:
+    #     https://github.com/nix-community/home-manager/blob/master/nixos/common.nix#L53-L54
+    #   */
+    #   home.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
 
-      # Let home Manager install and manage itself
-      programs.home-manager.enable = true;
-    };
+    #   # Let home Manager install and manage itself
+    #   programs.home-manager.enable = true;
+    # };
+    home-manager.users.radimir = config.flake.modules.homeManager.user-radimir;
   };
 
   flake.modules.homeManager.base = {
