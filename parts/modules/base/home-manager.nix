@@ -35,7 +35,7 @@
     #   # Let home Manager install and manage itself
     #   programs.home-manager.enable = true;
     # };
-    home-manager.users.radimir = config.flake.modules.homeManager.user-radimir;
+    home-manager.users.radimir.imports = config.flake.modules.homeManager.user-radimir.imports;
   };
 
   flake.modules.homeManager.base = {
