@@ -3,6 +3,7 @@
 
 {
   inputs,
+  config,
   ...
 }:
 
@@ -22,8 +23,8 @@
       useUserPackages = true;
     };
 
-    # home-manager.users.${globalSpec.admin.name} = import "${self}/users/${globalSpec.admin.name}.nix";
-    home-manager.users.test = {
+    # TODO: config.users.users.radimir
+    home-manager.users.radimir = {
       /*
         Нет необходимости устанавливать параметры home.username|homeDirectory, так как
         Home Manager в режиме NixOS-модуля устанавливает их автоматически:
@@ -48,5 +49,14 @@
 
     # Let home Manager install and manage itself
     programs.home-manager.enable = true;
+
+    # TODO: https://home-manager-options.extranix.com/?query=autoExpire&release=release-25.05
+    # services = {
+    #   home-manager.autoExpire = {
+    #     enable = true;
+    #     frequency = "weekly";
+    #     store.cleanup = true;
+    #   };
+    # };
   };
 }

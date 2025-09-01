@@ -21,6 +21,11 @@ in
       };
     };
 
-  # flake.modules.homeManager."user-${user.name}" = {
-  # };
+  flake.modules.homeManager."user-${user.name}" = {
+
+    home.file."trial.txt".text = ''
+      This is trial text.
+      Russian: привет, ребята!
+      '';
+  };
 }

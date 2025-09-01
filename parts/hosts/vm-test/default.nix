@@ -18,8 +18,8 @@ in
         sound
 
         # --- пользователи
-        # user-radimir
-        user-test
+        user-radimir
+        # user-test
       ];
 
       boot = {
@@ -44,12 +44,12 @@ in
 
   # --- настройка пользователей хоста на уровне Home Manager
 
-  # flake.modules.homeManager.user-radimir =
-  #   { pkgs, ...}:
-  #   {
-  #     imports = with config.flake.modules.homeManager; [
-  #       base
-  #       user-radimir
-  #     ];
-  #   };
+  flake.modules.homeManager.user-radimir =
+    { pkgs, ...}:
+    {
+      imports = with config.flake.modules.homeManager; [
+        base
+        user-radimir
+      ];
+    };
 }

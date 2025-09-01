@@ -13,7 +13,6 @@ in
         description = user.desc;
         extraGroups = [
           "networkmanager"
-          "wheel"
         ];
         initialPassword = "test";
         isNormalUser = true;
