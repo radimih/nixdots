@@ -48,7 +48,7 @@ in
     { pkgs, ...}:
     {
       imports = with config.flake.modules.homeManager; [
-        user-radimir
+        # user-radimir
       ];
     };
 }
