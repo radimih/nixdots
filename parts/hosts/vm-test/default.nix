@@ -7,6 +7,8 @@ let
   host = "vm-test";
 in
 {
+  flake.meta.host = host;
+
   # --- настройка хоста на уровне NixOS
 
   flake.modules.nixos."host-${host}" =
@@ -48,7 +50,9 @@ in
     { pkgs, ...}:
     {
       imports = with config.flake.modules.homeManager; [
-        # user-radimir
+        {
+          home.file."host.txt".text = "${host}";
+        }
       ];
     };
 }
