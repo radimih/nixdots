@@ -32,6 +32,7 @@
               }
               # --- настройки, специфичные для данного хоста (см. каталог parts/hosts/{host})
               config.flake.modules.nixos."host-${host}"
+              config.flake.modules.homeManager."host-${host}"
               # --- hardware-configuration.nix, если он существует
             ] ++ lib.optional (builtins.pathExists hardConfFile) hardConfFile;
             specialArgs = {

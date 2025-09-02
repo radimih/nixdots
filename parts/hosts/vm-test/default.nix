@@ -42,13 +42,12 @@ in
       ];
     };
 
-  # --- настройка пользователей хоста на уровне Home Manager
+  # --- настройка хоста на уровне Home Manager
 
-  flake.modules.homeManager.user-radimir =
+  flake.modules.homeManager."host-${host}" =
     { pkgs, ...}:
     {
       imports = with config.flake.modules.homeManager; [
-        base
         user-radimir
       ];
     };
