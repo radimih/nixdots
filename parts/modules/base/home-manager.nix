@@ -8,7 +8,7 @@
 }:
 
 {
-  flake.modules.nixos.base = {config', ...}: {
+  flake.modules.nixos.base = {osConfig, ...}: {
 
     imports = [
       inputs.home-manager.nixosModules.home-manager
@@ -28,7 +28,7 @@
         home.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
         programs.home-manager.enable = true;
       }
-      config.flake.modules.homeManager."host-${config'.networking.hostName}"
+      config.flake.modules.homeManager."host-${osConfig.networking.hostName}"
       config.flake.modules.homeManager.user-radimir
       # config.flake.modules.homeManager.base
     ];
