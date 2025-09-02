@@ -51,6 +51,7 @@ in
     {
       imports = with config.flake.modules.homeManager; [
         {
+          home.file."host-${host}.txt".text = "${host}";
           home.file."qqq.txt".text = "${host}";
         }
       ];

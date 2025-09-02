@@ -21,5 +21,7 @@ in
     };
 
   flake.modules.homeManager."user-${user.name}" = {
+
+    home.file."user-${user.name}.txt".text = "test";
   };
 }
