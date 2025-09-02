@@ -20,6 +20,6 @@ in
       };
     };
 
-  # flake.modules.homeManager."user-${user.name}" = {
-  # };
+  flake.modules.homeManager."user-${user.name}" = {
+  };
 }
