@@ -15,6 +15,7 @@ in
       imports = with config.flake.modules.nixos; [
         base
         kanata
+        niri
         universal-layout
         user-radimir
         user-test
@@ -23,6 +24,8 @@ in
       # --- настройки пользователей на уровне Home Manager именно для этого хоста
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
+        niri
+      ] ++ [
         {
           home.file."host-${host}-radimir.txt".text = "Hello!";
         }
