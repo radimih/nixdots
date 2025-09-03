@@ -50,7 +50,5 @@ in
           };
         };
       };
-
-      services.displayManager.ly.settings.animation = lib.mkForce "doom";
     };
 }
