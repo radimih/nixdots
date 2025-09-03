@@ -34,12 +34,12 @@ in
 
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
 
-  flake.modules.homeManager."user-${user.name}" =
-    { osConfig, ... }:
-    let
-      host = osConfig.networking.hostName;
-    in
-    {
-      home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
-    };
+  # flake.modules.homeManager."user-${user.name}" =
+  #   { osConfig, ... }:
+  #   let
+  #     host = osConfig.networking.hostName;
+  #   in
+  #   {
+  #     home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+  #   };
 }
