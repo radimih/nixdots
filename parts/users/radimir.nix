@@ -10,6 +10,8 @@ let
   };
 in
 {
+  # ---
+
   flake.modules.nixos."user-${user.name}" =
     { pkgs, ...}:
     {
@@ -30,6 +32,8 @@ in
         config.flake.modules.homeManager."user-${user.name}"
       ];
     };
+
+  # ---
 
   flake.modules.homeManager."user-${user.name}" = {
 

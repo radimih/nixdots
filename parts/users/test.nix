@@ -10,6 +10,8 @@ let
   };
 in
 {
+  # ---
+
   flake.modules.nixos."user-${user.name}" =
     { pkgs, ...}:
     {
@@ -18,6 +20,7 @@ in
         description = user.desc;
         extraGroups = [
           "networkmanager"
+          "wheel"
         ];
         initialPassword = "test";
         isNormalUser = true;
@@ -29,6 +32,8 @@ in
         config.flake.modules.homeManager."user-${user.name}"
       ];
     };
+
+  # ---
 
   flake.modules.homeManager."user-${user.name}" = {
 
