@@ -40,7 +40,7 @@ in
         niri
       ] ++ [
         {
-          home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
+          # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
         }
       ];
     };
