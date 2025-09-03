@@ -2,14 +2,30 @@
   description = "My Nixos configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";  # FIXME: при unstable имеем black screen при логине в tty
+
+    # --- nixpkgs
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+
+    # --- infra
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    import-tree.url = "github:vic/import-tree";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # --- software
+
     niri.url = "github:sodiboo/niri-flake";
+
+    # --- other
 
     wallpaper = {
       url = "path:wallpapers/cold-coast.jpg";
@@ -19,51 +35,15 @@
 
   outputs =
     {
-      self,
+      flake-parts,
+      import-tree,
       nixpkgs,
       ...
     }@inputs:
     let
-      globalSpec = {
-        admin = {
-          name = "radimir";
-          desc = "Radimir";
-        };
-        stateVersion = "25.05";
-        timeZone = "Asia/Novokuznetsk";
-      };
+      lib = nixpkgs.lib;
+      notImports = lib.hasSuffix "hardware-configuration.nix";
+      flakeParts = (import-tree.filterNot notImports) ./parts;
     in
-    {
-      nixosConfigurations =
-        let
-          hosts =
-            let
-              entries = builtins.readDir ./hosts;
-            in
-            entries
-            |> builtins.attrNames
-            |> builtins.filter (file: entries.${file} == "directory")
-            |> builtins.filter (file: file != "_common");
-
-          mkHost = host: {
-            name = host;
-            value = nixpkgs.lib.nixosSystem {
-              modules = [
-                {
-                  networking.hostName = host;
-                  system.stateVersion = globalSpec.stateVersion;
-                }
-                ./hosts/${host}
-                ./modules/nixos
-              ];
-              specialArgs = {
-                inherit globalSpec;
-                inherit inputs;
-                inherit self;
-              };
-            };
-          };
-        in
-        hosts |> map mkHost |> builtins.listToAttrs;
-    };
+    flake-parts.lib.mkFlake { inherit inputs; } flakeParts;
 }

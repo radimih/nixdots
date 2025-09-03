@@ -1,21 +1,8 @@
+# Keyboard customization by https://github.com/jtroo/kanata
 {
-  config,
-  lib,
-  ...
-}:
-
-let
-  cfg = config.modules.kanata;
-in
-{
-  options.modules.kanata = {
-
-    enable = lib.mkEnableOption "Keyboard customization by https://github.com/jtroo/kanata";
+  flake.modules.nixos.kanata = {
 
     # TODO: горячие клавиши для переключения раскладок через опции модуля
-  };
-
-  config = lib.mkIf cfg.enable {
 
     services.kanata = {
       enable = true;
@@ -28,6 +15,5 @@ in
         };
       };
     };
-
   };
 }
