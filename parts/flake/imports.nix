@@ -1,6 +1,8 @@
 # Импорты flake-parts
-
-{ inputs, ... }:
+{
+  inputs,
+  ...
+}:
 {
   imports = [
     # flake-parts.modules: https://flake.parts/options/flake-parts-modules.html

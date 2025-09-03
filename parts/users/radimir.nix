@@ -2,7 +2,6 @@
   config,
   ...
 }:
-
 let
   user = {
     name = "radimir";
@@ -36,6 +35,6 @@ in
 
   flake.modules.homeManager."user-${user.name}" = {
 
-    home.file."user-${user.name}.txt".text = "radimir";
+    home.file."hello-user.txt".text = "Hello, ${user.name}!";
   };
 }
