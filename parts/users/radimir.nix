@@ -24,7 +24,6 @@ in
           "wheel"
         ];
         isNormalUser = true;
-        shell = pkgs.fish;
       };
 
       home-manager.users.${user.name}.imports = [

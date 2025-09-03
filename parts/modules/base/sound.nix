@@ -1,6 +1,6 @@
 # Enable sound with PipeWire
 {
-  flake.modules.nixos.sound = {
+  flake.modules.nixos.base = {
 
     security.rtkit.enable = true;
 
