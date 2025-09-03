@@ -50,5 +50,7 @@ in
           };
         };
       };
+
+      services.displayManager.ly.settings.animation = "doom";
     };
 }
