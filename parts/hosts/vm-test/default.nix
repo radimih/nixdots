@@ -8,7 +8,7 @@ let
 in
 {
   flake.modules.nixos."host-${host}" =
-    { pkgs, ...}:
+    { pkgs, lib, ...}:
     {
       # ---
 
@@ -51,6 +51,6 @@ in
         };
       };
 
-      services.displayManager.ly.settings.animation = "doom";
+      services.displayManager.ly.settings.animation = lib.mkForce "doom";
     };
 }
