@@ -1,3 +1,8 @@
+{
+  config,
+  ...
+}:
+
 let
   user = {
     name = "radimir";
