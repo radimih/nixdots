@@ -1,6 +1,6 @@
 # Universal Layout like the https://github.com/braindefender/universal-layout";
 {
-  flake.modules.nixos.base =
+  flake.modules.nixos.universal-layout =
     { lib, ...}:
     {
       # TODO: названия раскладок через опции
