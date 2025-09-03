@@ -13,7 +13,7 @@
     ];
 
     home-manager = {
-      # backupFileExtension = "backup";  # TODO: проверить, будет ли ошибка, если файлы уже существуют: https://github.com/nix-community/home-manager/blob/master/nixos/common.nix#L84
+      backupFileExtension = "bak";  # TODO: проверить, будет ли ошибка, если файлы уже существуют: https://github.com/nix-community/home-manager/blob/master/nixos/common.nix#L84
       extraSpecialArgs = {
         inherit inputs;
       };

@@ -4,6 +4,7 @@
 }:
 
 let
+  # TODO: попробовать считывать имя хоста из файловой системы
   host = "vm-test";
 in
 {
@@ -39,7 +40,7 @@ in
         niri
       ] ++ [
         {
-          # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host.";
+          home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host.";
         }
       ];
     };

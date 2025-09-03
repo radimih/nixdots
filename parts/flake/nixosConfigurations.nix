@@ -2,7 +2,6 @@
   config,
   inputs,
   lib,
-  self,
   ...
 }:
 
@@ -36,7 +35,6 @@
             ] ++ lib.optional (builtins.pathExists hardConfFile) hardConfFile;
             specialArgs = {
               inherit inputs;
-              inherit self;
             };
           };
       };
