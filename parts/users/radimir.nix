@@ -1,3 +1,4 @@
+# flake-parts-модуль по настройке Linux-пользователя
 {
   config,
   ...
@@ -9,7 +10,7 @@ let
   };
 in
 {
-  # ---
+  # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
     { pkgs, ...}:
@@ -31,10 +32,14 @@ in
       ];
     };
 
-  # ---
+  # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
 
-  flake.modules.homeManager."user-${user.name}" = {
-
-    home.file."hello-user.txt".text = "Hello, ${user.name}!";
-  };
+  flake.modules.homeManager."user-${user.name}" =
+    { osConfig, ... }:
+    let
+      host = osConfig.networking.hostName;
+    in
+    {
+      home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+    };
 }

@@ -5,7 +5,7 @@
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";  # FIXME: при unstable имеем black screen при логине в tty
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # --- infra
 

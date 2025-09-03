@@ -13,10 +13,6 @@ in
       # --- NixOS-параметры хоста
 
       boot = {
-        # kernelPackages = pkgs.linuxPackages_latest;
-        kernelParams = [
-        ];
-
         loader = {
           timeout = 0;
           grub = {
