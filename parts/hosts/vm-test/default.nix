@@ -46,7 +46,7 @@ in
 
   # --- настройка хоста на уровне Home Manager
 
-  flake.modules.homeManager."host-${host}" =
+  flake.modules.homeManager."user-${user.name}" =
     { pkgs, ...}:
     {
       imports = with config.flake.modules.homeManager; [
