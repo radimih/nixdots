@@ -1,3 +1,8 @@
+{
+  config,
+  ...
+}:
+
 let
   user = {
     name = "test";
@@ -18,6 +23,11 @@ in
         isNormalUser = true;
         shell = pkgs.bash;
       };
+
+      home-manager.users.${user.name}.imports = [
+        config.flake.modules.homeManager.base
+        config.flake.modules.homeManager."user-${user.name}"
+      ];
     };
 
   flake.modules.homeManager."user-${user.name}" = {

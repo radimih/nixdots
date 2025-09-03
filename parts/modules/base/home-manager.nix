@@ -22,17 +22,6 @@
       useGlobalPkgs = true;
       useUserPackages = true;
     };
-
-    # home-manager.users.radimir.imports = [
-    #   {
-    #     home.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
-    #     programs.home-manager.enable = true;
-    #   }
-    #   # config.flake.modules.homeManager."host-${config.flake.meta.host}"
-    #   config.flake.modules.homeManager.host-vm-test
-    #   config.flake.modules.homeManager.user-radimir
-    #   # config.flake.modules.homeManager.base
-    # ];
   };
 
   flake.modules.homeManager.base = {

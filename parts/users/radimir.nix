@@ -27,7 +27,7 @@ in
 
       home-manager.users.${user.name}.imports = [
         config.flake.modules.homeManager.base
-        config.flake.modules.homeManager.user-radimir
+        config.flake.modules.homeManager."user-${user.name}"
       ];
     };
 

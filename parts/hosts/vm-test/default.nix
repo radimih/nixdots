@@ -7,21 +7,16 @@ let
   host = "vm-test";
 in
 {
-  flake.meta.host = host;
-
   # --- настройка хоста на уровне NixOS
 
   flake.modules.nixos."host-${host}" =
     { pkgs, ...}:
     {
       imports = with config.flake.modules.nixos; [
-        # --- аспекты
         base
         sound
-
-        # --- пользователи
         user-radimir
-        # user-test
+        user-test
       ];
 
       boot = {
@@ -45,6 +40,8 @@ in
     };
 
   # --- настройка хоста на уровне Home Manager
+  # --- настройки пользователей этого хоста на уровне Home Manager
+  # --- настройки пользователей на уровне Home Manager именно для этого хоста
 
   flake.modules.homeManager.user-radimir =
     { pkgs, ...}:
