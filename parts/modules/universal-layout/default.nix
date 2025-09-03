@@ -1,4 +1,4 @@
-# Universal Layout like the https://github.com/braindefender/universal-layout";
+# Universal Layout like the https://github.com/braindefender/universal-layout
 {
   flake.modules.nixos.universal-layout =
     { lib, ...}:

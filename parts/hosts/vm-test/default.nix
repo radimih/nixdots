@@ -14,6 +14,7 @@ in
 
       imports = with config.flake.modules.nixos; [
         base
+        kanata
         universal-layout
         user-radimir
         user-test

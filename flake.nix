@@ -17,11 +17,11 @@
     import-tree.url = "github:vic/import-tree";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- soft
+    # --- software
 
     niri.url = "github:sodiboo/niri-flake";
 
