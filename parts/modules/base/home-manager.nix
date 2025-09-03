@@ -1,12 +1,10 @@
 # Home Manager как NixOS-модуль
 # https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-nixos-module
-
 {
   inputs,
   config,
   ...
 }:
-
 {
   flake.modules.nixos.base = {
 

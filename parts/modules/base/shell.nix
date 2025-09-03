@@ -1,9 +1,4 @@
 {
-  config,
-  ...
-}:
-
-{
   flake.modules.nixos.base =
     { pkgs, ...}:
     {
@@ -24,5 +19,5 @@
       users = {
         defaultUserShell = pkgs.fish;
       };
-  };
+    };
 }
