@@ -27,6 +27,11 @@
 
     # --- other
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wallpaper = {
       url = "path:wallpapers/cold-coast.jpg";
       flake = false;
