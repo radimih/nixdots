@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.boot =
+  flake.modules.nixos.boot2 =
     { lib, ...}:
     {
       # Использовать systemd при загрузке с initrd
