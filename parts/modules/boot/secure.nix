@@ -1,7 +1,11 @@
 # https://github.com/nix-community/lanzaboote
 {
+  inputs,
+  ...
+}:
+{
   flake.modules.nixos.boot-secure =
-    { lib, ...}:
+    { lib, pkgs, ...}:
     {
       imports = [
         inputs.lanzaboote.nixosModules.lanzaboote
