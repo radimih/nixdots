@@ -22,9 +22,9 @@ in
         base
         boot
         # boot-secure
-        # boot-visual
+        boot-visual
         kanata
-        # niri
+        niri
         universal-layout
         user-radimir
       ];
@@ -32,7 +32,7 @@ in
       # --- настройки пользователей на уровне Home Manager на данном хосте
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
-        # niri
+        niri
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
