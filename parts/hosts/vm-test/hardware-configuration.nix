@@ -10,11 +10,13 @@
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
   boot.initrd.kernelModules = [ ];
+  boot.initrd.luks.devices."luksroot".device = "/dev/disk/by-partlabel/root";
+
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-partlabel/root";
+    device = "/dev/mapper/luksroot";
     fsType = "ext4";
   };
 
