@@ -2,7 +2,7 @@
   flake.modules.nixos.boot-visual = {
 
     boot = {
-      plymouth.enable = false;
+      plymouth.enable = true;
     };
   };
 }
