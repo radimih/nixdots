@@ -11,8 +11,7 @@
         # Нет необходимости задавать аналогичные параметры с префиксом rd.* ()
         "udev.log_level=3"
       ];
-      loader.timeout = 0;
-      plymouth.enable = true;
+      plymouth.enable = false;
     };
   };
 }
