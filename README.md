@@ -7,11 +7,19 @@
 
 ## TODO: Установка на новую систему
 
-1. Выполнить
+1. Выполнить начальную настройку с помощью [nixos-starter](https://github.com/radimih/nixos-starter)
+
+1. Создать SecureBoot-ключи хоста и записать их в EFI-память:
 
     ```bash
-    sudo nix run nixpkgs#sbctl create-keys
+    sudo nix-shell -p sbctl
+    sbctl create-keys
+    sbctl enroll-keys --microsoft
+    sbctl status
+    exit
     ```
+
+    ВНИМАНИЕ! Не перегружать компьютер!
 
 1. Склонировать данный репозиторий на только что установленную систему:
 
@@ -30,14 +38,6 @@
 
     ```bash
     sudo sbctl verify
-    ```
-
-1. Перезагрузиться
-
-1. Записать ключи хоста в EFI:
-
-    ```bash
-    sudo sbctl enroll-keys --microsoft
     ```
 
 1. Перезагрузиться
