@@ -50,6 +50,14 @@
     sudo sbctl verify
     ```
 
+1. Внедрить в TPM2 пароль на шифрованный диск, чтобы не запрашивался при загрузке:
+
+    ```bash
+    sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/root
+    ```
+
+    - [Platform Configuration Registers (PCRs)](https://wiki.archlinux.org/title/Trusted_Platform_Module#Accessing_PCR_registers)
+
 ## Draft: Принципы и архитектура
 
 - При добавлении хоста не должен изменяться `flake.nix`
