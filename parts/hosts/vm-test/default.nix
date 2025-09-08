@@ -13,21 +13,17 @@ in
     {
       # --- NixOS-параметры хоста
 
-      boot = {
-        loader = {
-          timeout = 0;
-          grub = {
-            enable = true;
-            device = "/dev/vda";
-            useOSProber = true;
-          };
-        };
-      };
+      boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.kernelParams = [
+      ];
 
       # ---
 
       imports = with config.flake.modules.nixos; [
         base
+        boot
+        boot-secure
+        boot-visual
         kanata
         niri
         universal-layout
