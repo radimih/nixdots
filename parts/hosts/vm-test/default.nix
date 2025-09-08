@@ -13,6 +13,7 @@ in
     {
       # --- NixOS-параметры хоста
 
+      boot.kernelPackages = pkgs.linuxPackages_latest;
       boot.kernelParams = [
       ];
 
