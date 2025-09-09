@@ -1,3 +1,4 @@
+# https://nix.dev/manual/nix/stable/command-ref/conf-file.html
 {
   flake.modules.nixos.base =
     { pkgs, ...}:
@@ -6,7 +7,6 @@
       environment.systemPackages = [ pkgs.git ];
 
       # TODO: https://github.com/OkashiOdayakana/nixos-config/blob/main/modules/nixos/core/nix.nix
-      #       https://nix.dev/manual/nix/2.18/command-ref/conf-file
 
       nix = {
         channel.enable = false;
