@@ -8,6 +8,12 @@
       "nix-command"
       "pipe-operators"
     ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
   };
 
   inputs = {
@@ -16,7 +22,7 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    # --- infra
+    # --- Nix/NixOS infra
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -30,6 +36,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
+      inputs.pre-commit-hooks-nix.follows = "";
+    };
+
     # --- software
 
     niri = {
@@ -38,11 +51,6 @@
     };
 
     # --- other
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     wallpaper = {
       url = "path:wallpapers/cold-coast.jpg";
