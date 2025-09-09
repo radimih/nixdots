@@ -8,8 +8,13 @@
 
       # TODO: https://github.com/OkashiOdayakana/nixos-config/blob/main/modules/nixos/core/nix.nix
 
+      # Отключить использование каналов
       nix = {
         channel.enable = false;
+        settings.flake-registry = "";
+      };
+
+      nix = {
         settings = {
           auto-optimise-store = true;
           experimental-features = [
