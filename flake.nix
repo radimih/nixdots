@@ -22,7 +22,8 @@
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- Nix/NixOS infra
 
@@ -34,13 +35,15 @@
     import-tree.url = "github:vic/import-tree";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      # url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
+      # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
       inputs.pre-commit-hooks-nix.follows = "";
     };
 
