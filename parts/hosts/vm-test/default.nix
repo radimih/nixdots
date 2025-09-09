@@ -24,6 +24,7 @@ in
         boot
         boot-secure
         boot-visual
+        build-diff
         kanata
         niri
         universal-layout
