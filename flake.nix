@@ -1,6 +1,15 @@
 {
   description = "My Nixos configuration flake";
 
+  nixConfig = {
+    accept-flake-config = true;
+    extra-experimental-features = [
+      "flakes"
+      "nix-command"
+      "pipe-operators"
+    ];
+  };
+
   inputs = {
 
     # --- nixpkgs
