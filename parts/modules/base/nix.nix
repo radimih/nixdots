@@ -36,5 +36,18 @@
       };
 
       nixpkgs.config.allowUnfree = true;
+
+      system.activationScripts = {
+        rmChannels = ''
+          rm -rf /nix/var/nix/profiles/per-user/root/channels
+          rm -rf /root/.nix-channels
+        '';
+      };
+
+      system.userActivationScripts = {
+        rmChannels = ''
+          rm -rf $HOME/.nix-defexpr/channels
+        '';
+      };
     };
 }
