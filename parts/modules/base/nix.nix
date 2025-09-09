@@ -36,5 +36,23 @@
       };
 
       nixpkgs.config.allowUnfree = true;
+
+      # Даже при отключенных каналах (nix.channel.enable = false) остаются файлы, связанные
+      # с каналами (см. описание опции nix.channel.enable). Чтобы команда nixos-rebuild switch
+      # перестала выводить об этом предупреждающие сообщения, необходимо удалить эти файлы
+
+      system.activationScripts = {
+        rmChannels = ''
+          rm -rf /nix/var/nix/profiles/per-user/root/channels
+          rm -rf /root/.nix-channels
+          rm -rf /root/.nix-defexpr/channels
+        '';
+      };
+
+      system.userActivationScripts = {
+        rmChannels = ''
+          rm -rf $HOME/.nix-defexpr/channels
+        '';
+      };
     };
 }
