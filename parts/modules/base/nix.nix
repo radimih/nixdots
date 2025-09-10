@@ -10,7 +10,14 @@
       nix.channel.enable = false;
 
       nix.settings = {
+
+        # Включить автоматическое обнаружение в /nix/store файлов с идентичным содержимым и заменять
+        # их жёсткими ссылками на одну копию
         auto-optimise-store = true;
+
+        # Тайм-аут (в секундах) для установки соединений с binary cache substituter.
+        # Значение по-умолчанию - 0 (отсутствие ограничений)
+	      connect-timeout = 5;
 
         # Отключить все глобальные flake registry (https://channels.nixos.org/flake-registry.json).
         # Останется только один системный nixpkgs, привязанный к inputs.nixpkgs (nix registry list)
@@ -22,6 +29,12 @@
           "pipe-operators"
         ];
 
+        # Включить сборку мусора во время выполнения nixos-rebuild / nix build. Сборка включается
+        # когда свободного места на диске становится меньше min-free байт и будет выполняться пока
+        # не станет доступно max-free байт. По-умолчанию max-free равен бесконечности, то есть
+        # будет удалён весь мусор
+	      min-free = 5 * 1024 * 1024 * 1024;  # 5 Gb
+
         substituters = [
           "https://nix-community.cachix.org"
         ];
@@ -32,6 +45,8 @@
         trusted-users = [
           "@wheel"
         ];
+
+	      use-xdg-base-directories = true;
 
         warn-dirty = false;
       };
