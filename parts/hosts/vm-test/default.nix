@@ -24,11 +24,10 @@ in
         boot
         boot-secure
         boot-visual
-        build-diff
-        build-ng
-        kanata
         niri
-        universal-layout
+        service-display-manager-ly
+        service-kanata
+        service-universal-layout
         user-radimir
       ];
 

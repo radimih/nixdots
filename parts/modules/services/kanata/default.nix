@@ -1,6 +1,6 @@
 # Keyboard customization by https://github.com/jtroo/kanata
 {
-  flake.modules.nixos.kanata = {
+  flake.modules.nixos.service-kanata = {
 
     # TODO: горячие клавиши для переключения раскладок через опции модуля
 

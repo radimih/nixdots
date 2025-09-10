@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.build-diff =
+  flake.modules.nixos.base =
     { pkgs, ...}:
     {
       system.activationScripts = {
@@ -13,5 +13,7 @@
           '';
         };
       };
+
+      system.rebuild.enableNg = true;
     };
 }
