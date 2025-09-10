@@ -6,33 +6,34 @@
       # Для работы flakes нужен git
       environment.systemPackages = [ pkgs.git ];
 
-      # TODO: https://github.com/OkashiOdayakana/nixos-config/blob/main/modules/nixos/core/nix.nix
-
       # Отключить использование каналов
-      nix = {
-        channel.enable = false;
-        settings.flake-registry = "";
-      };
+      nix.channel.enable = false;
 
-      nix = {
-        settings = {
-          auto-optimise-store = true;
-          experimental-features = [
-            "flakes"
-            "nix-command"
-            "pipe-operators"
-          ];
-          substituters = [
-            "https://nix-community.cachix.org"
-          ];
-          trusted-public-keys = [
-            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          ];
-          trusted-users = [
-            "@wheel"
-          ];
-          warn-dirty = false;
-        };
+      nix.settings = {
+        auto-optimise-store = true;
+
+        # Отключить все глобальные flake registry (https://channels.nixos.org/flake-registry.json).
+        # Останется только один системный nixpkgs, привязанный к inputs.nixpkgs (nix registry list)
+        flake-registry = "";
+
+        experimental-features = [
+          "flakes"
+          "nix-command"
+          "pipe-operators"
+        ];
+
+        substituters = [
+          "https://nix-community.cachix.org"
+        ];
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+
+        trusted-users = [
+          "@wheel"
+        ];
+
+        warn-dirty = false;
       };
 
       nixpkgs.config.allowUnfree = true;
