@@ -9,6 +9,13 @@
       # Отключить использование каналов
       nix.channel.enable = false;
 
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 1w";
+        persistent = true;
+      };
+
       nix.settings = {
 
         # Включить автоматическое обнаружение в /nix/store файлов с идентичным содержимым и заменять
@@ -41,6 +48,9 @@
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
+
+        # Количество секунд, в течение которых загруженный tar-архив считается актуальным
+	      tarball-ttl = 24 * 60 * 60;  # 24 часа
 
         trusted-users = [
           "@wheel"
