@@ -9,11 +9,19 @@
       # Отключить использование каналов
       nix.channel.enable = false;
 
+      # Включить автоматическую сборку мусора в Nix Store. Будут созданы systemd-юниты nix-gc.timer
+      # и nix-gc.service, который под капотом вызывает утилиту nix-collect-garbage ${nix.gc.options}
       nix.gc = {
         automatic = true;
         dates = "weekly";
         options = "--delete-older-than 1w";
         persistent = true;
+      };
+
+      # Установить самые низкие приоритеты для сервиса сборки мусора в Nix Store (nix-gc.service)
+      systemd.services.nix-gc.serviceConfig = {
+        CPUSchedulingPolicy = "idle";
+        IOSchedulingClass = "idle";
       };
 
       nix.settings = {
