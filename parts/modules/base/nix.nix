@@ -46,6 +46,9 @@
           "@wheel"
         ];
 
+        # Использовать XDG-based каталоги для хранения служебной информации
+        # (вместо каталогов $HOME/.nix-* использовать $HOME/.local/state/nix)
+        # https://nix.dev/manual/nix/latest/command-ref/conf-file#conf-use-xdg-base-directories
 	      use-xdg-base-directories = true;
 
         warn-dirty = false;
@@ -68,6 +71,15 @@
       system.userActivationScripts = {
         rmChannels = ''
           rm -rf $HOME/.nix-defexpr/channels
+        '';
+      };
+
+      # Удалить неиспользуемую при use-xdg-base-directories = true символическую ссылку
+      # https://nix.dev/manual/nix/latest/command-ref/files/profiles#user-profile-link
+
+      system.userActivationScripts = {
+        rmOldProfileSymLink = ''
+          rm -rf $HOME/.nix-profile
         '';
       };
     };
