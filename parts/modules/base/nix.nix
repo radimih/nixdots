@@ -16,7 +16,7 @@
         dates = "weekly";
         options = "--delete-older-than 1w";
         persistent = true;
-      };
+        randomizedDelaySec = "15min";  # не запускать сразу, если компьютер был долго выключен
 
       # Установить самые низкие приоритеты для сервиса сборки мусора в Nix Store (nix-gc.service)
       systemd.services.nix-gc.serviceConfig = {
