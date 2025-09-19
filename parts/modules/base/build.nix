@@ -4,7 +4,7 @@
     {
       system.activationScripts = {
 
-	      # Выводить после команд nixos-rebuild switch / dry-activate какие пакеты изменились
+	    # Выводить после команд nixos-rebuild switch/dry-activate какие пакеты изменились
         diff = {
           supportsDryActivation = true;
           # TODO: перейти на https://github.com/faukah/dix когда появится в stable-версии NixOS
