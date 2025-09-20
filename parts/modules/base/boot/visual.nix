@@ -4,8 +4,8 @@
     {
       boot.plymouth = {
         enable = true;
-        theme = "matrix";
-        themePackages = [ pkgs.plymouth-matrix-theme ];
+        theme = "catppuccin-macchiato";
+        themePackages = [ pkgs.catppuccin-plymouth ];
         # theme = "nixos-bgrt";
         # themePackages = [ pkgs.nixos-bgrt-plymouth ];
       };
