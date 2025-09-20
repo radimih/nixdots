@@ -23,6 +23,7 @@ in
         base
         boot-secure
         boot-visual-adi1090x
+        desktop
         niri
         service-display-manager-ly
         service-kanata
