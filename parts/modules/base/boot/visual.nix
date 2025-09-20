@@ -5,7 +5,7 @@
     {
       boot.plymouth = {
         enable = true;
-        theme = "catppuccin-latte";  # latte, frappe, macchiato, mocha
+        theme = "catppuccin-macchiato";  # latte, frappe, macchiato, mocha
         themePackages = [ pkgs.catppuccin-plymouth ];
       };
     };
