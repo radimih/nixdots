@@ -21,7 +21,6 @@ in
 
       imports = with config.flake.modules.nixos; [
         base
-        boot
         boot-secure
         boot-visual
         niri

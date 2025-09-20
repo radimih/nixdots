@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.boot = {
+  flake.modules.nixos.base = {
 
     boot = {
       initrd.verbose = false;
