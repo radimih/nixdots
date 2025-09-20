@@ -22,7 +22,7 @@ in
       imports = with config.flake.modules.nixos; [
         base
         boot-secure
-        boot-visual
+        boot-visual-adi1090x
         niri
         service-display-manager-ly
         service-kanata
