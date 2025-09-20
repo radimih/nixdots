@@ -17,6 +17,7 @@
         options = "--delete-older-than 1w";
         persistent = true;
         randomizedDelaySec = "15min";  # не запускать сразу, если компьютер был долго выключен
+      };
 
       # Установить самые низкие приоритеты для сервиса сборки мусора в Nix Store (nix-gc.service)
       systemd.services.nix-gc.serviceConfig = {
@@ -71,8 +72,6 @@
 
         warn-dirty = false;
       };
-
-      nixpkgs.config.allowUnfree = true;
 
       # Даже при отключенных каналах (nix.channel.enable = false) остаются файлы, связанные
       # с каналами (см. описание опции nix.channel.enable). Чтобы команда nixos-rebuild switch
