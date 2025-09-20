@@ -1,13 +1,23 @@
 {
-  flake.modules.nixos.boot-visual =
+  # https://github.com/catppuccin/plymouth
+  flake.modules.nixos.boot-visual-catppuccin =
     { pkgs, ...}:
     {
       boot.plymouth = {
         enable = true;
-        theme = "catppuccin-macchiato";
+        theme = "catppuccin-latte";  # latte, frappe, macchiato, mocha
         themePackages = [ pkgs.catppuccin-plymouth ];
-        # theme = "nixos-bgrt";
-        # themePackages = [ pkgs.nixos-bgrt-plymouth ];
+      };
+    };
+
+  # Медленное вращение чуть увеличенного чёрно-белого логотипа NixOS
+  flake.modules.nixos.boot-visual-nixos-rotate =
+    { pkgs, ...}:
+    {
+      boot.plymouth = {
+        enable = true;
+        theme = "nixos-bgrt";
+        themePackages = [ pkgs.nixos-bgrt-plymouth ];
       };
     };
 }
