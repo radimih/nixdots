@@ -7,7 +7,7 @@
     {
       boot.plymouth =
       let
-        theme = "circle_hud";
+        theme = "metal_ball";
       in
       {
         enable = true;
