@@ -11,6 +11,11 @@
             createDirectories = true;
           };
           userDirs = {
+            # TODO: уточнить каталог для документов
+            documents = "${config.home.homeDirectory}/1cloud/documents";
+            download = "${config.home.homeDirectory}/1temp";
+          };
+          userDirs = {
             desktop = null;
             music = null;
             pictures = null;
