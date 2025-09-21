@@ -2,7 +2,7 @@
   flake.modules.nixos.desktop = {
 
     home-manager.sharedModules = [
-      { config, ... }:
+      ({ config, ... }:
       {
         home.preferXdgDirectories = true;
         xdg = {
@@ -25,7 +25,7 @@
             videos = null;
           };
         };
-      }
+      })
     ];
 
     xdg.portal = {
