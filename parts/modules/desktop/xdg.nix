@@ -11,6 +11,7 @@
             createDirectories = true;
           };
           userDirs = {
+            desktop = null;
             music = null;
             pictures = null;
             publicShare = null;
