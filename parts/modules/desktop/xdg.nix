@@ -10,6 +10,7 @@
             enable = true;
             createDirectories = true;
           };
+          # Оставить только documents и download
           userDirs = {
             desktop = null;
             music = null;
