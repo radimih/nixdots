@@ -27,15 +27,7 @@
 
           # Let home Manager install and manage itself
           programs.home-manager.enable = true;
-
-          # TODO: https://home-manager-options.extranix.com/?query=autoExpire&release=release-25.05
-          # services = {
-          #   home-manager.autoExpire = {
-          #     enable = true;
-          #     frequency = "weekly";
-          #     store.cleanup = true;
-          #   };
-          # };
+          };
         }
       ];
       useGlobalPkgs = true;
