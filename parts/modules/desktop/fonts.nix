@@ -3,6 +3,8 @@
     { pkgs, ... }:
     {
       fonts = {
+        enableDefaultPackages = true;
+
         # FontConfig нужен только для X11
         fontconfig.enable = false;
 
