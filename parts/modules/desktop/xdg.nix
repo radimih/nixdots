@@ -2,7 +2,6 @@
   flake.modules.nixos.desktop = {
 
     home-manager.sharedModules = [
-      ({ config, ... }:
       {
         home.preferXdgDirectories = true;
         xdg = {
@@ -10,11 +9,6 @@
           userDirs = {
             enable = true;
             createDirectories = true;
-          };
-          userDirs = {
-            # TODO: уточнить каталог для документов
-            documents = "${config.home.homeDirectory}/1cloud/documents";
-            download = "${config.home.homeDirectory}/1temp";
           };
           userDirs = {
             desktop = null;
@@ -25,7 +19,7 @@
             videos = null;
           };
         };
-      })
+      }
     ];
 
     xdg.portal = {

@@ -41,5 +41,11 @@ in
     in
     {
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+
+      xdg.userDirs = {
+        # TODO: уточнить каталог для документов
+        documents = "${home.homeDirectory}/1cloud/documents";
+        download = "${home.homeDirectory}/1temp";
+      };
     };
 }
