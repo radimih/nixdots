@@ -2,6 +2,7 @@
   flake.modules.nixos.desktop = {
 
     home-manager.sharedModules = [
+      { config, ... }:
       {
         home.preferXdgDirectories = true;
         xdg = {
