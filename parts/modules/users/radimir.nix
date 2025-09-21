@@ -28,7 +28,6 @@ in
       };
 
       home-manager.users.${user.name}.imports = [
-        config.flake.modules.homeManager.base
         config.flake.modules.homeManager."user-${user.name}"
       ];
     };
@@ -41,6 +40,6 @@ in
       host = osConfig.networking.hostName;
     in
     {
-      # home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+      home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
     };
 }
