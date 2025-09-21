@@ -35,7 +35,7 @@ in
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
 
   flake.modules.homeManager."user-${user.name}" =
-    { osConfig, ... }:
+    { osConfig, config, ... }:
     let
       host = osConfig.networking.hostName;
     in
@@ -44,8 +44,8 @@ in
 
       xdg.userDirs = {
         # TODO: уточнить каталог для документов
-        documents = "${home.homeDirectory}/1cloud/documents";
-        download = "${home.homeDirectory}/1temp";
+        documents = "${config.home.homeDirectory}/1cloud/documents";
+        download = "${config.home.homeDirectory}/1temp";
       };
     };
 }
