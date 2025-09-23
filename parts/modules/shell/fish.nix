@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.fish =
+  flake.modules.homeManager.shell =
     { pkgs, ...}:
     {
       programs.fish = {

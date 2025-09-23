@@ -34,8 +34,8 @@ in
       # --- настройки пользователей на уровне Home Manager на данном хосте
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
-        fish
         niri
+        shell
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
