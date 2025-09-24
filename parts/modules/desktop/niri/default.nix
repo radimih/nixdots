@@ -13,7 +13,6 @@
       ];
 
       environment.systemPackages = with pkgs; [
-        alacritty
         fuzzel
         waybar
       ];
@@ -41,10 +40,6 @@
             "Mod+D" = {
               action.spawn = "fuzzel";
               hotkey-overlay.title = "Run an Application";
-            };
-            "Mod+T" = {
-              action.spawn = "alacritty";
-              hotkey-overlay.title = "Open a Terminal";
             };
             "Mod+Return" = {
               action.spawn = "kitty";
