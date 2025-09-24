@@ -27,11 +27,6 @@
             (plug "puffer")  # https://github.com/nickeb96/puffer-fish
             (plug "sponge")  # https://github.com/meaningful-ooo/sponge
           ];
-        shellAliases = {
-          cat = "bat";
-          ls = "eza";
-          grep = "rg";
-      };
     };
   };
 }
