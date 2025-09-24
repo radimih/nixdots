@@ -67,7 +67,18 @@
     ];
   };
 
-  # "Mod+Q".action.close-window = { };
+  # Open/close the Overview: a zoomed-out view of workspaces and windows.
+  # You can also move the mouse into the top-left hot corner,
+  # or do a four-finger swipe up on a touchpad.
+  "Mod+O" = {
+    action.toggle-overview = { };
+    repeat = false;
+  };
+
+  "Mod+Q" = {
+    action.close-window = { };
+    repeat = false;
+  };
 
   "Mod+Left".action.focus-column-left = { };
   "Mod+Down".action.focus-window-down = { };
