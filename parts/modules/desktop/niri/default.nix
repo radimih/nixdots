@@ -46,6 +46,10 @@
               action.spawn = "alacritty";
               hotkey-overlay.title = "Open a Terminal";
             };
+            "Mod+Enter" = {
+              action.spawn = "kitty";
+              hotkey-overlay.title = "Open a Terminal";
+            };
           };
 
           environment = {
