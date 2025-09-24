@@ -48,6 +48,7 @@
             };
             "Mod+Return" = {
               action.spawn = "kitty";
+              repeat = false;
               hotkey-overlay.title = "Open a Terminal";
             };
           };
