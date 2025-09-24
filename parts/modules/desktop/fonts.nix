@@ -6,7 +6,7 @@
         enableDefaultPackages = true;
 
         # FontConfig нужен только для X11
-        fontconfig.enable = false;
+        # fontconfig.enable = false;
 
         packages = with pkgs; [
           # https://www.nerdfonts.com/font-downloads
