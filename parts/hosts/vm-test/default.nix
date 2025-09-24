@@ -35,6 +35,7 @@ in
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
         niri
+        shell
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
