@@ -18,7 +18,7 @@
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
       enable = true;
-      opacity.terminal = 0.8;
+      # opacity.terminal = 0.8;
       # Выключить определение стилей для некоторых компонент системы
       targets = {
         console.enable = false;
