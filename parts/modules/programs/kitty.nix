@@ -1,6 +1,6 @@
 # GPU based terminal emulator: https://sw.kovidgoyal.net/kitty/
 {
-  flake.modules.homeManager.kitty = {
+  flake.modules.homeManager.kitty = { lib, ... }: {
 
     programs.kitty = {
       enable = true;
@@ -10,7 +10,7 @@
         "ctrl+v" = "paste_selection_or_clipboard";
       };
       settings = {
-        background_opacity = 0.85;
+        background_opacity = lib.mkForce 0.85;
         cursor_trail = 1;
       };
     };
