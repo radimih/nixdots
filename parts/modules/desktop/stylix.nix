@@ -42,7 +42,6 @@
           };
         };
         polarity = "dark";
-        targets.niri.enable = true;
         # Выключить определение стилей для некоторых компонент системы
         targets = {
           console.enable = false;
