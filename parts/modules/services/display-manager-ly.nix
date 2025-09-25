@@ -1,3 +1,4 @@
+# https://github.com/fairyglade/ly
 {
   flake.modules.nixos.service-display-manager-ly = {
 

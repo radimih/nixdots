@@ -29,18 +29,25 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    import-tree.url = "github:vic/import-tree";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    import-tree.url = "github:vic/import-tree";
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
       # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
       inputs.pre-commit-hooks-nix.follows = "";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # --- software

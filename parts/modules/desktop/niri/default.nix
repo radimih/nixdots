@@ -1,4 +1,5 @@
 # Scrollable-tiling Wayland compositor Niri: https://github.com/YaLTeR/niri
+# Flake: https://github.com/sodiboo/niri-flake
 {
   inputs,
   config,

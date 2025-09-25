@@ -1,4 +1,5 @@
 # Оболочка по-умолчанию с минимально необходимыми настройками
+# fish: https://fishshell.com
 {
   flake.modules.nixos.base =
     { pkgs, ...}:

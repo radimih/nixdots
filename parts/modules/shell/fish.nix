@@ -1,6 +1,7 @@
+# fish: https://fishshell.com
 {
   flake.modules.homeManager.shell =
-    { pkgs, ...}:
+    { config, pkgs, ...}:
     {
       programs.fish = {
         enable = true;
@@ -26,12 +27,17 @@
               src = pkgs.fishPlugins.${name}.src;
             };
           in
+          # Список доступных плагинов: https://search.nixos.org/packages?query=fishPlugins
           [
             (plug "autopair")  # https://github.com/jorgebucaran/autopair.fish
             (plug "fzf-fish")  # https://github.com/PatrickF1/fzf.fish
             (plug "puffer")  # https://github.com/nickeb96/puffer-fish
             (plug "sponge")  # https://github.com/meaningful-ooo/sponge
           ];
+        shellInitLast = ''
+          # Сделать более ярким автодополнение (base02 --> base03)
+          set fish_color_autosuggestion ${config.lib.stylix.colors.base03}
+        '';
     };
   };
 }

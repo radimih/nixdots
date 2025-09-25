@@ -10,6 +10,7 @@
         "ctrl+v" = "paste_selection_or_clipboard";
       };
       settings = {
+        cursor_shape = "beam";
         cursor_trail = 1;
       };
     };
