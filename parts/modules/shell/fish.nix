@@ -34,7 +34,8 @@
             (plug "sponge")  # https://github.com/meaningful-ooo/sponge
           ];
         shellInitLast = ''
-          set fish_color_autosuggestion ${config.lib.stylix.colors.base04}
+          # Сделать более ярким автодополнение (base02 --> base03)
+          set fish_color_autosuggestion ${config.lib.stylix.colors.base03}
         '';
     };
   };
