@@ -17,14 +17,17 @@
 
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+      cursor = {
+          name = "Whitesur-cursors";  # https://github.com/vinceliuice/WhiteSur-cursors
+          package = pkgs.whitesur-cursors;
+          size = 16;
+      };
       enable = true;
       # Просмотр шрифтов в Kitty: kitten choose-fonts
       fonts = {
         monospace = {
           package = pkgs.nerd-fonts.iosevka;
-          # name = "Iosevka Nerd Font Mono";
-          name = "IosevkaNFM";
-          # name = "IosevkaNFM-Light";
+          name = "IosevkaNFM";  # -Thin, -ExtraLight, -Light, [-Regular],-Medium (NFM - Nerd Font Mono)
         };
         sizes = {
           applications = 12;
