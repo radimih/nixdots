@@ -13,15 +13,21 @@
   {
     imports = [
       inputs.stylix.nixosModules.stylix
+      inputs.niri.homeModules.stylix
     ];
 
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
       cursor = {
-          name = "Whitesur-cursors";  # https://github.com/vinceliuice/WhiteSur-cursors
-          package = pkgs.whitesur-cursors;
-          size = 16;
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = 24;
       };
+      # cursor = {
+      #   name = "Whitesur-cursors";  # https://github.com/vinceliuice/WhiteSur-cursors
+      #   package = pkgs.whitesur-cursors;
+      #   size = 16;
+      # };
       enable = true;
       # Просмотр шрифтов в Kitty: kitten choose-fonts
       fonts = {
@@ -37,6 +43,7 @@
         };
       };
       polarity = "dark";
+      targets.niri.enable = true;
       # Выключить определение стилей для некоторых компонент системы
       targets = {
         console.enable = false;
