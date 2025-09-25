@@ -20,7 +20,7 @@
         cursor = {
           name = "Adwaita";
           package = pkgs.adwaita-icon-theme;
-          size = 48;
+          size = 24;
         };
         enable = true;
         # Просмотр шрифтов в Kitty: kitten choose-fonts
