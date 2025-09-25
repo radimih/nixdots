@@ -10,8 +10,6 @@
 
           set fish_greeting
 
-          set fish_color_autosuggestion ${config.lib.stylix.colors.base04}
-
           set fish_cursor_default      block
           set fish_cursor_external     line
           set fish_cursor_insert       line
@@ -35,6 +33,9 @@
             (plug "puffer")  # https://github.com/nickeb96/puffer-fish
             (plug "sponge")  # https://github.com/meaningful-ooo/sponge
           ];
+        shellInitLast = ''
+          set fish_color_autosuggestion ${config.lib.stylix.colors.base04}
+        '';
     };
   };
 }
