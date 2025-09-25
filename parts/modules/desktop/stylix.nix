@@ -20,13 +20,8 @@
         cursor = {
           name = "Adwaita";
           package = pkgs.adwaita-icon-theme;
-          size = 24;
+          size = 48;
         };
-        # cursor = {
-        #   name = "Whitesur-cursors";  # https://github.com/vinceliuice/WhiteSur-cursors
-        #   package = pkgs.whitesur-cursors;
-        #   size = 16;
-        # };
         enable = true;
         # Просмотр шрифтов в Kitty: kitten choose-fonts
         fonts = {
