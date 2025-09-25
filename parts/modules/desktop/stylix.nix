@@ -18,7 +18,19 @@
     stylix = {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
       enable = true;
-      # opacity.terminal = 0.8;
+      # Просмотр шрифтов в Kitty: kitten choose-fonts
+      fonts = {
+        monospace = {
+          package = pkgs.nerd-fonts.iosevka;
+          name = "Iosevka Nerd Font Mono";
+        };
+        sizes = {
+          applications = 12;
+          desktop = 10;
+          popups = 10;
+          terminal = 12;
+        };
+      };
       polarity = "dark";
       # Выключить определение стилей для некоторых компонент системы
       targets = {
