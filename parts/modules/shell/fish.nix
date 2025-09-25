@@ -27,8 +27,10 @@
               src = pkgs.fishPlugins.${name}.src;
             };
           in
+          # Список доступных плагинов: https://search.nixos.org/packages?query=fishPlugins
           [
             (plug "autopair")  # https://github.com/jorgebucaran/autopair.fish
+            (plug "colored-man-pages")  # https://github.com/PatrickF1/colored_man_pages.fish
             (plug "fzf-fish")  # https://github.com/PatrickF1/fzf.fish
             (plug "puffer")  # https://github.com/nickeb96/puffer-fish
             (plug "sponge")  # https://github.com/meaningful-ooo/sponge

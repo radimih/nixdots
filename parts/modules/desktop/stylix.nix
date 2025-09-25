@@ -23,7 +23,8 @@
         monospace = {
           package = pkgs.nerd-fonts.iosevka;
           # name = "Iosevka Nerd Font Mono";
-          name = "IosevkaNFM-Light";
+          name = "IosevkaNFM";
+          # name = "IosevkaNFM-Light";
         };
         sizes = {
           applications = 12;
