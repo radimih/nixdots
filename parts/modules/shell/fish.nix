@@ -1,3 +1,4 @@
+# fish: https://fishshell.com
 {
   flake.modules.homeManager.shell =
     { pkgs, ...}:

@@ -27,8 +27,4 @@
       };
     };
   };
-
-  flake.modules.homeManager.desktop = {
-    stylix.targets.kitty.variant256Colors = true;
-  };
 }
