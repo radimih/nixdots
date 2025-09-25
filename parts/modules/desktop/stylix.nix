@@ -8,7 +8,7 @@
   { pkgs, ... }:
   let
     # https://github.com/tinted-theming/schemes
-    theme = "github-dark";
+    theme = "atlas";
   in
   {
     imports = [
