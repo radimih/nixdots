@@ -1,7 +1,7 @@
 # fish: https://fishshell.com
 {
   flake.modules.homeManager.shell =
-    { pkgs, ...}:
+    { config, pkgs, ...}:
     {
       programs.fish = {
         enable = true;
@@ -9,6 +9,8 @@
           fish_vi_key_bindings
 
           set fish_greeting
+
+          set fish_color_autosuggestion ${config.lib.stylix.colors.base04}
 
           set fish_cursor_default      block
           set fish_cursor_external     line
