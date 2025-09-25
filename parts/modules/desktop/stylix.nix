@@ -22,6 +22,7 @@
       # Выключить определение стилей для некоторых компонент системы
       targets = {
         console.enable = false;
+        kitty.variant256Colors = true;
         plymouth.enable = false;
       };
     };
