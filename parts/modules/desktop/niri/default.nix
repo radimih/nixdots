@@ -30,10 +30,6 @@
       defaultKeyBinds = import ./_defaultKeyBinds.nix;
     in
     {
-      imports = [
-        inputs.niri.homeModules.stylix
-      ];
-
       programs.niri = {
         settings = {
 
