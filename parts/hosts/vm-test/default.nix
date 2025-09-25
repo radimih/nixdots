@@ -34,6 +34,7 @@ in
       # --- настройки пользователей на уровне Home Manager на данном хосте
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
+        desktop
         kitty
         niri
         shell
