@@ -10,6 +10,7 @@
         "ctrl+v" = "paste_selection_or_clipboard";
       };
       settings = {
+        background_opacity = 0.85;
         cursor_trail = 1;
       };
     };
