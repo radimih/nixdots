@@ -8,8 +8,7 @@
   { pkgs, ... }:
   let
     # https://github.com/tinted-theming/schemes
-    # theme = "dracula";
-    theme = "da-one-sea";
+    theme = "dracula";
   in
   {
     imports = [
