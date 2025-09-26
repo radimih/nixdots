@@ -75,6 +75,15 @@
             background-color = "transparent";
           };
 
+	        window-rules = [
+            {
+              matches = [
+                { app-id ="kitty"; }
+              ];
+              opacity = 0.85;
+            }
+          ];
+
           spawn-at-startup = [
             { command = ["waybar"]; }
             { command = ["${lib.getExe pkgs.swaybg}" "--image" "${inputs.wallpaper}"]; }
