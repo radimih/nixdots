@@ -60,6 +60,15 @@
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
 
+	        layer-rules = [
+            {
+              matches = [
+                { namespace ="^wallpaper$"; }
+              ];
+              place-within-backdrop = true;
+            };
+          ];
+
           spawn-at-startup = [
             { command = ["waybar"]; }
             { command = ["${lib.getExe pkgs.swaybg}" "--image" "${inputs.wallpaper}"]; }

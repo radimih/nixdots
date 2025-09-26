@@ -36,6 +36,7 @@
             terminal = 12;
           };
         };
+        opacity.terminal = 0.85;
         polarity = "dark";
         # Выключить определение стилей для некоторых компонент системы
         targets = {
