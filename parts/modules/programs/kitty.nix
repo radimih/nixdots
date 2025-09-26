@@ -9,10 +9,12 @@
         "ctrl+c" = "copy_and_clear_or_interrupt";
         "ctrl+v" = "paste_selection_or_clipboard";
       };
+      # https://sw.kovidgoyal.net/kitty/conf/
       settings = {
         cursor_shape = "beam";
         cursor_trail = 1;
         dynamic_background_opacity = true;
+        window_padding_width = "10 25";
       };
     };
   };
