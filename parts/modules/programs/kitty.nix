@@ -12,6 +12,7 @@
       settings = {
         cursor_shape = "beam";
         cursor_trail = 1;
+        dynamic_background_opacity = true;
       };
     };
   };

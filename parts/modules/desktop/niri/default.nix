@@ -75,14 +75,14 @@
             background-color = "transparent";
           };
 
-	        window-rules = [
-            {
-              matches = [
-                { app-id ="kitty"; }
-              ];
-              opacity = 0.85;
-            }
-          ];
+	        # window-rules = [
+          #   {
+          #     matches = [
+          #       { app-id ="kitty"; }
+          #     ];
+          #     opacity = 0.85;
+          #   }
+          # ];
 
           spawn-at-startup = [
             { command = ["waybar"]; }
