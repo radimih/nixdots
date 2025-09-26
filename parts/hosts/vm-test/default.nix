@@ -1,11 +1,11 @@
+# ВНИМАНИЕ! Имя хоста = имя каталога, в котором располагается данный файл
 {
   config,
   ...
 }:
 
 let
-  # TODO: попробовать считывать имя хоста из файловой системы
-  host = "vm-test";
+  host = builtins.baseNameOf ./.;
 in
 {
   flake.modules.nixos."host-${host}" =
