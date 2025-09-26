@@ -1,6 +1,6 @@
 # GPU based terminal emulator: https://sw.kovidgoyal.net/kitty/
 {
-  flake.modules.homeManager.kitty = { lib, ... }: {
+  flake.modules.homeManager.kitty = {
 
     programs.kitty = {
       enable = true;
@@ -11,7 +11,6 @@
       };
       # https://sw.kovidgoyal.net/kitty/conf/
       settings = {
-        background = lib.mkForce "#000000";
         cursor_shape = "beam";
         cursor_trail = 1;
         # FIXME: включалась эта опция в попытках решить проблему с прозрачностью окна. Не помогло
