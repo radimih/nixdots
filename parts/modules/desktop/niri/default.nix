@@ -25,7 +25,7 @@
     };
 
   flake.modules.homeManager.niri =
-    { lib, osConfig, pkgs, ... }:
+    { config, lib, osConfig, pkgs, ... }:
     let
       defaultKeyBinds = import ./_defaultKeyBinds.nix;
     in
