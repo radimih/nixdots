@@ -5,7 +5,7 @@
 
 let
   # TODO: попробовать считывать имя хоста из файловой системы
-  host = builtins.baseNameOf ./.;
+  host = "vm-test";
 in
 {
   flake.modules.nixos."host-${host}" =
