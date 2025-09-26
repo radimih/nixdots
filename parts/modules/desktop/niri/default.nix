@@ -72,6 +72,8 @@
           };
 
 	        window-rules = [
+            # Чтобы работала прозрачность (opacity) окон
+            # FIXME: возможно ограничить только для kitty
             { draw-border-with-background = false; }
           ];
 
