@@ -50,7 +50,6 @@
           };
 
           environment = {
-            # DISPLAY = ":0";
             ELECTRON_OZONE_PLATFORM_HINT = "auto";
             NIXOS_OZONE_WL = "1";
           };
@@ -69,6 +68,10 @@
           ];
 
           layout = {
+            background-color = "transparent";
+          };
+
+          outputs.Virtual-1 = {
             background-color = "transparent";
           };
 
