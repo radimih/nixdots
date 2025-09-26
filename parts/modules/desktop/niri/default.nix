@@ -71,10 +71,6 @@
             background-color = "transparent";
           };
 
-          # outputs.Virtual-1 = {
-          #   background-color = "transparent";
-          # };
-
           spawn-at-startup = [
             { command = ["waybar"]; }
             { command = ["${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}"]; }
