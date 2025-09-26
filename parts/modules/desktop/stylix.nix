@@ -37,8 +37,7 @@
           };
         };
         image = ./wallpapers/cold-coast.jpg;
-        # FIXME: не видно фоновой картинки, меняется только цвет в терминале
-        opacity.terminal = 0.85;
+        opacity.terminal = 0.8;
         polarity = "dark";
         # Выключить определение стилей для некоторых компонент системы
         targets = {

@@ -71,6 +71,12 @@
             background-color = "transparent";
           };
 
+	        window-rules = [
+            # Чтобы работала прозрачность (opacity) окон
+            # FIXME: возможно ограничить только для kitty
+            { draw-border-with-background = false; }
+          ];
+
           spawn-at-startup = [
             { command = ["waybar"]; }
             { command = ["${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}"]; }
