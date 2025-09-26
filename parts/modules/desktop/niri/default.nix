@@ -56,33 +56,24 @@
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
 
-	        layer-rules = [
-            {
-              # Параметры для background-слоя. Название слоя зависит от wallpaper-утилиты.
-              # Для swaybg это 'wallpaper'. Посмотреть доступные слои: niri msg layers
-              matches = [
-                { namespace ="^wallpaper$"; }
-              ];
-              place-within-backdrop = true;
-            }
-          ];
-
-          layout = {
-            background-color = "transparent";
-          };
-
-          outputs.Virtual-1 = {
-            background-color = "transparent";
-          };
-
-	        # window-rules = [
+	        # layer-rules = [
           #   {
+          #     # Параметры для background-слоя. Название слоя зависит от wallpaper-утилиты.
+          #     # Для swaybg это 'wallpaper'. Посмотреть доступные слои: niri msg layers
           #     matches = [
-          #       { app-id ="kitty"; }
+          #       { namespace ="^wallpaper$"; }
           #     ];
-          #     opacity = 0.85;
+          #     place-within-backdrop = true;
           #   }
           # ];
+
+          # layout = {
+          #   background-color = "transparent";
+          # };
+
+          # outputs.Virtual-1 = {
+          #   background-color = "transparent";
+          # };
 
           spawn-at-startup = [
             { command = ["waybar"]; }
