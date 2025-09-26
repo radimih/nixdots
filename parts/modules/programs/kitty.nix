@@ -11,7 +11,7 @@
       };
       # https://sw.kovidgoyal.net/kitty/conf/
       settings = {
-        background = lib.mkForce "#00000000";
+        background = lib.mkForce "#000000";
         cursor_shape = "beam";
         cursor_trail = 1;
         # FIXME: включалась эта опция в попытках решить проблему с прозрачностью окна. Не помогло
