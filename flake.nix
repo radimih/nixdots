@@ -59,10 +59,6 @@
 
     # --- other
 
-    wallpaper = {
-      url = "path:wallpapers/cold-coast.jpg";
-      flake = false;
-    };
   };
 
   outputs =

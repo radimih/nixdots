@@ -77,7 +77,7 @@
 
           spawn-at-startup = [
             { command = ["waybar"]; }
-            { command = ["${lib.getExe pkgs.swaybg}" "--image" "${inputs.wallpaper}"]; }
+            { command = ["${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}"]; }
           ];
         };
       };
