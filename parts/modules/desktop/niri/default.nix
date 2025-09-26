@@ -71,6 +71,10 @@
             background-color = "transparent";
           };
 
+	        window-rules = [
+            { draw-border-with-background = false; }
+          ];
+
           spawn-at-startup = [
             { command = ["waybar"]; }
             { command = ["${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}"]; }
