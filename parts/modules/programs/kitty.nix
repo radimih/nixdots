@@ -13,7 +13,7 @@
       settings = {
         cursor_shape = "beam";
         cursor_trail = 1;
-        window_padding_width = "0 1"; # отступы снизу-сверху и справа-слева
+        window_padding_width = "0 2"; # отступы снизу-сверху и справа-слева
       };
     };
   };
