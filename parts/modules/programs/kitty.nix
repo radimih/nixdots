@@ -13,7 +13,8 @@
       settings = {
         cursor_shape = "beam";
         cursor_trail = 1;
-        dynamic_background_opacity = true;
+        # FIXME: включалась эта опция в попытках решить проблему с прозрачностью окна. Не помогло
+        # dynamic_background_opacity = true;
       };
     };
   };
