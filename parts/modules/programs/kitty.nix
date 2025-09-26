@@ -14,7 +14,6 @@
         cursor_shape = "beam";
         cursor_trail = 1;
         dynamic_background_opacity = true;
-        window_padding_width = "0 1";  # отступы снизу-сверху и справа-слева
       };
     };
   };
