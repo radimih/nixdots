@@ -25,7 +25,7 @@
     };
 
   flake.modules.homeManager.niri =
-    { lib, osConfig, pkgs, ... }:
+    { config, lib, osConfig, pkgs, ... }:
     let
       defaultKeyBinds = import ./_defaultKeyBinds.nix;
     in
@@ -50,19 +50,30 @@
           };
 
           environment = {
-            DISPLAY = ":0";
             ELECTRON_OZONE_PLATFORM_HINT = "auto";
             NIXOS_OZONE_WL = "1";
-            XDG_CURRENT_DESKTOP = "niri";
-            XDG_SESSION_DESKTOP = "niri";
-            XDG_SESSION_TYPE = "wayland";
           };
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
 
+	        layer-rules = [
+            {
+              # Параметры для background-слоя. Название слоя зависит от wallpaper-утилиты.
+              # Для swaybg это 'wallpaper'. Посмотреть доступные слои: niri msg layers
+              matches = [
+                { namespace ="^wallpaper$"; }
+              ];
+              place-within-backdrop = true;
+            }
+          ];
+
+          layout = {
+            background-color = "transparent";
+          };
+
           spawn-at-startup = [
             { command = ["waybar"]; }
-            { command = ["${lib.getExe pkgs.swaybg}" "--image" "${inputs.wallpaper}"]; }
+            { command = ["${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}"]; }
           ];
         };
       };
