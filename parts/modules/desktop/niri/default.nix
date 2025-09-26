@@ -53,9 +53,9 @@
             DISPLAY = ":0";
             ELECTRON_OZONE_PLATFORM_HINT = "auto";
             NIXOS_OZONE_WL = "1";
-            XDG_CURRENT_DESKTOP = "niri";
-            XDG_SESSION_DESKTOP = "niri";
-            XDG_SESSION_TYPE = "wayland";
+            # XDG_CURRENT_DESKTOP = "niri";
+            # XDG_SESSION_DESKTOP = "niri";
+            # XDG_SESSION_TYPE = "wayland";
           };
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
