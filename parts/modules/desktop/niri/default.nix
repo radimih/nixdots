@@ -66,7 +66,7 @@
                 { namespace ="^wallpaper$"; }
               ];
               place-within-backdrop = true;
-            };
+            }
           ];
 
           spawn-at-startup = [
