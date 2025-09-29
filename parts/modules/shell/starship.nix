@@ -8,7 +8,10 @@
         directory = {
           read_only = " ";
           truncation_length = 2;
-          truncation_symbol = "…/";
+          truncation_symbol = "… /";
+        };
+        nix_shell = {
+          heuristic = true;
         };
       };
     };
