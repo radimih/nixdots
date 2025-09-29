@@ -12,7 +12,7 @@
         directory = {
           # fish_style_pwd_dir_length = 2;
           read_only = " ";
-          # truncation_length = 5;
+          truncation_length = 5;
           # before_repo_root_style = "white";
           repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
           repo_root_style = "yellow";
