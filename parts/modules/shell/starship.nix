@@ -10,12 +10,10 @@
           format = "[󰥔 $duration]($style)";
         };
         directory = {
-          fish_style_pwd_dir_length = 3;
+          fish_style_pwd_dir_length = 2;
           read_only = " ";
-          before_repo_root_style = "white";
-          repo_root_style = "yellow";
-          repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
-          # truncation_length = 5;
+          truncation_length = 5;
+          # Эта опция не работает, если используется fish_style_pwd_dir_length
           # truncation_symbol = "… /";
         };
       };
