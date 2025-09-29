@@ -6,10 +6,12 @@
       enable = true;
       settings = {
         cmd_duration = {
-          min_time = 5 * 1000;
+          min_time = 2 * 1000;  # 2 секунды
+          # format = "[󰥔 $duration]($style)";
           format = "[󰥔 $duration]($style)";
         };
         directory = {
+          fish_style_pwd_dir_length = 3;
           read_only = " ";
           truncation_length = 5;
           truncation_symbol = "… /";
