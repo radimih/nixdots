@@ -13,6 +13,8 @@
           fish_style_pwd_dir_length = 2;
           read_only = " ";
           truncation_length = 5;
+          before_repo_root_style = "white";
+          repo_root_style = "yellow";
           # Эта опция не работает, если используется fish_style_pwd_dir_length
           # truncation_symbol = "… /";
         };
