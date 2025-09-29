@@ -10,8 +10,9 @@
           format = "[󰥔 $duration]($style)";
         };
         directory = {
-          fish_style_pwd_dir_length = 1;
+          fish_style_pwd_dir_length = 3;
           read_only = " ";
+          repo_root_style = "pale blue";
           # truncation_length = 5;
           # truncation_symbol = "… /";
         };
