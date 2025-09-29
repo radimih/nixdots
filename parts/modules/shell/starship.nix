@@ -7,11 +7,8 @@
       settings = {
         directory = {
           read_only = " ";
-          truncation_length = 2;
+          truncation_length = 5;
           truncation_symbol = "… /";
-        };
-        nix_shell = {
-          heuristic = true;
         };
       };
     };
