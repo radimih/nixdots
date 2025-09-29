@@ -5,6 +5,10 @@
     programs.starship = {
       enable = true;
       settings = {
+        cmd_duration = {
+          min_time = 1000;
+          format = "[󰥔 $duration]($style)";
+        };
         directory = {
           read_only = " ";
           truncation_length = 5;
