@@ -6,7 +6,7 @@
       enable = true;
       settings = {
         directory = {
-          # read_only = " ";
+          read_only = " ";
           truncation_length = 2;
           truncation_symbol = "…/";
         };
