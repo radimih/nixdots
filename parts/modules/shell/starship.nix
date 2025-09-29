@@ -12,8 +12,8 @@
         directory = {
           fish_style_pwd_dir_length = 1;
           read_only = " ";
-          truncation_length = 5;
-          truncation_symbol = "… /";
+          # truncation_length = 5;
+          # truncation_symbol = "… /";
         };
       };
     };
