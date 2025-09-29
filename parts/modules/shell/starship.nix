@@ -6,7 +6,7 @@
       enable = true;
       settings = {
         cmd_duration = {
-          min_time = 1000;
+          min_time = 5 * 1000;
           format = "[󰥔 $duration]($style)";
         };
         directory = {
