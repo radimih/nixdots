@@ -7,7 +7,7 @@
       settings = {
         directory = {
           # read_only = " ";
-          truncation_length = 6;
+          truncation_length = 2;
           truncation_symbol = "…/";
         };
       };
