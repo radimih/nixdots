@@ -6,8 +6,25 @@
       enable = true;
       settings =
       let
+        # colors.path = {
+        #   bg = "#769ff0";
+        #   fg = "#e3e5e5";
+        #   fg_repo = "yellow";
+        # };
+        # colors.git = {
+        #   bg = "#394260";
+        #   fg = "#769ff0";
+        # };
+        # colors.other = {
+        #   bg = "#212736";
+        #   fg = "#769ff0";
+        # };
+        # colors.duration = {
+        #   bg = "#1d2230";
+        #   fg = "#a0a9cb";
+        # };
         colors.path = {
-          bg = "#769ff0";
+          bg = "#5980cf";
           fg = "#e3e5e5";
           fg_repo = "yellow";
         };
