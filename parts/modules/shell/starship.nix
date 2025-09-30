@@ -4,7 +4,26 @@
 
     programs.starship = {
       enable = true;
-      settings = {
+      settings =
+      let
+        colors.sect1 = {
+          bg = "";
+          fg = "";
+        };
+        colors.sect2 = {
+          bg = "";
+          fg = "";
+        };
+        colors.sect3 = {
+          bg = "";
+          fg = "";
+        };
+        colors.sect4 = {
+          bg = "#1d2230";
+          fg = "#a0a9cb";
+        };
+      in
+      {
         format = builtins.concatStringsSep "" [
           "[ ](bg:#a3aed2 fg:#090c0c)"
           # "$username"
@@ -16,9 +35,9 @@
           "[](fg:#394260 bg:#212736)"  # )
           "$kubernetes"
           "$nix_shell"
-          "[](fg:#212736 bg:#1d2230)"  # )
+          "[](fg:#212736 bg:#${colors.sect4.bg})"  # )
           "$cmd_duration"
-          "[ ](fg:#1d2230)"  # )
+          "[ ](fg:#${colors.sect4.bg})"  # )
           "\n"
           "$shlvl"
           "$character"
@@ -26,7 +45,7 @@
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
           format = "[󰚭 $duration]($style)";
-          style = "";
+          style = "bg:${colors.sect4.bg} fg:${colors.sect4.fg} bold";
         };
         directory = {
           read_only = " ";
