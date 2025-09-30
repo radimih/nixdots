@@ -31,7 +31,7 @@
         };
         shlvl = {
           disabled = false;
-          format = "[$]($style)";
+          format = "[\$]($style)";
           threshold = 3;
         };
       };
