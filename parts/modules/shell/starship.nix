@@ -35,16 +35,16 @@
           "[](fg:#394260 bg:#212736)"  # )
           "$kubernetes"
           "$nix_shell"
-          "[](fg:#212736 bg:#${colors.sect4.bg})"  # )
+          "[](fg:#212736 bg:${colors.sect4.bg})"  # )
           "$cmd_duration"
-          "[ ](fg:#${colors.sect4.bg})"  # )
+          "[ ](fg:${colors.sect4.bg})"  # )
           "\n"
           "$shlvl"
           "$character"
         ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
-          format = "[[ 󰚭 $duration ](fg:${colors.sect4.fg} bg:#${colors.sect4.bg} bold)]($style)";
+          format = "[[ 󰚭 $duration ](fg:${colors.sect4.fg} bg:${colors.sect4.bg} bold)]($style)";
           style = "bg:${colors.sect4.bg}";
         };
         directory = {
