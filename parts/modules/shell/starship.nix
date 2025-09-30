@@ -6,8 +6,7 @@
       enable = true;
       settings = {
         format = builtins.concatStringsSep "" [
-          "[░▒▓](#a3aed2)"
-          "[  ](bg:#a3aed2 fg:#090c0c)"
+          "[ ](bg:#a3aed2 fg:#090c0c)"
           # "$username"
           # "$hostname"
           "$directory"
@@ -26,12 +25,12 @@
         ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
-          format = "[󰥔 $duration]($style)";
+          format = "[󰚭 $duration]($style)";
         };
         directory = {
           read_only = " ";
           repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
-          repo_root_style = "yellow";
+          repo_root_style = "bg:#a3aed2 fg:#090c0c";
           style = "fg:#e3e5e5 bg:#769ff0";
           truncation_length = 0;
         };
