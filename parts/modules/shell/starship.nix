@@ -6,23 +6,6 @@
       enable = true;
       settings =
       let
-        # colors.path = {
-        #   bg = "#769ff0";
-        #   fg = "#e3e5e5";
-        #   fg_repo = "yellow";
-        # };
-        # colors.git = {
-        #   bg = "#394260";
-        #   fg = "#769ff0";
-        # };
-        # colors.other = {
-        #   bg = "#212736";
-        #   fg = "#769ff0";
-        # };
-        # colors.duration = {
-        #   bg = "#1d2230";
-        #   fg = "#a0a9cb";
-        # };
         colors.path = {
           bg = "#5075c0";
           fg = "#e3e5e5";
@@ -50,7 +33,6 @@
           "$git_branch"
           "$git_status"
           "[](fg:${colors.git.bg} bg:${colors.other.bg})"  # )
-          "$kubernetes"
           "$nix_shell"
           "[](fg:${colors.other.bg} bg:${colors.duration.bg})"  # )
           "$cmd_duration"
@@ -60,8 +42,8 @@
           "$character"
         ];
         cmd_duration = {
-          min_time = 2 * 1000;  # 2 секунды
           format = "[[  $duration ](fg:${colors.duration.fg} bg:${colors.duration.bg} bold)]($style)";
+          min_time = 2 * 1000;  # 2 секунды
           style = "bg:${colors.duration.bg}";
         };
         directory = {
