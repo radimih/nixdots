@@ -48,7 +48,8 @@
           style = "bg:${colors.sect4.bg}";
         };
         directory = {
-          read_only = " ";
+          format = "[ $path ]($style)[$read_only]($read_only_style)";
+          read_only = "";
           read_only_style = "bg:${colors.sect2.bg} red";
           repo_root_format = "[ $repo_root]($repo_root_style)[ $path ]($style)[$read_only]($read_only_style)";
           repo_root_style = "bg:${colors.sect2.bg} yellow bold";
