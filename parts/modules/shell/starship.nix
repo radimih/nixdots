@@ -17,7 +17,7 @@
         };
         shlvl = {
           disabled = false;
-          format = "[]";
+          format = "[]($style)";
           threshold = 3;
         };
       };
