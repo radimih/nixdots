@@ -11,8 +11,8 @@
           fg = "";
         };
         colors.sect2 = {
-          bg = "";
-          fg = "";
+          bg = "#769ff0";
+          fg = "#e3e5e5";
         };
         colors.sect3 = {
           bg = "";
@@ -29,7 +29,7 @@
           # "$username"
           # "$hostname"
           "$directory"
-          "[](fg:#769ff0 bg:#394260)"  # )
+          "[](fg:${colors.sect2.bg} bg:#394260)"  # )
           "$git_branch"
           "$git_status"
           "[](fg:#394260 bg:#212736)"  # )
@@ -49,19 +49,19 @@
         };
         directory = {
           read_only = " ";
-          read_only_style = "bg:#769ff0 red";
+          read_only_style = "bg:${colors.sect2.bg} red";
           repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
-          repo_root_style = "bg:#a3aed2 fg:#090c0c";
-          style = "fg:#e3e5e5 bg:#769ff0";
+          repo_root_style = "yellow bold";
+          style = "fg:${colors.sect2.fg} bg:${colors.sect2.bg}";
           truncation_length = 0;
         };
         git_branch = {
-          format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
+          format = "[[ $symbol $branch ](fg:${colors.sect2.bg} bg:#394260)]($style)";
           style = "bg:#394260";
           symbol = "";
         };
         git_status = {
-          format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
+          format = "[[($all_status$ahead_behind )](fg:${colors.sect2.bg} bg:#394260)]($style)";
           style = "bg:#394260";
         };
         shlvl = {
