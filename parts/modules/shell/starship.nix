@@ -50,7 +50,7 @@
         directory = {
           read_only = " ";
           read_only_style = "bg:${colors.sect2.bg} red";
-          repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
+          repo_root_format = "[ $repo_root]($repo_root_style)[ $path ]($style)[$read_only]($read_only_style)";
           repo_root_style = "bg:${colors.sect2.bg} yellow bold";
           style = "fg:${colors.sect2.fg} bg:${colors.sect2.bg}";
           truncation_length = 0;
