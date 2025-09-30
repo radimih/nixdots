@@ -31,8 +31,7 @@
         };
         shlvl = {
           disabled = false;
-          # format = "[]($style)";
-          format = "[]($style)";
+          format = "[ ❯]($style)\n[❯]($style)\n[ ❯]($style)\n[❯]($style)";
           style = "bold green";
           threshold = 3;
         };
