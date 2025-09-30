@@ -6,17 +6,14 @@
       enable = true;
       settings =
       let
-        colors.sect1 = {
-          bg = "";
-          fg = "";
-        };
         colors.sect2 = {
           bg = "#769ff0";
           fg = "#e3e5e5";
+          fg_repo = "yellow";
         };
         colors.sect3 = {
-          bg = "";
-          fg = "";
+          bg = "#394260";
+          fg = "#769ff0";
         };
         colors.sect4 = {
           bg = "#1d2230";
@@ -25,14 +22,13 @@
       in
       {
         format = builtins.concatStringsSep "" [
-          "[ ](bg:#a3aed2 fg:#090c0c)"
           # "$username"
           # "$hostname"
           "$directory"
-          "[](fg:${colors.sect2.bg} bg:#394260)"  # )
+          "[](fg:${colors.sect2.bg} bg:${colors.sect3.bg})"  # )
           "$git_branch"
           "$git_status"
-          "[](fg:#394260 bg:#212736)"  # )
+          "[](fg:${colors.sect3.bg} bg:#212736)"  # )
           "$kubernetes"
           "$nix_shell"
           "[](fg:#212736 bg:${colors.sect4.bg})"  # )
@@ -51,19 +47,19 @@
           format = "[ $path ]($style)[$read_only]($read_only_style)";
           read_only = "";
           read_only_style = "bg:${colors.sect2.bg} red";
-          repo_root_format = "[ $repo_root]($repo_root_style)[ $path ]($style)[$read_only]($read_only_style)";
-          repo_root_style = "bg:${colors.sect2.bg} yellow bold";
+          repo_root_format = "[  $repo_root]($repo_root_style)[ $path ]($style)[$read_only]($read_only_style)";
+          repo_root_style = "bg:${colors.sect2.bg} fg:${colors.sect2.fg_repo} bold";
           style = "fg:${colors.sect2.fg} bg:${colors.sect2.bg}";
           truncation_length = 0;
         };
         git_branch = {
-          format = "[[ $symbol $branch ](fg:${colors.sect2.bg} bg:#394260)]($style)";
-          style = "bg:#394260";
+          format = "[[ $symbol $branch ](fg:${colors.sect3.fg} bg:${colors.sect3.bg})]($style)";
+          style = "bg:${colors.sect3.bg}";
           symbol = "";
         };
         git_status = {
-          format = "[[($all_status$ahead_behind )](fg:${colors.sect2.bg} bg:#394260)]($style)";
-          style = "bg:#394260";
+          format = "[[($all_status$ahead_behind )](fg:${colors.sect3.fg} bg:${colors.sect3.bg})]($style)";
+          style = "bg:${colors.sect3.bg}";
         };
         shlvl = {
           disabled = false;
