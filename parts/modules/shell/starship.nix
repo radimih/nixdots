@@ -5,6 +5,20 @@
     programs.starship = {
       enable = true;
       settings = {
+        format = builtins.concatStringsSep "" [
+          "$username"
+          "$hostname"
+          "$directory"
+          "$git_branch"
+          "$git_state"
+          "$git_status"
+          "$kubernetes"
+          "$nix_shell"
+          "$cmd_duration"
+          "\n"
+          "$shlvl"
+          "$character"
+        ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
           format = "[󰥔 $duration]($style)";
@@ -17,7 +31,7 @@
         };
         shlvl = {
           disabled = false;
-          format = "[]($style)";
+          format = "[$]($style)";
           threshold = 3;
         };
       };
