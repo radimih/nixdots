@@ -44,8 +44,8 @@
         ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
-          format = "[󰚭 $duration]($style)";
-          style = "bg:${colors.sect4.bg} fg:${colors.sect4.fg} bold";
+          format = "[[ 󰚭 $duration ](fg:${colors.sect4.fg} bg:#${colors.sect4.bg} bold)]($style)";
+          style = "bg:${colors.sect4.bg}";
         };
         directory = {
           read_only = " ";
