@@ -24,16 +24,16 @@
         #   fg = "#a0a9cb";
         # };
         colors.path = {
-          bg = "#5980cf";
+          bg = "#5075c0";
           fg = "#e3e5e5";
           fg_repo = "yellow";
         };
         colors.git = {
-          bg = "#394260";
+          bg = "#475277";
           fg = "#769ff0";
         };
         colors.other = {
-          bg = "#212736";
+          bg = "#272f44";
           fg = "#769ff0";
         };
         colors.duration = {
