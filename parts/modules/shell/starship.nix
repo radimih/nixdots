@@ -6,16 +6,20 @@
       enable = true;
       settings =
       let
-        colors.sect2 = {
+        colors.path = {
           bg = "#769ff0";
           fg = "#e3e5e5";
           fg_repo = "yellow";
         };
-        colors.sect3 = {
+        colors.git = {
           bg = "#394260";
           fg = "#769ff0";
         };
-        colors.sect4 = {
+        colors.other = {
+          bg = "#212736";
+          fg = "#769ff0";
+        };
+        colors.duration = {
           bg = "#1d2230";
           fg = "#a0a9cb";
         };
@@ -25,41 +29,46 @@
           # "$username"
           # "$hostname"
           "$directory"
-          "[](fg:${colors.sect2.bg} bg:${colors.sect3.bg})"  # )
+          "[](fg:${colors.path.bg} bg:${colors.git.bg})"  # )
           "$git_branch"
           "$git_status"
-          "[](fg:${colors.sect3.bg} bg:#212736)"  # )
+          "[](fg:${colors.git.bg} bg:${colors.other.bg})"  # )
           "$kubernetes"
           "$nix_shell"
-          "[](fg:#212736 bg:${colors.sect4.bg})"  # )
+          "[](fg:${colors.other.bg} bg:${colors.duration.bg})"  # )
           "$cmd_duration"
-          "[ ](fg:${colors.sect4.bg})"  # )
+          "[ ](fg:${colors.duration.bg})"  # )
           "\n"
           "$shlvl"
           "$character"
         ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
-          format = "[[ 󰚭 $duration ](fg:${colors.sect4.fg} bg:${colors.sect4.bg} bold)]($style)";
-          style = "bg:${colors.sect4.bg}";
+          format = "[[ 󰚭 $duration ](fg:${colors.duration.fg} bg:${colors.duration.bg} bold)]($style)";
+          style = "bg:${colors.duration.bg}";
         };
         directory = {
           format = "[ $path ]($style)[$read_only]($read_only_style)";
           read_only = "";
-          read_only_style = "bg:${colors.sect2.bg} red";
+          read_only_style = "bg:${colors.path.bg} red";
           repo_root_format = "[  $repo_root]($repo_root_style)[ $path ]($style)[$read_only]($read_only_style)";
-          repo_root_style = "bg:${colors.sect2.bg} fg:${colors.sect2.fg_repo} bold";
-          style = "fg:${colors.sect2.fg} bg:${colors.sect2.bg}";
+          repo_root_style = "bg:${colors.path.bg} fg:${colors.path.fg_repo} bold";
+          style = "fg:${colors.path.fg} bg:${colors.path.bg}";
           truncation_length = 0;
         };
         git_branch = {
-          format = "[[ $symbol $branch ](fg:${colors.sect3.fg} bg:${colors.sect3.bg})]($style)";
-          style = "bg:${colors.sect3.bg}";
+          format = "[[ $symbol $branch ](fg:${colors.git.fg} bg:${colors.git.bg})]($style)";
+          style = "bg:${colors.git.bg}";
           symbol = "";
         };
         git_status = {
-          format = "[[($all_status$ahead_behind )](fg:${colors.sect3.fg} bg:${colors.sect3.bg})]($style)";
-          style = "bg:${colors.sect3.bg}";
+          format = "[[($all_status$ahead_behind )](fg:${colors.git.fg} bg:${colors.git.bg})]($style)";
+          style = "bg:${colors.git.bg}";
+        };
+        nix_shell = {
+          format = "[[ $symbol $state( \\($name\\)) ](fg:${colors.other.fg} bg:${colors.other.bg})]($style)";
+          style = "bg:${colors.other.bg}";
+          symbol = "";
         };
         shlvl = {
           disabled = false;
