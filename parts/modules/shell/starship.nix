@@ -17,6 +17,8 @@
         };
         shlvl = {
           disabled = false;
+          format = "[]";
+          threshold = 3;
         };
       };
     };
