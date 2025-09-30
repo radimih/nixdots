@@ -13,7 +13,6 @@
           "$directory"
           "[](fg:#769ff0 bg:#394260)"
           "$git_branch"
-          "$git_state"
           "$git_status"
           "[](fg:#394260 bg:#212736)"
           "$kubernetes"
@@ -33,7 +32,17 @@
           read_only = " ";
           repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
           repo_root_style = "yellow";
+          style = "fg:#e3e5e5 bg:#769ff0";
           truncation_length = 0;
+        };
+        git_branch = {
+          format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
+          style = "bg:#394260";
+          symbol = "";
+        };
+        git_status = {
+          format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
+          style = "bg:#394260";
         };
         shlvl = {
           disabled = false;
