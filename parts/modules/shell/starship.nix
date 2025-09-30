@@ -11,10 +11,12 @@
         };
         directory = {
           read_only = " ";
-          # before_repo_root_style = "white";
           repo_root_format = " [$repo_root]($repo_root_style) [$path]($style)[$read_only]($read_only_style) ";
           repo_root_style = "yellow";
           truncation_length = 0;
+        };
+        shlvl = {
+          disabled = false;
         };
       };
     };
