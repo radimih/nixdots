@@ -61,7 +61,7 @@
         ];
         cmd_duration = {
           min_time = 2 * 1000;  # 2 секунды
-          format = "[[ 󱦟󱫑 $duration ](fg:${colors.duration.fg} bg:${colors.duration.bg} bold)]($style)";
+          format = "[[   $duration ](fg:${colors.duration.fg} bg:${colors.duration.bg} bold)]($style)";
           style = "bg:${colors.duration.bg}";
         };
         directory = {
