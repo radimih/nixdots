@@ -15,6 +15,7 @@
 
       environment.systemPackages = with pkgs; [
         fuzzel
+        yazi
         waybar
       ];
 
@@ -50,8 +51,19 @@
           };
 
           environment = {
-            ELECTRON_OZONE_PLATFORM_HINT = "auto";
-            NIXOS_OZONE_WL = "1";
+            # Включить Wayland-режим для приложений:
+            MOZ_ENABLE_WAYLAND = "1";  # Mozilla-based (Firefox, Zen Browser etc)
+            NIXOS_OZONE_WL = "1";  # Ozone-based (Electron)
+
+            # Включить Wayland-режим для распространённых GUI libs:
+            # https://wiki.archlinux.org/title/Wayland#GUI_libraries
+            CLUTTER_BACKEND = "wayland";
+            GDK_BACKEND = "wayland";
+            QT_QPA_PLATFORM = "wayland";
+            SDL_VIDEODRIVER = "wayland";
+
+            # Отключить оформление окон Qt-приложений своими средствами. Этим займётся Wayland Compositor
+            QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
           };
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
