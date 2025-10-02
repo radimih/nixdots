@@ -86,6 +86,8 @@
             background-color = "transparent";
           };
 
+	        prefer-no-csd = true;
+
 	        window-rules = [
             # Чтобы работала прозрачность (opacity) окон
             # FIXME: возможно ограничить только для kitty
