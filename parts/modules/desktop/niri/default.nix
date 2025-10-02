@@ -56,6 +56,9 @@
 
           input.keyboard.xkb.layout = "${osConfig.services.xserver.xkb.layout}";
 
+	        # Отключить при старте вывод подсказки по горячим клавишам. Показать: Mod+Shift+/
+	        hotkey-overlay.skip-at-startup = true;
+
 	        layer-rules = [
             {
               # Параметры для background-слоя. Название слоя зависит от wallpaper-утилиты.
