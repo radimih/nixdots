@@ -16,6 +16,7 @@ in
       boot.kernelPackages = pkgs.linuxPackages_latest;
       boot.kernelParams = [
       ];
+      boot.loader.timeout = lib.mkForce 0;  # не показывать список генераций при загрузке
 
       # ---
 
