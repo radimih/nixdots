@@ -16,5 +16,10 @@
         window_padding_width = "0 2"; # отступы снизу-сверху и справа-слева
       };
     };
+
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = [ "kitty.desktop" ];
+    };
   };
 }
