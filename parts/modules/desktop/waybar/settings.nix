@@ -5,25 +5,29 @@
     programs.waybar.settings = {
 
       mainBar = {
+        # ─────────────────────────────────────────────────────────┤ General │
         layer = "top";
         position = "top";
         spacing = 6;
 
+        # ─────────────────────────────────────────────────────────┤ Left │
         modules-left = [
           "niri/workspaces"
-        ];
-
-        modules-center = [
-          "niri/window"
-        ];
-
-        modules-right = [
         ];
 
         "niri/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
         };
+
+        # ─────────────────────────────────────────────────────────┤ Center │
+        modules-center = [
+          "niri/window"
+        ];
+
+        # ─────────────────────────────────────────────────────────┤ Right │
+        modules-right = [
+        ];
       };
     };
   };
