@@ -5,7 +5,7 @@
     programs.waybar.settings = {
 
       mainBar = {
-        # layer = "top";
+        layer = "top";
         position = "top";
         spacing = 6;
 
