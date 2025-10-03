@@ -5,7 +5,7 @@
 - [flake-parts](https://github.com/hercules-ci/flake-parts)
 - [The Dendritic Pattern](https://github.com/mightyiam/dendritic)
 
-## TODO: Установка на новую систему
+## TODO: установка на новую систему
 
 1. Выполнить начальную настройку с помощью [nixos-starter](https://github.com/radimih/nixos-starter)
 
