@@ -9,14 +9,21 @@
         # Отключить при старте вывод подсказки по горячим клавишам. Показать: Mod+Shift+/
         hotkey-overlay.skip-at-startup = true;
 
+        cursor = {
+          hide-after-inactive-ms = 5 * 1000;  # 5 секунд
+          hide-when-typing = true;
+        };
+
         layout = {
           background-color = "transparent";
+          border.width = 2;
+          focus-ring.enable = false;
+          gaps = 8;
         };
 
         prefer-no-csd = true;
 
         spawn-at-startup = [
-          { command = [ "waybar" ]; }
           { command = [ "${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}" ]; }
         ];
       };
