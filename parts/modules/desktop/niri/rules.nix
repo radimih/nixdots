@@ -27,6 +27,9 @@
           };
           clip-to-geometry = true;
         }
+        # Чтобы работала прозрачность (opacity) некоторых окон
+        # FIXME: возможно ограничить только для waybar
+        { draw-border-with-background = false; }
       ];
     };
   };
