@@ -23,7 +23,12 @@
 
 	      # Сделать скруглёнными все углы всех окон
         {
-          geometry-corner-radius = 8;
+          geometry-corner-radius = {
+            bottom-left = 8;
+            bottom-right = 8;
+            top-left = 8;
+            top-right = 8;
+          };
           clip-to-geometry = true;
         }
       ];
