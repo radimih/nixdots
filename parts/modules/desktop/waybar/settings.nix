@@ -1,4 +1,4 @@
-# https://github.com/Alexays/Waybar/wiki
+# https://github.com/Alexays/Waybar/wiki/Configuration
 {
   flake.modules.homeManager.waybar = {
 
