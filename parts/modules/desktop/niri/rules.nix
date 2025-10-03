@@ -19,11 +19,15 @@
       window-rules = [
 	      # Сделать скруглёнными все углы всех окон
         {
-          geometry-corner-radius = {
-            bottom-left = 8.0;
-            bottom-right = 8.0;
-            top-left = 8.0;
-            top-right = 8.0;
+          geometry-corner-radius =
+          let
+            r = 8.0;
+          in
+          {
+            bottom-left = r;
+            bottom-right = r;
+            top-left = r;
+            top-right = r;
           };
           clip-to-geometry = true;
         }
