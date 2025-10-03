@@ -37,7 +37,10 @@
           };
         };
         image = ./wallpapers/cold-coast.jpg;
-        opacity.terminal = 0.8;
+        opacity = {
+          desktop = 0.8;
+          terminal = 0.8
+        };
         polarity = "dark";
         # Выключить определение стилей для некоторых компонент системы
         targets = {

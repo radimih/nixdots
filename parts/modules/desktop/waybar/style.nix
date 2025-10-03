@@ -7,5 +7,7 @@
           background: transparent;
       }
     '';
+
+    stylix.targets.waybar.addCss = false;
   };
 }
