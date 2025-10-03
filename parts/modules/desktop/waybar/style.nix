@@ -4,7 +4,7 @@
 
     programs.waybar.style = ''
           window#waybar, tooltip {
-              background: alpha(#2c3e50, 0.8);
+              background: alpha(#2c3e50, 0.5);
           }
     '';
 
