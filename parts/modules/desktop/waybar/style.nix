@@ -3,11 +3,8 @@
   flake.modules.homeManager.waybar = {
 
     programs.waybar.style = ''
-          window#waybar, tooltip {
-              background: alpha(#2c3e50, 0.5);
-          }
     '';
 
-    stylix.targets.waybar.addCss = false;
+    stylix.targets.waybar.addCss = true;
   };
 }
