@@ -5,6 +5,6 @@
     programs.waybar.style = ''
     '';
 
-    stylix.targets.waybar.addCss = false;
+    stylix.targets.waybar.addCss = true;
   };
 }
