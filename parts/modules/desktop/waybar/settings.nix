@@ -6,7 +6,7 @@
 
       mainBar = {
         layer = "top";
-        position = "top";
+        # position = "top";
         spacing = 6;
 
         modules-left = [
@@ -17,7 +17,8 @@
           "niri/window"
         ];
 
-        modules-right = [ "mpd" "custom/mymodule#with-css-id" "temperature" ];
+        modules-right = [
+        ];
 
         "niri/workspaces" = {
           disable-scroll = true;
