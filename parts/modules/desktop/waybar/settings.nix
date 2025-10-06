@@ -27,7 +27,14 @@
 
         # ─────────────────────────────────────────────────────────┤ Right │
         modules-right = [
+          "clock#local"
+          "clock#msk"
         ];
+
+        "clock#msk" = {
+          format = "({:%H} MSK)";
+          timezone = "Europe/Moscow";
+        };
       };
     };
   };
