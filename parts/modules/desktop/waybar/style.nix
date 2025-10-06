@@ -22,7 +22,7 @@
         background: #000000;
       }
       tooltip {
-        background: alpha(#000000, 0.9);
+        background: alpha(#000000, 0.8);
       }
       #clock.msk {
         color: #707070;
