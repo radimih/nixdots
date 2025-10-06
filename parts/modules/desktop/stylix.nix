@@ -20,7 +20,7 @@
 
         # https://github.com/ful1e5/Bibata_Cursor
         cursor = {
-          name = "Bibata-Modern-Classic";
+          name = "Bibata-Original-Classic";
           package = pkgs.bibata-cursors;
           size = 24;
         };
