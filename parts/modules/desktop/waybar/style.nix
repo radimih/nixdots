@@ -24,8 +24,8 @@
       tooltip {
         background: alpha(#000000, 0.9);
       }
-      clock.msk {
-        font-size: 9pt;
+      #clock.msk {
+        color: #707070;
       }
     '';
 
