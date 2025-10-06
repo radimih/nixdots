@@ -27,9 +27,14 @@
 
         # ─────────────────────────────────────────────────────────┤ Right │
         modules-right = [
+          "niri/language"
           "clock#local"
           "clock#msk"
         ];
+
+	      "niri/language" = {
+          format = "{short}";
+        };
 
         "clock#msk" = {
           format = "/ {:%H} MSK";
