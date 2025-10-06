@@ -62,7 +62,7 @@
         };
 
         "clock#msk" = {
-          format = "/{:%H} MSK";
+          format = " {:%H} MSK";
           timezone = "Europe/Moscow";
           tooltip-format = "Московское время: {:%H:%M}";
         };
