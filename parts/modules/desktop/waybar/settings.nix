@@ -42,7 +42,7 @@
           format = "{:%H:%M}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
-            mode = "year";
+            mode = "month";
             mode-mon-col = 3;
             weeks-pos = "";
             on-scroll = 1;
@@ -56,8 +56,8 @@
           };
           actions = {
             on-click-right = "mode";
-            on-scroll-up = "shift_up";
-            on-scroll-down = "shift_down";
+            on-scroll-up = "shift_down";
+            on-scroll-down = "shift_up";
           };
         };
 
