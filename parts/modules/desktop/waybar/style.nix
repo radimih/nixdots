@@ -7,7 +7,7 @@
           background: #000000;
       }
       tooltip {
-          background: alpha(#000000, 0.5);
+          background: alpha(#000000, 0.9);
       }
     '';
 
