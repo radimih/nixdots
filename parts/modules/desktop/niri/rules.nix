@@ -21,7 +21,7 @@
         {
           geometry-corner-radius =
           let
-            r = 8.0;
+            r = 6.0;
           in
           {
             bottom-left = r;
