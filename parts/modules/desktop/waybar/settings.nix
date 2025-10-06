@@ -39,8 +39,12 @@
         };
 
         "clock#local" = {
+          actions = {
+            on-click-right = "mode";
+            on-scroll-up = "shift_down";
+            on-scroll-down = "shift_up";
+          };
           format = "{:%H:%M}";
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
             mode = "month";
             mode-mon-col = 3;
@@ -54,15 +58,11 @@
               today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
             };
           };
-          actions = {
-            on-click-right = "mode";
-            on-scroll-up = "shift_down";
-            on-scroll-down = "shift_up";
-          };
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
         };
 
         "clock#msk" = {
-          format = "/ {:%H} MSK";
+          format = "/{:%H} MSK";
           timezone = "Europe/Moscow";
           tooltip-format = "Московское время: {:%H:%M}";
         };
