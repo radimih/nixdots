@@ -27,6 +27,9 @@
       #clock.msk {
         color: #707070;
       }
+      #workspaces button.focused {
+        color: #e2c43c;
+      }
     '';
 
     stylix.targets.waybar.enable = false;
