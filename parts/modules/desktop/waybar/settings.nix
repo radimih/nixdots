@@ -58,7 +58,7 @@
               today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
             };
           };
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          tooltip-format = "<tt>{calendar}</tt>";
         };
 
         "clock#msk" = {
