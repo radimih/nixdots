@@ -32,7 +32,7 @@
         ];
 
         "clock#msk" = {
-          format = "({:%H} MSK)";
+          format = "/ {:%H} MSK";
           timezone = "Europe/Moscow";
         };
       };

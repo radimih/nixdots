@@ -15,14 +15,17 @@
 
     programs.waybar.style = ''
       * {
-          font-family: "JetBrainsMonoNFM";
-          font-size: 11pt;
+        font-family: "JetBrainsMonoNFM";
+        font-size: 11pt;
       }
       window#waybar {
-          background: #000000;
+        background: #000000;
       }
       tooltip {
-          background: alpha(#000000, 0.9);
+        background: alpha(#000000, 0.9);
+      }
+      clock.msk {
+        font-size: 9pt;
       }
     '';
 
