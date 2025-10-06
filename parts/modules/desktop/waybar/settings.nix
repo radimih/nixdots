@@ -33,7 +33,9 @@
         ];
 
 	      "niri/language" = {
-          format = "Lang: {short}";
+          format = "Lang: {long}";
+          format-En = "EN";
+          format-Ru = "RU";
         };
 
         "clock#msk" = {
