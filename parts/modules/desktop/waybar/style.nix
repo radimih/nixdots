@@ -5,7 +5,7 @@
           # background: alpha(#000000, 0.5);
     programs.waybar.style = ''
       window#waybar, tooltip {
-          background: 0;
+          background: #000000;
       }
     '';
 
