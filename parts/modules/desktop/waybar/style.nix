@@ -2,10 +2,12 @@
 {
   flake.modules.homeManager.waybar = {
 
-          # background: alpha(#000000, 0.5);
     programs.waybar.style = ''
-      window#waybar, tooltip {
+      window#waybar {
           background: #000000;
+      }
+      tooltip {
+          background: alpha(#000000, 0.5);
       }
     '';
 
