@@ -33,7 +33,7 @@
         ];
 
 	      "niri/language" = {
-          format = "{short}";
+          format = "Lang: {short}";
         };
 
         "clock#msk" = {
