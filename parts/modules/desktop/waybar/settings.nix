@@ -41,6 +41,7 @@
         "clock#msk" = {
           format = "/ {:%H} MSK";
           timezone = "Europe/Moscow";
+          tooltip = false;
         };
       };
     };
