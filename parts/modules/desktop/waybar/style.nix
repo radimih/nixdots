@@ -15,7 +15,7 @@
 
     programs.waybar.style = ''
       * {
-          font-family: "IosevkaNFM";
+          font-family: "JetBrainsMonoNF-Regular";
           font-size: 11pt;
       }
       window#waybar {
