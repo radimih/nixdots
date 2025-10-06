@@ -42,7 +42,6 @@
         image = ./wallpapers/cold-coast.jpg;
 
         opacity = {
-          desktop = 0.8;
           terminal = 0.8;
         };
 

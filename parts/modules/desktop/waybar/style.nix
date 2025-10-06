@@ -1,8 +1,23 @@
 # https://github.com/Alexays/Waybar/wiki/Styling
 {
+  flake.modules.nixos.desktop =
+    { pkgs, ... }:
+    {
+      fonts = {
+        packages = with pkgs; [
+          # https://www.nerdfonts.com/font-downloads
+          nerd-fonts.jetbrains-mono
+        ];
+      };
+    };
+
   flake.modules.homeManager.waybar = {
 
     programs.waybar.style = ''
+      * {
+          font-family: "IosevkaNFM";
+          font-size: 11pt;
+      }
       window#waybar {
           background: #000000;
       }
@@ -11,8 +26,6 @@
       }
     '';
 
-    # Взять из Stylix только определение цветов (baseXX) и шрифта по-умолчанию
-    # для всех элементов (stylix.fonts.monospace, stylix.fonts.sizes.desktop)
-    stylix.targets.waybar.addCss = false;
+    stylix.targets.waybar.enable = false;
   };
 }
