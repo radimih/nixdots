@@ -15,7 +15,7 @@
 
     programs.waybar.style = ''
       * {
-          font-family: "JetBrainsMonoNF-Regular";
+          font-family: "JetBrainsMonoNerdFontPropo-Regular";
           font-size: 11pt;
       }
       window#waybar {
