@@ -6,23 +6,25 @@
 {
   flake.modules.nixos.desktop =
     { pkgs, ... }:
-    let
-      # https://github.com/tinted-theming/schemes
-      theme = "flat";
-    in
     {
       imports = [
         inputs.stylix.nixosModules.stylix
       ];
 
       stylix = {
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+
+        enable = true;
+
+        # https://github.com/tinted-theming/schemes
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/flat.yaml";
+
+        # https://github.com/ful1e5/Bibata_Cursor
         cursor = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
+          name = "Bibata-Modern-Classic";
+          package = pkgs.bibata-cursors;
           size = 24;
         };
-        enable = true;
+
         # Просмотр шрифтов в Kitty: kitten choose-fonts
         fonts = {
           monospace = {
@@ -36,12 +38,16 @@
             terminal = 12;
           };
         };
+
         image = ./wallpapers/cold-coast.jpg;
+
         opacity = {
           desktop = 0.8;
           terminal = 0.8;
         };
+
         polarity = "dark";
+
         # Выключить определение стилей для некоторых компонент системы
         targets = {
           console.enable = false;
