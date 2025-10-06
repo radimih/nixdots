@@ -33,8 +33,9 @@
         ];
 
 	      "niri/language" = {
-          format = "Lang: {long}";
+          format = "Lang: {short}-{long}";
           format-En = "EN";
+          "format-English Universal" = "EN";
           format-Ru = "RU";
         };
 
