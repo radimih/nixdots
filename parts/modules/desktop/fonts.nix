@@ -1,3 +1,4 @@
+# Просмотр шрифтов в Kitty: kitten choose-fonts
 {
   flake.modules.nixos.desktop =
     { pkgs, ... }:
@@ -5,10 +6,12 @@
       fonts = {
         enableDefaultPackages = true;
 
-        # Просмотр шрифтов в Kitty: kitten choose-fonts
-        packages = with pkgs; [
-          # https://www.nerdfonts.com/font-downloads
-          nerd-fonts.iosevka
+        # Nerd Fonts: https://www.nerdfonts.com/font-downloads
+
+        packages = with pkgs.nerd-fonts; [
+          iosevka
+          jetbrains-mono
+          roboto-mono
         ];
       };
     };

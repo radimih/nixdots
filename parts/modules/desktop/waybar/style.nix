@@ -1,22 +1,11 @@
 # https://github.com/Alexays/Waybar/wiki/Styling
 {
-  flake.modules.nixos.desktop =
-    { pkgs, ... }:
-    {
-      fonts = {
-        packages = with pkgs; [
-          # https://www.nerdfonts.com/font-downloads
-          nerd-fonts.jetbrains-mono
-        ];
-      };
-    };
-
   flake.modules.homeManager.waybar = {
 
     programs.waybar.style = ''
       * {
-        font-family: "JetBrainsMonoNFM";
-        font-size: 11pt;
+        font-family: "Roboto Mono Nerd Font";
+        font-size: 12pt;
       }
       window#waybar {
         background: #000000;
