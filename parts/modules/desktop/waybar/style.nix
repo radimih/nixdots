@@ -12,7 +12,7 @@
       window#waybar {
         background: #000000;
       }
-      window {
+      window#waybar #window {
         color: #3498db;
       }
       tooltip {
