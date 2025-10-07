@@ -33,7 +33,7 @@
         ];
 
 	      "niri/language" = {
-          format = "{flag} {short}";
+          format = "{short}";
           # format-En = "English";
           # format-Ru = "Русский";
         };
