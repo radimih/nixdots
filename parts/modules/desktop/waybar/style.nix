@@ -28,10 +28,12 @@
       }
 
       #workspaces button {
+        border-radius: 0;
         border-bottom: 3px solid transparent;
       }
 
       #workspaces button.focused {
+        border-radius: 0;
         border-bottom: 3px solid @fg-color-primary;
       }
     '';
