@@ -4,7 +4,7 @@
 
     programs.waybar.style = ''
       * {
-        font-family: "Roboto Mono Nerd Font";
+        font-family: "RobotoMonoNFM-Rg";
         font-size: 12pt;
       }
       window#waybar {

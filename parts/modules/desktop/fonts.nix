@@ -9,9 +9,9 @@
         # Nerd Fonts: https://www.nerdfonts.com/font-downloads
 
         packages = with pkgs.nerd-fonts; [
-          iosevka
-          jetbrains-mono
-          roboto-mono
+          iosevka         # IosevkaNF[M][{-Thin|-ExtraLight|-Light|-Medium|-SemiBold|-Bold}]
+          jetbrains-mono  # JetBrainsMonoNF[M][{-Thin|-ExtraLight|-Light|-Medium|-SemiBold|-Bold}]
+          roboto-mono     # RobotoMonoNF[M]{-Th|-Lt|-Rg|-Md}
         ];
       };
     };
