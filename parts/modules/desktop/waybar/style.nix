@@ -27,7 +27,7 @@
       }
 
       tooltip {
-        background: alpha(@bg-primary, 0.8);
+        background: alpha(#000000, 0.8);
       }
 
       #clock.msk {
