@@ -9,7 +9,7 @@
       @define-color bg-primary #000000;
       @define-color fg-clock-msk #707070;
       @define-color fg-primary #ffffff;
-      @define-color fg-title: #3498db;
+      @define-color fg-title #3498db;
 
       * {
         border: none;
@@ -27,7 +27,7 @@
       }
 
       tooltip {
-        background: alpha(#000000, 0.8);
+        background: alpha(@bg-primary, 0.8);
       }
 
       #clock.msk {
