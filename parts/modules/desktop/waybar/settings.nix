@@ -33,9 +33,9 @@
         ];
 
 	      "niri/language" = {
-          format = "󰗊 {}";
-          format-En = "English";
-          format-Ru = "Русский";
+          format = "{flag} {short}";
+          # format-En = "English";
+          # format-Ru = "Русский";
         };
 
         "clock#local" = {
