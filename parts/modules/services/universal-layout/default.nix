@@ -6,14 +6,14 @@
       # TODO: названия раскладок через опции
 
       services.xserver.xkb = {
-        layout = "en1,ru1";
+        layout = "En,Ru";
         extraLayouts = {
-          en1 = {
+          En = {
             description = "en1";
             languages = [ "eng" ];
             symbolsFile = ./universal-en.xkb;
           };
-          ru1 = {
+          Ru = {
             description = "ru1";
             languages = [ "rus" ];
             symbolsFile = ./universal-ru.xkb;
