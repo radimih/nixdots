@@ -34,8 +34,8 @@
 
 	      "niri/language" = {
           format = "󰗊 {}";
-          format-en = "English";
-          format-ru = "Русский";
+          format-En = "English";
+          format-Ru = "Русский";
         };
 
         "clock#local" = {
