@@ -36,6 +36,7 @@
           format = "{short}";
           # format-En = "English";
           # format-Ru = "Русский";
+          on-click = "niri msg action switch-layout next";
         };
 
         "clock#local" = {
