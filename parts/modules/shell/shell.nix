@@ -7,11 +7,6 @@
         enableFishIntegration = true;
         enableShellIntegration = false;
       };
-      shellAliases = {
-        cat = "bat";
-        ls = "eza";
-        grep = "rg";
-      };
     };
   };
 }
