@@ -39,6 +39,7 @@ in
         kitty
         niri
         shell
+        waybar
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";

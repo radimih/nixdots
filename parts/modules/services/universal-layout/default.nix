@@ -9,12 +9,12 @@
         layout = "En,Ru";
         extraLayouts = {
           En = {
-            description = "English Universal Layout";
+            description = "English Universal";  # должно совпадать со значением name[Group1] из symbolsFile
             languages = [ "eng" ];
             symbolsFile = ./universal-en.xkb;
           };
           Ru = {
-            description = "Russian Universal Layout";
+            description = "Russian Universal";  # должно совпадать со значением name[Group1] из symbolsFile
             languages = [ "rus" ];
             symbolsFile = ./universal-ru.xkb;
           };

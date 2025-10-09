@@ -17,9 +17,20 @@
       ];
 
       window-rules = [
-        # Чтобы работала прозрачность (opacity) окон
-        # FIXME: возможно ограничить только для kitty
-        { draw-border-with-background = false; }
+	      # Сделать скруглёнными все углы всех окон
+        {
+          geometry-corner-radius =
+          let
+            r = 4.0;
+          in
+          {
+            bottom-left = r;
+            bottom-right = r;
+            top-left = r;
+            top-right = r;
+          };
+          clip-to-geometry = true;
+        }
       ];
     };
   };
