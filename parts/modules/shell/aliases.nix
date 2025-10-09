@@ -3,13 +3,15 @@
   flake.modules.homeManager.shell = {
 
     # По-умолчанию для всех пользователей уже определены некоторые алиасы в исходниках NixOS:
-    # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/shells-environment.nix
     #
     #   environment.shellAliases = lib.mapAttrs (name: lib.mkDefault) {
     #     ls = "ls --color=tty";
     #     ll = "ls -l";
     #     l = "ls -alh";
     #   };
+    #
+    # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/config/shells-environment.nix
+    #
     # Дополнительно, в Home Manager в programs.eza включена по-умолчанию shell-интеграция,
     # которая добавляет следующие алиасы:
     #
