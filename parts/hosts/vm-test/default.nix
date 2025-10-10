@@ -18,9 +18,9 @@ in
       ];
       boot.loader.timeout = lib.mkForce 0;  # не показывать список генераций при загрузке
 
-      environment.systemPackages = with pkgs; [
-        spice-vdagent
-      ];
+      # environment.systemPackages = with pkgs; [
+      #   spice-vdagent
+      # ];
 
       services = {
         qemuGuest.enable = true;
