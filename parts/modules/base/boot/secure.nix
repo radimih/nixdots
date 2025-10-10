@@ -1,4 +1,5 @@
 # https://github.com/nix-community/lanzaboote
+# TODO: next-release: посмотреть в сторону boot.loader.limine.secureBoot.enable
 {
   inputs,
   ...
