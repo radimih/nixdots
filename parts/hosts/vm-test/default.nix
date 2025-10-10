@@ -18,6 +18,12 @@ in
       ];
       boot.loader.timeout = lib.mkForce 0;  # не показывать список генераций при загрузке
 
+      services = {
+        qemuGuest.enable = true;
+        spice-vdagentd.enable = true;
+        spice-webdavd.enable = true;
+      };
+
       # ---
 
       imports = with config.flake.modules.nixos; [
