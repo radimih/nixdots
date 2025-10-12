@@ -13,11 +13,6 @@ in
     {
       # --- NixOS-параметры хоста
 
-      boot.kernelPackages = pkgs.linuxPackages_latest;
-      boot.kernelParams = [
-      ];
-      boot.loader.timeout = lib.mkForce 0;  # не показывать список генераций при загрузке
-
       services = {
         qemuGuest.enable = true;
         spice-vdagentd.enable = true;
