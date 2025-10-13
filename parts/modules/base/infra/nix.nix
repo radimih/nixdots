@@ -14,7 +14,7 @@
       nix.gc = {
         automatic = true;
         dates = "weekly";
-        options = "--delete-older-than 1w";
+        options = "--delete-older-than 7d";
         persistent = true;
         randomizedDelaySec = "15min";  # не запускать сразу, если компьютер был долго выключен
       };
