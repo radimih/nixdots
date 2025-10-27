@@ -6,14 +6,12 @@
         meta.description = "Hello";
         type = "app";
         program = pkgs.writeShellApplication {
-          name = "starter";
+          name = "starter.sh";
           runtimeInputs = with pkgs; [
             gh
             git
           ];
-          text = ''
-            gh --version
-          '';
+          text = builtins.readFile ./starter.sh;
         };
       };
     };
