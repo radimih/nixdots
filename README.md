@@ -7,6 +7,25 @@
 
 ## TODO: установка на новую систему
 
+1. Создать временный токен доступа к GitHub для добавления ssh-ключа нового пользователя в GitHub:
+
+    1. [github.com](https://github.com) → Профиль → `Settings`
+    → `Developer Settings`
+    → `Personal access tokens`
+    → [`Tokens (classic)`](https://github.com/settings/tokens)
+    → [`Generate new token (classic)`](https://github.com/settings/tokens/new)
+       > Выбран вид токена **classic** только потому что он примерно в два раза
+       > короче токена **fine-grained**
+    1. Параметры токена:
+        - Note: `nixdots-keys` (произвольное название)
+        - Expiration: `7 days`
+        - Scopes:
+          - ☑ `repo`
+          - ☑ `admin:org / read:org`
+          - ☑ `admin:public_key`
+          - ☑ `admin:ssh_signing_key`
+    1. Сохранить токен удобным способом
+
 1. Выполнить начальную настройку с помощью [nixos-starter](https://github.com/radimih/nixos-starter)
 
 1. Создать SecureBoot-ключи хоста и записать их в EFI-память:
