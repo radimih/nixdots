@@ -44,7 +44,7 @@ input_github_token() {
   do
     if [ ! -f $TOKEN_FILE ]
     then
-      read -p "Enter GitHub token: " token
+      read -e -p "Enter GitHub token: " token
       echo "$token" > $TOKEN_FILE
     fi
 
