@@ -1,5 +1,7 @@
 DOTFILES_URL=git@github.com/radimih/nixdots.git
+
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
+TOKEN_FILE="$HOME/github.token"
 
 START_MSG="
 This script does the following:
@@ -27,11 +29,50 @@ Run the following commands to make the changes in the NixOS configuration take e
 
 main() {
 
-    local hostname_new
-    local github_repo
+  local hostname_new
 
-    clear
-    echo -e "$START_MSG"
+  clear
+  echo -e "$START_MSG"
+
+  input_github_token
+  validate_github_token
+}
+
+input_github_token() {
+
+  while true
+  do
+    if [ ! -f $TOKEN_FILE ]
+    then
+      read -p "Enter GitHub token: " token
+      echo "$token" > $TOKEN_FILE
+    fi
+
+    token=$(cat $TOKEN_FILE)
+    hash=$(echo "$token" | sha256sum | awk '{print $1}')
+
+    echo -e "--------------------------------------------------------------------------"
+    echo -e "GitHub token stored in the\033[2m $TOKEN_FILE\033[22m file:"
+    echo -e "  token: $token"
+    echo -e "   hash: $hash"
+    echo -e "--------------------------------------------------------------------------"
+
+    read -p "Is this token correct? (y/n): " answer
+
+    if [[ "$answer" =~ ^[Yy]$ ]]
+    then
+      break
+    else
+      read -e -i "$token" -p "Edit the token: " new_token
+      echo "$new_token" > $TOKEN_FILE
+    fi
+  done
+
+  GITHUB_TOKEN=$(cat $TOKEN_FILE)
+}
+
+validate_github_token() {
+  echo
 }
 
 main
