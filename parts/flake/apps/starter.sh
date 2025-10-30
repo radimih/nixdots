@@ -12,7 +12,7 @@ This script does the following:
 
 2. Generates\033[1m user's ssh key\033[22m if it does do not exist
 
-3. Adds the\033[1m user's public ssh key\033[22m to \033[4mGitHub\033[0m if it hasn't been added yet
+3. Adds the\033[1m public key\033[22m of this ssh key to \033[4mGitHub\033[0m if it is not already added
 
 4. Clones dotfiles repo \033[4m$DOTFILES_URL\033[0m to home directory
 
@@ -50,11 +50,12 @@ input_github_token() {
 
     token=$(cat $TOKEN_FILE)
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
+    hash_short=${hash:0:3}...${hash: -3}
 
     echo -e "--------------------------------------------------------------------------"
     echo -e "GitHub token stored in the\033[2m $TOKEN_FILE\033[22m file:"
     echo -e "  token: $token"
-    echo -e "   hash: $hash"
+    echo -e "  sha256sum: $hash_short"
     echo -e "--------------------------------------------------------------------------"
 
     read -p "Is this token correct? (y/n): " answer
