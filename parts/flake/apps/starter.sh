@@ -1,3 +1,5 @@
+set +o errexit
+
 DOTFILES_URL=git@github.com/radimih/nixdots.git
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
@@ -25,7 +27,6 @@ This script does the following:
 5. Prepares host folder in parts/hosts
 
 Let's go!
----------
 "
 FINISH_MSG="
 Run the following commands to make the changes in the NixOS configuration take effect:
@@ -33,19 +34,36 @@ Run the following commands to make the changes in the NixOS configuration take e
  \033[1m sudo nixos-rebuild switch\033[22m
 "
 
-main() {
-
-  local hostname_new
+main()
+{
+  local hostname
 
   clear
   echo -e "$START_MSG"
 
-  input_github_token
+  hostname=$(input_hostname)
+  set_github_token
   validate_github_token
+
+  echo -e "$FINISH_MSG"
 }
 
-input_github_token() {
+input_hostname()
+{
+    local hostname_input=""
 
+    while true
+    do
+      read -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+      if [[ -z "$hostname_input" ]]; then continue; fi
+      if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
+    done
+
+    echo "$hostname_input"
+}
+
+set_github_token()
+{
   while true
   do
     if [ ! -f $TOKEN_FILE ]
@@ -58,11 +76,11 @@ input_github_token() {
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
     hash_short=${hash:0:3}...${hash: -3}
 
-    echo -e "--------------------------------------------------------------------------"
+    echo -e "──────────────────────────────────────────────────────────────────────────"
     echo -e "GitHub token stored in the\033[2m $TOKEN_FILE\033[22m file:"
     echo -e "  token: $token"
     echo -e "  sha256sum: $hash_short"
-    echo -e "--------------------------------------------------------------------------"
+    echo -e "──────────────────────────────────────────────────────────────────────────"
 
     read -p "Is this token correct? (y/n): " answer
 
@@ -75,10 +93,31 @@ input_github_token() {
     fi
   done
 
-  GITHUB_TOKEN=$(cat $TOKEN_FILE)
+  export GITHUB_TOKEN=$(cat $TOKEN_FILE)
 }
 
-validate_github_token() {
+validate_github_token()
+{
+  print_step_msg "validate GitHub token..."
+  gh auth status
+  if [[ $? -ne 0 ]]
+  then
+    print_error_msg "the GitHub token may have expired"
+    exit 1
+  fi
+}
+
+print_error_msg()
+{
+  echo
+  echo -e "${RED}starter: $1${NC}"
+  echo
+}
+
+print_step_msg()
+{
+  echo
+  echo -e "${GREEN}starter: $1${NC}"
   echo
 }
 
