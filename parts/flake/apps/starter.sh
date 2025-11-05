@@ -3,6 +3,12 @@ DOTFILES_URL=git@github.com/radimih/nixdots.git
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
 TOKEN_FILE="$HOME/github.token"
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
 START_MSG="
 This script does the following:
 
