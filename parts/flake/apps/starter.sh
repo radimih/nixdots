@@ -1,8 +1,12 @@
 set +o errexit
 
-DOTFILES_URL=git@github.com/radimih/nixdots.git
+GIT_DOTFILES_URL=github.com/radimih/nixdots
+GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
+HOME_DOTFILES_DIR=$HOME/1git/personal
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
+SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
+SSH_KEYFILE_USER=$HOME/.ssh/id_ed25519
 TOKEN_FILE="$HOME/github.token"
 
 RED='\033[0;31m'
@@ -14,17 +18,17 @@ NC='\033[0m'
 START_MSG="
 This script does the following:
 
-1. Updates the\033[1m NixOS configuration file\033[22m (\033[2m$NIXOS_CONFIG_FILE\033[22m):
+1. Generates host and user\033[1m SSH keys\033[22m if they do not exist
+
+2. Adds the\033[1m public user SSH key\033[22m to \033[4mGitHub\033[0m if it is not already added
+
+3. Clones dotfiles repo \033[4m$GIT_DOTFILES_URL\033[0m into directory \033[2m$HOME_DOTFILES_DIR\033[22m
+
+4. Prepares host folder in parts/hosts
+
+5. Updates the\033[1m NixOS configuration file\033[22m (\033[2m$NIXOS_CONFIG_FILE\033[22m):
      - enables experimental features
      - adds the\033[2m git\033[22m and\033[2m vim\033[22m programs to the system packages
-
-2. Generates\033[1m user's ssh key\033[22m if it does do not exist
-
-3. Adds the\033[1m public key\033[22m of this ssh key to \033[4mGitHub\033[0m if it is not already added
-
-4. Clones dotfiles repo \033[4m$DOTFILES_URL\033[0m to home directory
-
-5. Prepares host folder in parts/hosts
 
 Let's go!
 "
@@ -34,8 +38,8 @@ Run the following commands to make the changes in the NixOS configuration take e
  \033[1m sudo nixos-rebuild switch\033[22m
 "
 
-main()
-{
+main() {
+
   local hostname
 
   clear
@@ -45,25 +49,30 @@ main()
   set_github_token
   validate_github_token
 
+  sudo --validate
+  echo
+
+  generate_ssh_keys
+
   echo -e "$FINISH_MSG"
 }
 
-input_hostname()
-{
-    local hostname_input=""
+input_hostname() {
 
-    while true
-    do
-      read -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
-      if [[ -z "$hostname_input" ]]; then continue; fi
-      if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
-    done
+  local hostname_input=""
 
-    echo "$hostname_input"
+  while true
+  do
+    read -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+    if [[ -z "$hostname_input" ]]; then continue; fi
+    if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
+  done
+
+  echo "$hostname_input"
 }
 
-set_github_token()
-{
+set_github_token() {
+
   while true
   do
     if [ ! -f $TOKEN_FILE ]
@@ -96,8 +105,8 @@ set_github_token()
   export GITHUB_TOKEN=$(cat $TOKEN_FILE)
 }
 
-validate_github_token()
-{
+validate_github_token() {
+
   print_step_msg "validate GitHub token..."
   gh auth status
   if [[ $? -ne 0 ]]
@@ -105,6 +114,38 @@ validate_github_token()
     print_error_msg "the GitHub token may have expired"
     exit 1
   fi
+}
+
+generate_ssh_keys() {
+
+  local hostname_new=$1
+
+  print_step_msg "generate host and user SSH keys..."
+
+  generate_ssh_key $hostname_new $SSH_KEYFILE_HOST sudo
+  generate_ssh_key $hostname_new $SSH_KEYFILE_USER
+}
+
+generate_ssh_key() {
+
+  local hostname_new=$1
+  local keyfile=$2
+  local sudo=${3:-}
+
+  echo "generate $keyfile..."
+  echo
+
+  [[ -z "$sudo" ]] && username=$USER || username=host
+
+  if [[ -f $keyfile ]]
+  then
+    $sudo ssh-keygen -f $keyfile -c -C $username@$hostname_new -q > /dev/null
+    echo "... SSH key \'$keyfile\' already exists, updated key comment"
+  else
+    # Generate key pair without passphrase
+    $sudo ssh-keygen -t ed25519 -N "" -f $keyfile -C $username@$hostname_new
+  fi
+  echo
 }
 
 print_error_msg()
