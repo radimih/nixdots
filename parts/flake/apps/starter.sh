@@ -139,7 +139,7 @@ generate_ssh_key() {
   if [[ -f $keyfile ]]
   then
     $sudo ssh-keygen -f "$keyfile" -c -C "$username@$hostname_new" -q > /dev/null
-    print_step_msg "... SSH key '$keyfile' already exists, updated key comment"
+    print_step_msg "\033[A\033[A... SSH key '$keyfile' already exists, updated key comment"
   else
     # Generate key pair without passphrase
     $sudo ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$username@$hostname_new"
