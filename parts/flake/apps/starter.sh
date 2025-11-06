@@ -1,5 +1,5 @@
 GIT_DOTFILES_URL=github.com/radimih/nixdots
-GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
+# GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
 HOME_DOTFILES_DIR=$HOME/1git/personal
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
