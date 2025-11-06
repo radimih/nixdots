@@ -53,7 +53,7 @@ main() {
   sudo --validate
   echo
 
-  generate_ssh_keys $hostname
+  generate_ssh_keys "$hostname"
 
   echo -e "$FINISH_MSG"
 }
@@ -122,8 +122,8 @@ generate_ssh_keys() {
 
   local hostname_new=$1
 
-  generate_ssh_key $hostname_new $SSH_KEYFILE_HOST sudo
-  generate_ssh_key $hostname_new $SSH_KEYFILE_USER
+  generate_ssh_key "$hostname_new" "$SSH_KEYFILE_HOST" sudo
+  generate_ssh_key "$hostname_new" "$SSH_KEYFILE_USER"
 }
 
 generate_ssh_key() {
@@ -139,11 +139,11 @@ generate_ssh_key() {
 
   if [[ -f $keyfile ]]
   then
-    $sudo ssh-keygen -f $keyfile -c -C $username@$hostname_new -q > /dev/null
-    echo "... SSH key \'$keyfile\' already exists, updated key comment"
+    $sudo ssh-keygen -f "$keyfile" -c -C "$username@$hostname_new" -q > /dev/null
+    echo "... SSH key '$keyfile' already exists, updated key comment"
   else
     # Generate key pair without passphrase
-    $sudo ssh-keygen -t ed25519 -N "" -f $keyfile -C $username@$hostname_new
+    $sudo ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$username@$hostname_new"
   fi
   echo
 }
