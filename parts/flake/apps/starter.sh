@@ -37,24 +37,23 @@ Run the following commands to make the changes in the NixOS configuration take e
 
 main() {
 
-  local hostname
-
   clear
   echo -e "$START_MSG"
 
-  hostname=$(input_hostname)
+  local hostname=$(input_hostname)
   echo
   set_github_token
 
   print_step_msg "validate GitHub token..."
   validate_github_token
 
-  print_step_msg "generate host and user SSH keys..."
+  # print_step_msg "generate host and user SSH keys..."
+  # sudo --validate
+  # echo
+  # generate_ssh_keys "$hostname"
 
-  sudo --validate
-  echo
-
-  generate_ssh_keys "$hostname"
+  print_step_msg "add public user SSH key to GitHub..."
+  add_key_to_github "$hostname"
 
   echo -e "$FINISH_MSG"
 }
@@ -142,10 +141,26 @@ generate_ssh_key() {
     $sudo ssh-keygen -f "$keyfile" -c -C "$username@$hostname_new" -q > /dev/null
     print_line_msg "... SSH key '$keyfile' already exists, updated key comment"
   else
-    # Generate key pair without passphrase
+    # Сгенерировать ключ без защиты паролем
     $sudo ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$username@$hostname_new"
   fi
   echo
+}
+
+add_key_to_github() {
+
+  local key_name="$USER-$1"
+  local current_keys="$(gh ssh-key list)"
+  local user_pubkey="$(cat $SSH_KEYFILE_USER.pub | awk '{ print $2 }')"
+
+  echo "$current_keys"
+
+  for key_type in authentication signing
+  do
+    # GitHub не позволяет хранить один и тот же ключ под разными именами
+    key_id=$(echo "$current_keys" | awk -v key="$user_pubkey" -v type="$key_type" '$3 == key && $6 == type { print $1; exit }')
+    echo $key_id $key_type
+  done
 }
 
 print_error_msg() {
