@@ -1,5 +1,3 @@
-set +o errexit
-
 GIT_DOTFILES_URL=github.com/radimih/nixdots
 GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
 HOME_DOTFILES_DIR=$HOME/1git/personal
@@ -7,12 +5,11 @@ HOME_DOTFILES_DIR=$HOME/1git/personal
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
 SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
 SSH_KEYFILE_USER=$HOME/.ssh/id_ed25519
-TOKEN_FILE="$HOME/github.token"
+TOKEN_FILE=$HOME/github.token
 
-RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
+RED='\033[0;31m'
+# YELLOW='\033[1;33m'
 NC='\033[0m'
 
 START_MSG="
@@ -47,12 +44,16 @@ main() {
 
   hostname=$(input_hostname)
   set_github_token
+
+  print_step_msg "validate GitHub token..."
   validate_github_token
+
+  print_step_msg "generate host and user SSH keys..."
 
   sudo --validate
   echo
 
-  generate_ssh_keys
+  generate_ssh_keys $hostname
 
   echo -e "$FINISH_MSG"
 }
@@ -63,7 +64,7 @@ input_hostname() {
 
   while true
   do
-    read -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+    read -r -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
     if [[ -z "$hostname_input" ]]; then continue; fi
     if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
   done
@@ -75,13 +76,13 @@ set_github_token() {
 
   while true
   do
-    if [ ! -f $TOKEN_FILE ]
+    if [ ! -f "$TOKEN_FILE" ]
     then
-      read -e -p "Enter GitHub token: " token
-      echo "$token" > $TOKEN_FILE
+      read -r -e -p "Enter GitHub token: " token
+      echo "$token" > "$TOKEN_FILE"
     fi
 
-    token=$(cat $TOKEN_FILE)
+    token=$(cat "$TOKEN_FILE")
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
     hash_short=${hash:0:3}...${hash: -3}
 
@@ -91,36 +92,35 @@ set_github_token() {
     echo -e "  sha256sum: $hash_short"
     echo -e "──────────────────────────────────────────────────────────────────────────"
 
-    read -p "Is this token correct? (y/n): " answer
+    read -r -p "Is this token correct? (y/n): " answer
 
     if [[ "$answer" =~ ^[Yy]$ ]]
     then
       break
     else
-      read -e -i "$token" -p "Edit the token: " new_token
-      echo "$new_token" > $TOKEN_FILE
+      read -r -e -i "$token" -p "Edit the token: " new_token
+      echo "$new_token" > "$TOKEN_FILE"
     fi
   done
 
-  export GITHUB_TOKEN=$(cat $TOKEN_FILE)
+  GITHUB_TOKEN=$(cat "$TOKEN_FILE")
+  export GITHUB_TOKEN
 }
 
 validate_github_token() {
 
-  print_step_msg "validate GitHub token..."
-  gh auth status
-  if [[ $? -ne 0 ]]
+  set +o errexit
+  if ! gh auth status;
   then
     print_error_msg "the GitHub token may have expired"
     exit 1
   fi
+  set -o errexit
 }
 
 generate_ssh_keys() {
 
   local hostname_new=$1
-
-  print_step_msg "generate host and user SSH keys..."
 
   generate_ssh_key $hostname_new $SSH_KEYFILE_HOST sudo
   generate_ssh_key $hostname_new $SSH_KEYFILE_USER
