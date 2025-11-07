@@ -47,7 +47,8 @@ main() {
   clear
   echo -e "$START_MSG"
 
-  local hostname=$(input_hostname)
+  local hostname
+  hostname=$(input_hostname)
   echo
 
   set_github_token
@@ -166,7 +167,7 @@ add_key_to_github() {
   local user_pubkey_file=$SSH_KEYFILE_USER.pub
 
   local new_key_title="$USER-$hostname"
-  local new_key_pub="$(cat $user_pubkey_file | awk '{ print $2 }')"
+  local new_key_pub="$(cat "$user_pubkey_file" | awk '{ print $2 }')"
   local github_keys="$(gh ssh-key list)"
 
   print_step_msg "Add the user's public SSH key to GitHub"
@@ -205,7 +206,7 @@ add_key_to_github() {
       print_line_msg "... renaming user's public SSH key for ${ST_DIM}$key_type${ST_REGULAR} from ${ST_BOLD}$github_key_title${ST_REGULAR} to ${ST_BOLD}$new_key_title${ST_REGULAR}"
       remove_key_from_github "$github_key_title" "$key_type" "$github_keys"
     fi
-    gh ssh-key add $user_pubkey_file --title "$new_key_title" --type "$key_type"
+    gh ssh-key add "$user_pubkey_file" --title "$new_key_title" --type "$key_type"
   done
 
   echo
@@ -231,7 +232,7 @@ remove_key_from_github() {
       --method DELETE \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      /user/ssh_signing_keys/$key_id
+      /user/ssh_signing_keys/"$key_id"
   else
     gh ssh-key delete "$key_id" --yes
   fi
@@ -240,8 +241,8 @@ remove_key_from_github() {
 pause() {
 
   echo
-  echo -n -e "${CL_YELLOW}press ENTER to continue$1${CL_NO}"
-  read
+  echo -n -e "${CL_YELLOW}press ENTER to continue${CL_NO}"
+  read -r
 }
 
 print_error_msg() {
