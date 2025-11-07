@@ -185,6 +185,7 @@ add_key_to_github() {
   echo
   gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
   pause
+  echo
 
   for key_type in authentication signing
   do
