@@ -165,10 +165,14 @@ add_key_to_github() {
   local hostname=$1
 
   local user_pubkey_file=$SSH_KEYFILE_USER.pub
-
   local new_key_title="$USER-$hostname"
-  local new_key_pub="$(cat "$user_pubkey_file" | awk '{ print $2 }')"
-  local github_keys="$(gh ssh-key list)"
+
+  local new_key_pub
+  local github_keys
+  local github_key_title
+
+  new_key_pub="$(awk '{ print $2 }' < "$user_pubkey_file")"
+  github_keys="$(gh ssh-key list)"
 
   print_step_msg "Add the user's public SSH key to GitHub"
 
@@ -186,7 +190,7 @@ add_key_to_github() {
   do
     # Получить имя ключа на GitHub по его публичной части. GitHub не позволяет
     # хранить один и тот же ключ под разными именами
-    local github_key_title=$(echo "$github_keys" | awk -v key="$new_key_pub" -v type="$key_type" '$3 == key && $6 == type { print $1; exit }')
+    github_key_title=$(echo "$github_keys" | awk -v key="$new_key_pub" -v type="$key_type" '$3 == key && $6 == type { print $1; exit }')
 
     # Если на GitHub нет такого ключа
     if [[ -z "$github_key_title" ]]
@@ -220,8 +224,9 @@ remove_key_from_github() {
   local key_title="$1"
   local key_type="$2"
   local key_list="$3"
+  local key_id
 
-  local key_id=$(echo "$key_list" | awk -v title="$key_title" -v type="$key_type" '$1 == title && $6 == type { print $5; exit }')
+  key_id=$(echo "$key_list" | awk -v title="$key_title" -v type="$key_type" '$1 == title && $6 == type { print $5; exit }')
 
   # К сожалению, signing-ключи нельзя удалять командой gh ssh-key delete, получаем ошибку
   # HTTP 404: Not Found (https://api.github.com/user/keys/ID) - не тот URI
