@@ -269,11 +269,11 @@ update_system_config() {
       sudo sed --in-place "/  imports =/i\  $experimental_param = $experimental_features;\n" $NIXOS_CONFIG_FILE
       print_line_msg "... experimental features enabled"
     else
-      print_line_msg "... experimental features already enabled"
+      print_line_msg "... (1) experimental features already enabled"
     fi
     need_rebuild="yes"
   else
-    print_line_msg "... experimental features already enabled"
+    print_line_msg "... (2) experimental features already enabled"
   fi
   set -o errexit
   echo "Needed rebuild: $need_rebuild"
