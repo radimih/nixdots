@@ -254,6 +254,8 @@ update_system_config() {
 
   print_step_msg "Updating system configuration"
 
+  print_line_msg "enable experimental features ${ST_DIM}$experimental_features${ST_REGULAR} in ${ST_DIM}$NIXOS_CONFIG_FILE${ST_REGULAR}:"
+
   set +o errexit
   # Если СЕЙЧАС экспериментальная функция "flakes" не включена
   if ! nix-instantiate --eval --strict '<nixpkgs/nixos>' -A config.$experimental_param 2> /dev/null \
