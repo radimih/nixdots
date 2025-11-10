@@ -55,6 +55,7 @@ main() {
   validate_github_token
   generate_ssh_keys "$hostname"
   add_key_to_github "$hostname"
+  update_system_config
 
   echo -e "$FINISH_MSG"
 }
@@ -110,7 +111,7 @@ set_github_token() {
 
 validate_github_token() {
 
-  print_step_msg "Validate GitHub token"
+  print_step_msg "Validating GitHub token"
 
   set +o errexit
   if ! gh auth status;
@@ -127,7 +128,7 @@ generate_ssh_keys() {
 
   local hostname=$1
 
-  print_step_msg "Generate host and user SSH keys"
+  print_step_msg "Generating host and user SSH keys"
   sudo --validate
   echo
 
@@ -174,7 +175,7 @@ add_key_to_github() {
   new_key_pub="$(awk '{ print $2 }' < "$user_pubkey_file")"
   github_keys="$(gh ssh-key list)"
 
-  print_step_msg "Add the user's public SSH key to GitHub"
+  print_step_msg "Adding the user's public SSH key to GitHub"
 
   print_line_msg "add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR}:"
   print_line_msg "  title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
@@ -217,7 +218,7 @@ add_key_to_github() {
   echo
   print_line_msg "new list of all public keys on the GitHub:"
   echo
-  gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
+  gh ssh-key list
 }
 
 remove_key_from_github() {
@@ -242,6 +243,40 @@ remove_key_from_github() {
   else
     gh ssh-key delete "$key_id" --yes
   fi
+}
+
+update_system_config() {
+
+  local need_rebuild="no"
+  local experimental_param="nix.settings.experimental-features"
+  local experimental_features='[ "flakes" "nix-command" ]'
+
+
+  print_step_msg "Updating system configuration"
+
+  set +o errexit
+  # Если СЕЙЧАС экспериментальная функция "flakes" не включена
+  if ! nix-instantiate --eval --strict '<nixpkgs/nixos>' -A config.$experimental_param 2> /dev/null \
+     | grep --silent --no-messages "flakes";
+  then
+    set -o errexit
+    # Если параметра, включающего экспериментальные функции, ещё нет в конфигурационном файле NixOS
+    if ! grep --silent --no-messages "$experimental_param" $NIXOS_CONFIG_FILE
+    then
+      # Добавить включение экспериментальных функций в конфигурационный файл NixOS
+      sudo sed --in-place "/  imports =/i\  $experimental_param = $experimental_features;\n" $NIXOS_CONFIG_FILE
+      print_line_msg "... experimental features enabled"
+    else
+      print_line_msg "... experimental features already enabled"
+    fi
+    need_rebuild="yes"
+  else
+    print_line_msg "... experimental features already enabled"
+  fi
+  set -o errexit
+  echo "Needed rebuild: $need_rebuild"
+
+  pause
 }
 
 pause() {
