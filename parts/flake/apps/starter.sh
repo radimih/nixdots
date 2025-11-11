@@ -1,6 +1,18 @@
+# FIXME: remove
+set -o errexit
+set -o pipefail
+
 GIT_DOTFILES_URL=github.com/radimih/nixdots
 # GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
 HOME_DOTFILES_DIR=$HOME/1git/personal
+
+STARTER_PACKAGES="git vim"  # ВНИМАНИЕ! Предполагается, что бинарник у пакета = названию пакета
+STARTER_NIX_MODULE='
+{ pkgs, ... }: {
+  environment.systemPackages = with pkgs; [ '$STARTER_PACKAGES' ];
+  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+}
+'
 
 NIX_CONFIG_FILE=/etc/nix/nix.conf
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
@@ -36,9 +48,6 @@ This script does the following:
 Let's go!
 "
 FINISH_MSG="
-Run the following commands to make the changes in the NixOS configuration take effect:
-
-  ${ST_BOLD}sudo nixos-rebuild switch${ST_REGULAR}
 "
 
 main() {
@@ -50,10 +59,11 @@ main() {
   hostname=$(input_hostname)
   echo
 
-  set_github_token
-  validate_github_token
-  generate_ssh_keys "$hostname"
-  add_key_to_github "$hostname"
+  # FIXME: uncomment
+  # set_github_token
+  # validate_github_token
+  # generate_ssh_keys "$hostname"
+  # add_key_to_github "$hostname"
   update_system_config
 
   echo -e "$FINISH_MSG"
@@ -246,47 +256,58 @@ remove_key_from_github() {
 
 update_system_config() {
 
-  local need_rebuild="no"
+  print_step_msg "Updating NixOS configuration"
 
-  print_step_msg "Updating system configuration"
+  print_line_msg "the following ${ST_DIM}${starter_file}${ST_REGULAR} module will be added to the NixOS configuration:"
+  echo "$STARTER_NIX_MODULE"
+  enable_starter_module
 
-  print_line_msg "enable experimental features ${ST_DIM}flakes nix-command${ST_REGULAR} in ${ST_DIM}$NIXOS_CONFIG_FILE${ST_REGULAR}:"
-
-  if enable_experimental_features
+  if is_enabled_experimental_features && \
+     is_enabled_system_packages "$STARTER_PACKAGES"
   then
-    print_line_msg "... experimental features enabled"
-    need_rebuild="yes"
+    print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}flakes nix-command${ST_REGULAR} experimental features already enabled"
   else
-    print_line_msg "... experimental features already enabled"
+    print_line_msg "... run the ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} command to make the changes in the NixOS configuration take effect"
+    pause
   fi
 
-  echo "Needed rebuild: $need_rebuild"
+  # FIXME: replace
+  # sudo nixos-rebuild switch
+  echo run sudo nixos-rebuild switch
 
   pause
 }
 
-# Вернуть 0, если необходимо пересобрать систему, иначе - 1
-enable_experimental_features() {
+enable_starter_module() {
 
-  local experimental_param="nix.settings.experimental-features"
-  local experimental_features='[ "flakes" "nix-command" ]'
+  local starter_file="$(dirname "$NIXOS_CONFIG_FILE")/starter.nix"
+  echo $starter_file
+}
 
-  set +o errexit
-  # Если экспериментальная функция "flakes" не включена в конфигурации Nix
-  if ! cat $NIX_CONFIG_FILE \
-     | grep --silent --no-messages -E '^[[:space:]]*(extra-)?experimental-features[[:space:]]*=[[:space:]]*([a-zA-Z-]+[[:space:]]+)*flakes([[:space:]]+[a-zA-Z-]+)*[[:space:]]*$';
-  then
-    set -o errexit
-    # Если параметра, включающего экспериментальные функции, ещё нет в конфигурационном файле NixOS
-    if ! grep --silent --no-messages "$experimental_param" $NIXOS_CONFIG_FILE
-    then
-      # Добавить включение экспериментальных функций в конфигурационный файл NixOS
-      sudo sed --in-place "/  imports =/i\  $experimental_param = $experimental_features;\n" $NIXOS_CONFIG_FILE
+# ВНИМАНИЕ! Проверяется только на одну экспериментальную функцию: flakes
+is_enabled_experimental_features() {
+
+  local regex_flakes='^[[:space:]]*(extra-)?experimental-features[[:space:]]*=[[:space:]]*([a-zA-Z-]+[[:space:]]+)*flakes([[:space:]]+[a-zA-Z-]+)*[[:space:]]*$'
+
+  # FIXME: remove
+  NIX_CONFIG_FILE=./nix.conf
+  grep --silent --no-messages -E "$regex_flakes" $NIX_CONFIG_FILE
+}
+
+# ВНИМАНИЕ! Работает только для пакетов, у которых бинарник называется
+# так же, как cам пакет
+is_enabled_system_packages() {
+
+  local packages="$1"
+  local file
+
+  for file in $packages; do
+    if [[ ! -e "/run/current-system/sw/bin/$file" ]]; then
+      return 1
     fi
-    return 0
-  fi
-  set -o errexit
-  return 1
+  done
+
+  return 0
 }
 
 pause() {
