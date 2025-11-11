@@ -2,11 +2,10 @@ GIT_DOTFILES_URL=github.com/radimih/nixdots
 # GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
 HOME_DOTFILES_DIR=$HOME/1git/personal
 
+NIX_CONFIG_FILE=/etc/nix/nix.conf
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
 SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
 SSH_KEYFILE_USER=$HOME/.ssh/id_ed25519
-# SSH_KEYFILE_HOST=./key-host
-# SSH_KEYFILE_USER=./key-user
 TOKEN_FILE=$HOME/github.token
 
 CL_GREEN='\033[0;32m'
@@ -248,18 +247,34 @@ remove_key_from_github() {
 update_system_config() {
 
   local need_rebuild="no"
-  local experimental_param="nix.settings.experimental-features"
-  local experimental_features='[ "flakes" "nix-command" ]'
-
 
   print_step_msg "Updating system configuration"
 
-  print_line_msg "enable experimental features ${ST_DIM}$experimental_features${ST_REGULAR} in ${ST_DIM}$NIXOS_CONFIG_FILE${ST_REGULAR}:"
+  print_line_msg "enable experimental features ${ST_DIM}flakes nix-command${ST_REGULAR} in ${ST_DIM}$NIXOS_CONFIG_FILE${ST_REGULAR}:"
+
+  if enable_experimental_features
+  then
+    print_line_msg "... experimental features enabled"
+    need_rebuild="yes"
+  else
+    print_line_msg "... experimental features already enabled"
+  fi
+
+  echo "Needed rebuild: $need_rebuild"
+
+  pause
+}
+
+# Вернуть 0, если необходимо пересобрать систему, иначе - 1
+enable_experimental_features() {
+
+  local experimental_param="nix.settings.experimental-features"
+  local experimental_features='[ "flakes" "nix-command" ]'
 
   set +o errexit
-  # Если СЕЙЧАС экспериментальная функция "flakes" не включена
-  if ! nix-instantiate --eval --strict '<nixpkgs/nixos>' -A config.$experimental_param 2> /dev/null \
-     | grep --silent --no-messages "flakes";
+  # Если экспериментальная функция "flakes" не включена в конфигурации Nix
+  if ! cat $NIX_CONFIG_FILE \
+     | grep --silent --no-messages -E '^\s*(extra-)*experimental-features\s*=\s*(?:[a-zA-Z-]+\s+)*flakes(?:\s+[a-zA-Z-]+)*\s*$';
   then
     set -o errexit
     # Если параметра, включающего экспериментальные функции, ещё нет в конфигурационном файле NixOS
@@ -267,18 +282,11 @@ update_system_config() {
     then
       # Добавить включение экспериментальных функций в конфигурационный файл NixOS
       sudo sed --in-place "/  imports =/i\  $experimental_param = $experimental_features;\n" $NIXOS_CONFIG_FILE
-      print_line_msg "... experimental features enabled"
-    else
-      print_line_msg "... (1) experimental features already enabled"
     fi
-    need_rebuild="yes"
-  else
-    print_line_msg "... (2) experimental features already enabled"
+    return 0
   fi
   set -o errexit
-  echo "Needed rebuild: $need_rebuild"
-
-  pause
+  return 1
 }
 
 pause() {
