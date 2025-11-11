@@ -274,7 +274,7 @@ enable_experimental_features() {
   set +o errexit
   # Если экспериментальная функция "flakes" не включена в конфигурации Nix
   if ! cat $NIX_CONFIG_FILE \
-     | grep --silent --no-messages -E '^\s*(extra-)*experimental-features\s*=\s*(?:[a-zA-Z-]+\s+)*flakes(?:\s+[a-zA-Z-]+)*\s*$';
+     | grep --silent --no-messages -E '^[[:space:]]*(extra-)?experimental-features[[:space:]]*=[[:space:]]*([a-zA-Z-]+[[:space:]]+)*flakes([[:space:]]+[a-zA-Z-]+)*[[:space:]]*$';
   then
     set -o errexit
     # Если параметра, включающего экспериментальные функции, ещё нет в конфигурационном файле NixOS
