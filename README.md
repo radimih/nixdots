@@ -29,7 +29,7 @@
 1. Выполнить начальную подготовку:
 
     ```bash
-    nix run github:radimih/nixdots#starter --extra-experimental-features "flakes nix-command" --no-write-lock-file
+    nix run github:radimih/nixdots#starter --no-write-lock-file --extra-experimental-features "flakes nix-command"
     ```
 
 1. Создать SecureBoot-ключи хоста и записать их в EFI-память:
