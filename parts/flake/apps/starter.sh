@@ -97,6 +97,7 @@ update_system_config() {
   if is_enabled_experimental_features && \
      is_enabled_system_packages "$STARTER_PACKAGES"; then
     print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}flakes nix-command${ST_REGULAR} experimental features already enabled"
+    return 0
   else
     print_line_msg "the command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
