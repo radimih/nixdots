@@ -117,7 +117,7 @@ enable_starter_module() {
   if grep --silent --no-messages './starter.nix' "$NIXOS_CONFIG_FILE"; then return 0; fi
 
   # Вставить строку '      ./starter.nix' в imports после ./hardware-configuration.nix
-  sed --in-place '/^\s*\.\/hardware-configuration\.nix\s*$/a\ \ \ \ \ \ .\/starter.nix' "$NIXOS_CONFIG_FILE"
+  sudo sed --in-place '/^\s*\.\/hardware-configuration\.nix\s*$/a\ \ \ \ \ \ .\/starter.nix' "$NIXOS_CONFIG_FILE"
 }
 
 # ВНИМАНИЕ! Проверяется только на одну экспериментальную функцию: flakes
