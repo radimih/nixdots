@@ -195,11 +195,11 @@ verify_github_token() {
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
     hash_short=${hash:0:3}...${hash: -3}
 
-    echo -e "──────────────────────────────────────────────────────────────────────────"
+    echo -e "────────────────────────────────────────────────────"
     echo -e "GitHub token stored in the ${ST_DIM}$TOKEN_FILE${ST_REGULAR} file:"
     echo -e "  token: $token"
     echo -e "  sha256sum: $hash_short"
-    echo -e "──────────────────────────────────────────────────────────────────────────"
+    echo -e "────────────────────────────────────────────────────"
 
     read -r -p "Is this token correct? (y/n): " answer
 
