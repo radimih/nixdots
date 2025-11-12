@@ -111,7 +111,7 @@ enable_starter_module() {
   local starter_file
   starter_file="$(dirname "$NIXOS_CONFIG_FILE")/starter.nix"
 
-  echo "$STARTER_NIX_MODULE" | sudo tee "$starter_file"
+  echo "$STARTER_NIX_MODULE" | sudo tee "$starter_file" > /dev/null
 
   # Проверить, есть ли уже ./starter.nix в конфигурационном файле NixOS
   if grep --silent --no-messages './starter.nix' "$NIXOS_CONFIG_FILE"; then return 0; fi
