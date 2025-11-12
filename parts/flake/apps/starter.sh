@@ -87,7 +87,7 @@ update_system_config() {
   sudo --validate
   echo
 
-  print_line_msg "the following ${ST_DIM}${starter_file}${ST_REGULAR} module will be added to the NixOS configuration:"
+  print_line_msg "the following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
   echo
   echo "$STARTER_NIX_MODULE"
   pause
