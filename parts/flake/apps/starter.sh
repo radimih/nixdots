@@ -213,6 +213,7 @@ verify_github_token() {
   GITHUB_TOKEN=$(cat "$TOKEN_FILE")
   export GITHUB_TOKEN
 
+  echo
   check_github_token
   pause
 }
