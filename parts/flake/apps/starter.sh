@@ -2,8 +2,7 @@
 # set -o errexit
 # set -o pipefail
 
-GIT_DOTFILES_URL=github.com/radimih/nixdots
-# GIT_SECRETS_URL=github.com/radimih/nixdots-secrets
+GIT_REPO_DOTFILES=git@github.com:radimih/nixdots.git
 HOME_DOTFILES_DIR=$HOME/1git/personal
 
 STARTER_PACKAGES="git vim"  # ВНИМАНИЕ! Предполагается, что бинарник у пакета = названию пакета
@@ -42,7 +41,7 @@ This script does the following:
 
 4. Adds the ${ST_BOLD}user's public SSH key${ST_REGULAR} to ${ST_UNDERLINE}GitHub${ST_RESET} if it is not already added
 
-5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_DOTFILES_URL}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
+5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
 6. Prepares host folder in parts/hosts
 
@@ -64,6 +63,7 @@ main() {
   generate_ssh_keys "$hostname"
   verify_github_token
   add_key_to_github "$hostname"
+  clone_dotfiles_repo
 
   echo -e "$FINISH_MSG"
 }
@@ -240,10 +240,10 @@ add_key_to_github() {
   local github_keys
   local github_key_title
 
+  print_step_msg "Adding the user's public SSH key to GitHub"
+
   new_key_pub="$(awk '{ print $2 }' < "$user_pubkey_file")"
   github_keys="$(gh ssh-key list)"
-
-  print_step_msg "Adding the user's public SSH key to GitHub"
 
   print_line_msg "add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR}:"
   print_line_msg "  title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
@@ -295,7 +295,8 @@ remove_key_from_github() {
   key_id=$(echo "$key_list" | awk -v title="$key_title" -v type="$key_type" '$1 == title && $6 == type { print $5; exit }')
 
   # К сожалению, signing-ключи нельзя удалять командой gh ssh-key delete, получаем ошибку
-  # HTTP 404: Not Found (https://api.github.com/user/keys/ID) - не тот URI
+  # HTTP 404: Not Found (https://api.github.com/user/keys/ID) - не тот URI. Поэтому удаляем
+  # через вызов API
   if [[ "$key_type" == "signing" ]]; then
     # https://docs.github.com/en/rest/users/ssh-signing-keys?apiVersion=2022-11-28#delete-an-ssh-signing-key-for-the-authenticated-user
     gh api \
@@ -306,6 +307,27 @@ remove_key_from_github() {
   else
     gh ssh-key delete "$key_id" --yes
   fi
+}
+
+clone_dotfiles_repo() {
+
+  local repo_name
+  repo_name="${GIT_REPO_DOTFILES##*:}"
+  repo_name="${repo_name%.git}"
+  repo_name="${repo_name##*/}"
+  local repo_dir="${HOME_DOTFILES_DIR}/$repo_name"
+
+  print_step_msg "Cloning NixOS dotfiles repo"
+  print_line_msg "cloning dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+
+  if [[ -d "$repo_dir" ]]; then
+    print_line_msg "... the directory ${ST_DIM}$repo_dir${ST_REGULAR} already exists"
+  else
+    mkdir -p "${HOME_DOTFILES_DIR}"
+    git clone --recurse-submodules ${GIT_REPO_DOTFILES} $repo_dir
+  fi
+
+  pause
 }
 
 pause() {
