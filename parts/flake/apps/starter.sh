@@ -4,6 +4,7 @@
 
 GIT_REPO_DOTFILES=git@github.com:radimih/nixdots.git
 HOME_DOTFILES_DIR=$HOME/1git/personal
+DOTFILES_HOSTS_SUBDIR=parts/hosts
 
 STARTER_PACKAGES="git vim"  # ВНИМАНИЕ! Предполагается, что бинарник у пакета = названию пакета
 STARTER_NIX_MODULE=\
@@ -14,6 +15,7 @@ STARTER_NIX_MODULE=\
 
 NIX_CONFIG_FILE=/etc/nix/nix.conf
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
+NIXOS_HW_CONFIG_FILE=/etc/nixos/hardware-configuration.nix
 SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
 SSH_KEYFILE_USER=$HOME/.ssh/id_ed25519
 TOKEN_FILE=$HOME/github.token
@@ -43,7 +45,10 @@ This script does the following:
 
 5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
-6. Prepares host folder in parts/hosts
+6. Prepares ${ST_BOLD}host directory${ST_REGULAR} in dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
+     - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
+     - copies file ${ST_DIM}${hardware_file}${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR}
+     - copies host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}
 
 Let's go!
 "
@@ -64,6 +69,7 @@ main() {
   verify_github_token
   add_key_to_github "$hostname"
   clone_dotfiles_repo
+  prepare_host_dir "$hostname"
 
   echo -e "$FINISH_MSG"
 }
@@ -311,14 +317,11 @@ remove_key_from_github() {
 
 clone_dotfiles_repo() {
 
-  local repo_name
-  repo_name="${GIT_REPO_DOTFILES##*:}"
-  repo_name="${repo_name%.git}"
-  repo_name="${repo_name##*/}"
-  local repo_dir="${HOME_DOTFILES_DIR}/$repo_name"
+  local repo_dir="$(get_repo_dir)"
 
   print_step_msg "Cloning NixOS dotfiles repo"
   print_line_msg "cloning dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+  echo
 
   if [[ -d "$repo_dir" ]]; then
     print_line_msg "... the directory ${ST_DIM}$repo_dir${ST_REGULAR} already exists"
@@ -328,6 +331,41 @@ clone_dotfiles_repo() {
   fi
 
   pause
+}
+
+prepare_host_dir() {
+
+  local hostname="$1"
+  local host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
+  local hardware_file=/etc/nixos/hardware-configuration.nix
+  local pubkey_name=hostkey.pub
+
+  print_step_msg "Preparing the host directory in the dotfiles"
+
+  print_line_msg "making the host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
+  if [[ -d "$host_dir" ]]; then
+    print_line_msg "... the directory ${ST_DIM}${host_dir}${ST_REGULAR} already exists"
+  else
+    mkdir -p "$host_dir"
+  fi
+
+  print_line_msg "copying file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
+  cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
+
+  print_line_msg "copying host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
+  cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
+
+  pause
+}
+
+get_repo_dir() {
+
+  local repo_name
+  repo_name="${GIT_REPO_DOTFILES##*:}"
+  repo_name="${repo_name%.git}"
+  repo_name="${repo_name##*/}"
+
+  echo "${HOME_DOTFILES_DIR}/$repo_name"
 }
 
 pause() {
