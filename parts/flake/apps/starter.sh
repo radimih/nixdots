@@ -324,7 +324,7 @@ clone_dotfiles_repo() {
     print_line_msg "... the directory ${ST_DIM}$repo_dir${ST_REGULAR} already exists"
   else
     mkdir -p "${HOME_DOTFILES_DIR}"
-    git clone --recurse-submodules ${GIT_REPO_DOTFILES} $repo_dir
+    git clone --recurse-submodules ${GIT_REPO_DOTFILES} "$repo_dir"
   fi
 
   pause
