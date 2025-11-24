@@ -47,8 +47,8 @@ This script does the following:
 
 6. Prepares ${ST_BOLD}host directory${ST_REGULAR} in dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
      - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
-     - copies file ${ST_DIM}${hardware_file}${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR}
-     - copies host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}
+     - copies the file ${ST_DIM}${hardware_file}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}
+     - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}
 
 Let's go!
 "
@@ -57,10 +57,11 @@ FINISH_MSG="
 
 main() {
 
+  local hostname
+
   clear
   echo -e "$START_MSG"
 
-  local hostname
   hostname=$(input_hostname)
   echo
 
@@ -116,6 +117,7 @@ update_system_config() {
 enable_starter_module() {
 
   local starter_file
+
   starter_file="$(dirname "$NIXOS_CONFIG_FILE")/starter.nix"
 
   echo "$STARTER_NIX_MODULE" | sudo tee "$starter_file" > /dev/null
@@ -317,7 +319,9 @@ remove_key_from_github() {
 
 clone_dotfiles_repo() {
 
-  local repo_dir="$(get_repo_dir)"
+  local repo_dir
+
+  repo_dir="$(get_repo_dir)"
 
   print_step_msg "Cloning NixOS dotfiles repo"
   print_line_msg "cloning dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
@@ -336,9 +340,11 @@ clone_dotfiles_repo() {
 prepare_host_dir() {
 
   local hostname="$1"
-  local host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
+  local host_dir
   local hardware_file=/etc/nixos/hardware-configuration.nix
   local pubkey_name=hostkey.pub
+
+  host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
 
   print_step_msg "Preparing the host directory in the dotfiles"
 
@@ -349,10 +355,10 @@ prepare_host_dir() {
     mkdir -p "$host_dir"
   fi
 
-  print_line_msg "copying file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
+  print_line_msg "copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
   cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
 
-  print_line_msg "copying host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
+  print_line_msg "copying the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
   cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
 
   pause
@@ -361,6 +367,7 @@ prepare_host_dir() {
 get_repo_dir() {
 
   local repo_name
+
   repo_name="${GIT_REPO_DOTFILES##*:}"
   repo_name="${repo_name%.git}"
   repo_name="${repo_name##*/}"
