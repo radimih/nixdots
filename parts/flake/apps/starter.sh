@@ -348,7 +348,7 @@ prepare_host_dir() {
 
   print_step_msg "Preparing the host directory in the dotfiles"
 
-  print_line_msg "making the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
+  print_line_msg "making the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
   if [[ -d "$host_dir" ]]; then
     print_line_msg "... this directory already exists"
   else
