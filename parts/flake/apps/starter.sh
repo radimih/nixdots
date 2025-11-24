@@ -349,15 +349,15 @@ prepare_host_dir() {
 
   print_line_msg "making the host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
   if [[ -d "$host_dir" ]]; then
-    print_line_msg "... the directory ${ST_DIM}${host_dir}${ST_REGULAR} already exists"
+    print_line_msg "... this directory already exists"
   else
     mkdir -p "$host_dir"
   fi
 
-  print_line_msg "copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}"
+  print_line_msg "copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory"
   cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
 
-  print_line_msg "copying the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
+  print_line_msg "copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
   cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
 
   pause
