@@ -45,10 +45,10 @@ This script does the following:
 
 5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
-6. Prepares ${ST_BOLD}host directory${ST_REGULAR} in dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
+6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} in the dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
      - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
-     - copies the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}
-     - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}
+     - copies the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory
+     - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory
 
 Let's go!
 "
