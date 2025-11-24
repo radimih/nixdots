@@ -47,7 +47,7 @@ This script does the following:
 
 6. Prepares ${ST_BOLD}host directory${ST_REGULAR} in dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
      - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
-     - copies the file ${ST_DIM}${hardware_file}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}
+     - copies the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR}
      - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to the host directory ${ST_DIM}${host_dir}${ST_REGULAR} under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}
 
 Let's go!
@@ -341,7 +341,6 @@ prepare_host_dir() {
 
   local hostname="$1"
   local host_dir
-  local hardware_file=/etc/nixos/hardware-configuration.nix
   local pubkey_name=hostkey.pub
 
   host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
