@@ -48,6 +48,7 @@ This script does the following:
 Let's go!
 "
 FINISH_MSG="
+Important! Don't forget to delete the ${ST_DIM}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_RESET} token.
 "
 
 main() {
