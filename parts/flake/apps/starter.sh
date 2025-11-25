@@ -3,10 +3,16 @@ HOME_DOTFILES_DIR=$HOME/1git/personal
 DOTFILES_HOSTS_SUBDIR=parts/hosts
 
 STARTER_PACKAGES="git vim"  # ВНИМАНИЕ! Предполагается, что бинарник у пакета = названию пакета
+STARTER_FEATURES='"flakes" "nix-command" "pipe-operators"'
 STARTER_NIX_MODULE=\
 '{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ '$STARTER_PACKAGES' ];
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+  environment.systemPackages = with pkgs; [ '${STARTER_PACKAGES}' ];
+  nix.settings = {
+    experimental-features = [ '${STARTER_FEATURES}' ];
+    substituters = [ "https://nix-community.cachix.org" ];
+    trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    trusted-users = [ "@wheel" ];
+  };
 }'
 
 NIX_CONFIG_FILE=/etc/nix/nix.conf
@@ -31,8 +37,9 @@ START_MSG="
 This script does the following:
 
 1. Updates the ${ST_BOLD}NixOS configuration file${ST_REGULAR} (${ST_DIM}${NIXOS_CONFIG_FILE}${ST_REGULAR}):
-     - enables experimental features
-     - adds the ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} programs to the system packages
+     - adds ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} programs to system packages
+     - enables ${ST_DIM}${STARTER_FEATURES//\"/}${ST_REGULAR} experimental features
+     - adds the ${ST_UNDERLINE}nix-community.cachix.org${ST_RESET} substituter
 
 2. Generates host and user ${ST_BOLD}SSH keys${ST_REGULAR} if they do not exist
 
