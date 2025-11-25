@@ -26,7 +26,11 @@
           - ☑ `admin:ssh_signing_key`
     1. Сохранить токен удобным способом
 
-1. Выполнить начальную настройку с помощью [nixos-starter](https://github.com/radimih/nixos-starter)
+1. Выполнить начальную подготовку:
+
+    ```bash
+    nix run github:radimih/nixdots#starter --no-write-lock-file --extra-experimental-features "flakes nix-command"
+    ```
 
 1. Создать SecureBoot-ключи хоста и записать их в EFI-память:
 
