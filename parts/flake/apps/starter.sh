@@ -87,7 +87,7 @@ update_system_config() {
 
   print_step_msg "Updating NixOS configuration"
   echo
-  print_line_msg "The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
+  print_line_msg "--> The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
   echo
   echo "$STARTER_NIX_MODULE"
   pause
@@ -102,7 +102,7 @@ update_system_config() {
     pause
     return 0
   else
-    print_line_msg "The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
+    print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
   fi
 
