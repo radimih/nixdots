@@ -1,7 +1,3 @@
-# FIXME: remove
-# set -o errexit
-# set -o pipefail
-
 GIT_REPO_DOTFILES=git@github.com:radimih/nixdots.git
 HOME_DOTFILES_DIR=$HOME/1git/personal
 DOTFILES_HOSTS_SUBDIR=parts/hosts
