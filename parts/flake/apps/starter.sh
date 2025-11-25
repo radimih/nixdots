@@ -22,6 +22,7 @@ CL_YELLOW='\033[1;33m'
 CL_NO='\033[0m'
 ST_BOLD='\033[1m'
 ST_DIM='\033[2m'
+ST_INVERSE='\033[7m'
 ST_REGULAR='\033[22m'
 ST_RESET='\033[0m'
 ST_UNDERLINE='\033[4m'
@@ -41,14 +42,14 @@ This script does the following:
 
 5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
-6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} in the dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
-     - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
-     - copies the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory
-     - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory
+6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}<hostname>${ST_REGULAR} in the dotfiles:
+     - copies the ${ST_DIM}hardware-configuration.nix${ST_REGULAR} file to this host directory
+     - copies the ${ST_BOLD}host public SSH key${ST_REGULAR} to this host directory
 
 Let's go!
 "
 FINISH_MSG="
+${ST_INVERSE}Important! Don't forget to delete the ${ST_BOLD}${TOKEN_FILE}${ST_REGULAR} file that contains your GitHub token.${ST_RESET}
 "
 
 main() {
@@ -62,12 +63,18 @@ main() {
   echo
 
   update_system_config
+  pause
   generate_ssh_keys "$hostname"
+  pause
   verify_github_token
+  pause
   add_key_to_github "$hostname"
+  pause
   clone_dotfiles_repo
+  pause
   prepare_host_dir "$hostname"
 
+  echo
   echo -e "$FINISH_MSG"
 }
 
@@ -87,13 +94,13 @@ input_hostname() {
 update_system_config() {
 
   print_step_msg "Updating NixOS configuration"
-  sudo --validate
   echo
-
-  print_line_msg "the following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
+  print_line_msg "--> The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
   echo
   echo "$STARTER_NIX_MODULE"
   pause
+  echo
+  sudo --validate
   echo
   enable_starter_module
 
@@ -102,12 +109,11 @@ update_system_config() {
     print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}flakes nix-command${ST_REGULAR} experimental features already enabled"
     return 0
   else
-    print_line_msg "the command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
+    print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
   fi
 
   sudo nixos-rebuild switch
-  pause
 }
 
 enable_starter_module() {
@@ -162,7 +168,6 @@ generate_ssh_keys() {
 
   print_line_msg "host's public key: $(< "$SSH_KEYFILE_HOST.pub")"
   print_line_msg "user's public key: $(< "$SSH_KEYFILE_USER.pub")"
-  pause
 }
 
 generate_ssh_key() {
@@ -171,7 +176,7 @@ generate_ssh_key() {
   local keyfile=$2
   local sudo=${3:-}
 
-  print_line_msg "generate ${ST_DIM}$keyfile${ST_REGULAR}..."
+  print_line_msg "--> Generate ${ST_DIM}$keyfile${ST_REGULAR}..."
 
   [[ -z "$sudo" ]] && username=$USER || username=host
 
@@ -220,14 +225,13 @@ verify_github_token() {
 
   echo
   check_github_token
-  pause
 }
 
 check_github_token() {
 
   set +o errexit
   if ! gh auth status; then
-    print_error_msg "the GitHub token may have expired"
+    print_error_msg "... the GitHub token may have expired"
     exit 1
   fi
   set -o errexit
@@ -246,17 +250,17 @@ add_key_to_github() {
 
   print_step_msg "Adding the user's public SSH key to GitHub"
 
+  print_line_msg "Current list of all public keys on the GitHub:"
+  echo
+  gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
+  echo
+
   new_key_pub="$(awk '{ print $2 }' < "$user_pubkey_file")"
   github_keys="$(gh ssh-key list)"
 
-  print_line_msg "add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR}:"
-  print_line_msg "  title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
-  print_line_msg "    key: $new_key_pub"
-  echo
-
-  print_line_msg "current list of all public keys on the GitHub:"
-  echo
-  gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
+  print_line_msg "--> Add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR} if it is not already added:\n"
+  print_line_msg "       title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
+  print_line_msg "         key: $new_key_pub"
   pause
   echo
 
@@ -284,7 +288,7 @@ add_key_to_github() {
   done
 
   echo
-  print_line_msg "new list of all public keys on the GitHub:"
+  print_line_msg "New list of all public keys on the GitHub:"
   echo
   gh ssh-key list
 }
@@ -320,7 +324,8 @@ clone_dotfiles_repo() {
   repo_dir="$(get_repo_dir)"
 
   print_step_msg "Cloning NixOS dotfiles repo"
-  print_line_msg "cloning dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+  print_line_msg "--> Clone dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+  pause
   echo
 
   if [[ -d "$repo_dir" ]]; then
@@ -329,8 +334,6 @@ clone_dotfiles_repo() {
     mkdir -p "${HOME_DOTFILES_DIR}"
     git clone --recurse-submodules ${GIT_REPO_DOTFILES} "$repo_dir"
   fi
-
-  pause
 }
 
 prepare_host_dir() {
@@ -344,20 +347,22 @@ prepare_host_dir() {
 
   print_step_msg "Preparing the host directory in the dotfiles"
 
-  print_line_msg "making the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
+  print_line_msg "--> Prepare the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
+  pause
+  echo
+
+  print_line_msg "... making the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
   if [[ -d "$host_dir" ]]; then
     print_line_msg "... this directory already exists"
   else
     mkdir -p "$host_dir"
   fi
 
-  print_line_msg "copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory"
+  print_line_msg "... copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory"
   cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
 
-  print_line_msg "copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
+  print_line_msg "... copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
   cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
-
-  pause
 }
 
 get_repo_dir() {
