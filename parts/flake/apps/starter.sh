@@ -49,7 +49,7 @@ This script does the following:
 Let's go!
 "
 FINISH_MSG="
-${ST_INVERSE}Important! Don't forget to delete the ${ST_BOLD}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_REGULAR} token.
+${ST_INVERSE}Important! Don't forget to delete the ${ST_BOLD}${TOKEN_FILE}${ST_REGULAR} file that contains your GitHub token.${ST_RESET}
 "
 
 main() {
