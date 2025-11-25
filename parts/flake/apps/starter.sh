@@ -22,6 +22,7 @@ CL_YELLOW='\033[1;33m'
 CL_NO='\033[0m'
 ST_BOLD='\033[1m'
 ST_DIM='\033[2m'
+ST_INVERSE='\033[7m'
 ST_REGULAR='\033[22m'
 ST_RESET='\033[0m'
 ST_UNDERLINE='\033[4m'
@@ -48,7 +49,7 @@ This script does the following:
 Let's go!
 "
 FINISH_MSG="
-Important! Don't forget to delete the ${ST_DIM}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_RESET} token.
+${ST_INVERSE}Important! Don't forget to delete the ${ST_DIM}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_RESET} token.
 "
 
 main() {
