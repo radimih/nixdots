@@ -255,8 +255,8 @@ add_key_to_github() {
   github_keys="$(gh ssh-key list)"
 
   print_line_msg "--> Add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR} if it is not already added:\n"
-  print_line_msg "-->   title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
-  print_line_msg "-->     key: $new_key_pub"
+  print_line_msg "      title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
+  print_line_msg "        key: $new_key_pub"
   pause
   echo
 
