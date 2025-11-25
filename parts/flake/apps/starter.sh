@@ -61,10 +61,15 @@ main() {
   echo
 
   update_system_config
+  pause
   generate_ssh_keys "$hostname"
+  pause
   verify_github_token
+  pause
   add_key_to_github "$hostname"
+  pause
   clone_dotfiles_repo
+  pause
   prepare_host_dir "$hostname"
 
   echo -e "$FINISH_MSG"
@@ -99,7 +104,6 @@ update_system_config() {
   if is_enabled_experimental_features && \
      is_enabled_system_packages "$STARTER_PACKAGES"; then
     print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}flakes nix-command${ST_REGULAR} experimental features already enabled"
-    pause
     return 0
   else
     print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
@@ -107,7 +111,6 @@ update_system_config() {
   fi
 
   sudo nixos-rebuild switch
-  pause
 }
 
 enable_starter_module() {
@@ -162,7 +165,6 @@ generate_ssh_keys() {
 
   print_line_msg "host's public key: $(< "$SSH_KEYFILE_HOST.pub")"
   print_line_msg "user's public key: $(< "$SSH_KEYFILE_USER.pub")"
-  pause
 }
 
 generate_ssh_key() {
@@ -220,7 +222,6 @@ verify_github_token() {
 
   echo
   check_github_token
-  pause
 }
 
 check_github_token() {
@@ -287,7 +288,6 @@ add_key_to_github() {
   print_line_msg "New list of all public keys on the GitHub:"
   echo
   gh ssh-key list
-  pause
 }
 
 remove_key_from_github() {
@@ -331,8 +331,6 @@ clone_dotfiles_repo() {
     mkdir -p "${HOME_DOTFILES_DIR}"
     git clone --recurse-submodules ${GIT_REPO_DOTFILES} "$repo_dir"
   fi
-
-  pause
 }
 
 prepare_host_dir() {
@@ -362,8 +360,6 @@ prepare_host_dir() {
 
   print_line_msg "... copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
   cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
-
-  pause
 }
 
 get_repo_dir() {
