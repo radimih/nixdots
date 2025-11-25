@@ -41,10 +41,9 @@ This script does the following:
 
 5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
-6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} in the dotfiles directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}${ST_REGULAR}:
-     - makes the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/<hostname>${ST_REGULAR}
-     - copies the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory
-     - copies the host public key${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory
+6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}<hostname>${ST_REGULAR} in the dotfiles:
+     - copies the ${ST_BOLD}hardware-configuration.nix${ST_REGULAR} file to this host directory
+     - copies the ${ST_BOLD}host public SSH key${ST_REGULAR} to this host directory
 
 Let's go!
 "
@@ -87,22 +86,22 @@ input_hostname() {
 update_system_config() {
 
   print_step_msg "Updating NixOS configuration"
-  sudo --validate
   echo
-
-  print_line_msg "the following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
+  print_line_msg "The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
   echo
   echo "$STARTER_NIX_MODULE"
   pause
+  sudo --validate
   echo
   enable_starter_module
 
   if is_enabled_experimental_features && \
      is_enabled_system_packages "$STARTER_PACKAGES"; then
     print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}flakes nix-command${ST_REGULAR} experimental features already enabled"
+    pause
     return 0
   else
-    print_line_msg "the command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
+    print_line_msg "The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
   fi
 
@@ -171,7 +170,7 @@ generate_ssh_key() {
   local keyfile=$2
   local sudo=${3:-}
 
-  print_line_msg "generate ${ST_DIM}$keyfile${ST_REGULAR}..."
+  print_line_msg "--> generate ${ST_DIM}$keyfile${ST_REGULAR}..."
 
   [[ -z "$sudo" ]] && username=$USER || username=host
 
@@ -227,7 +226,7 @@ check_github_token() {
 
   set +o errexit
   if ! gh auth status; then
-    print_error_msg "the GitHub token may have expired"
+    print_error_msg "... the GitHub token may have expired"
     exit 1
   fi
   set -o errexit
@@ -246,17 +245,16 @@ add_key_to_github() {
 
   print_step_msg "Adding the user's public SSH key to GitHub"
 
+  print_line_msg "Current list of all public keys on the GitHub:"
+  echo
+  gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
+
   new_key_pub="$(awk '{ print $2 }' < "$user_pubkey_file")"
   github_keys="$(gh ssh-key list)"
 
-  print_line_msg "add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR}:"
+  print_line_msg "Add user's public SSH key for ${ST_DIM}authentication${ST_REGULAR} and ${ST_DIM}signing${ST_REGULAR} if it is not already added:\n"
   print_line_msg "  title: ${ST_BOLD}$new_key_title${ST_REGULAR}"
   print_line_msg "    key: $new_key_pub"
-  echo
-
-  print_line_msg "current list of all public keys on the GitHub:"
-  echo
-  gh ssh-key list  # вывод в консоль отличается от вывода в пайп ($github_keys)
   pause
   echo
 
@@ -284,9 +282,10 @@ add_key_to_github() {
   done
 
   echo
-  print_line_msg "new list of all public keys on the GitHub:"
+  print_line_msg "New list of all public keys on the GitHub:"
   echo
   gh ssh-key list
+  pause
 }
 
 remove_key_from_github() {
@@ -320,7 +319,8 @@ clone_dotfiles_repo() {
   repo_dir="$(get_repo_dir)"
 
   print_step_msg "Cloning NixOS dotfiles repo"
-  print_line_msg "cloning dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+  print_line_msg "Clone dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}$repo_dir${ST_REGULAR}"
+  pause
   echo
 
   if [[ -d "$repo_dir" ]]; then
@@ -343,6 +343,10 @@ prepare_host_dir() {
   host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
 
   print_step_msg "Preparing the host directory in the dotfiles"
+
+  print_line_msg "Prepare the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
+  pause
+  echo
 
   print_line_msg "making the host directory ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}${hostname}${ST_REGULAR} in ${ST_DIM}${repo_dir}${ST_REGULAR}"
   if [[ -d "$host_dir" ]]; then
