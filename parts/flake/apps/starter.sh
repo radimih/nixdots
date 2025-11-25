@@ -160,8 +160,8 @@ generate_ssh_keys() {
   generate_ssh_key "$hostname" "$SSH_KEYFILE_HOST" sudo
   generate_ssh_key "$hostname" "$SSH_KEYFILE_USER"
 
-  print_line_msg "host's public key: $(cat "$SSH_KEYFILE_HOST.pub")"
-  print_line_msg "user's public key: $(cat "$SSH_KEYFILE_USER.pub")"
+  print_line_msg "host's public key: $(< "$SSH_KEYFILE_HOST.pub")"
+  print_line_msg "user's public key: $(< "$SSH_KEYFILE_USER.pub")"
   pause
 }
 
@@ -195,7 +195,7 @@ verify_github_token() {
       echo "$token" > "$TOKEN_FILE"
     fi
 
-    token=$(cat "$TOKEN_FILE")
+    token=$(< "$TOKEN_FILE")
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
     hash_short=${hash:0:3}...${hash: -3}
 
@@ -215,7 +215,7 @@ verify_github_token() {
     fi
   done
 
-  GITHUB_TOKEN=$(cat "$TOKEN_FILE")
+  GITHUB_TOKEN=$(< "$TOKEN_FILE")
   export GITHUB_TOKEN
 
   echo
