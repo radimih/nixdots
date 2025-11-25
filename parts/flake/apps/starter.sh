@@ -49,7 +49,7 @@ This script does the following:
 Let's go!
 "
 FINISH_MSG="
-${ST_INVERSE}Important! Don't forget to delete the ${ST_DIM}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_RESET} token.
+${ST_INVERSE}Important! Don't forget to delete the ${ST_BOLD}${TOKEN_FILE}${ST_REGULAR} file that contains your ${ST_UNDERLINE}GitHub${ST_REGULAR} token.
 "
 
 main() {
@@ -74,6 +74,7 @@ main() {
   pause
   prepare_host_dir "$hostname"
 
+  echo
   echo -e "$FINISH_MSG"
 }
 
