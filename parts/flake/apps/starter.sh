@@ -119,6 +119,7 @@ update_system_config() {
   else
     print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
+    echo
   fi
 
   sudo nixos-rebuild switch
@@ -192,6 +193,7 @@ generate_ssh_key() {
     $sudo ssh-keygen -f "$keyfile" -c -C "$username@$hostname" -q > /dev/null
     print_line_msg "... SSH key ${ST_DIM}$keyfile${ST_REGULAR} already exists, updated key comment"
   else
+    echo
     # Сгенерировать ключ без защиты паролем
     $sudo ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$username@$hostname"
   fi
@@ -204,6 +206,7 @@ verify_github_token() {
 
   while true; do
     if [ ! -f "$TOKEN_FILE" ]; then
+      echo
       read -r -e -p "Enter GitHub token: " token
       echo "$token" > "$TOKEN_FILE"
     fi
@@ -212,6 +215,7 @@ verify_github_token() {
     hash=$(echo "$token" | sha256sum | awk '{print $1}')
     hash_short=${hash:0:3}...${hash: -3}
 
+    echo
     echo -e "─────────────────────────────────────────────────────────────"
     echo -e "GitHub token stored in the ${ST_DIM}$TOKEN_FILE${ST_REGULAR} file:"
     echo -e "  token: $token"
@@ -223,6 +227,7 @@ verify_github_token() {
     if [[ "$answer" =~ ^[Yy]$ ]]; then
       break
     else
+      echo
       read -r -e -i "$token" -p "Edit the token: " new_token
       echo "$new_token" > "$TOKEN_FILE"
     fi
