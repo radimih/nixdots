@@ -204,6 +204,7 @@ verify_github_token() {
 
   print_step_msg "GitHub token verification"
 
+  set -x
   while true; do
     if [ ! -f "$TOKEN_FILE" ]; then
       echo
@@ -232,6 +233,7 @@ verify_github_token() {
       echo "$new_token" > "$TOKEN_FILE"
     fi
   done
+  set +x
 
   GITHUB_TOKEN=$(< "$TOKEN_FILE")
   export GITHUB_TOKEN
