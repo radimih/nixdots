@@ -47,7 +47,8 @@ This script does the following:
 
 4. Adds the ${ST_BOLD}user's public SSH key${ST_REGULAR} to ${ST_UNDERLINE}GitHub${ST_RESET} if it is not already added
 
-5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
+5. Clones dotfiles repo ${ST_UNDERLINE}${GIT_REPO_DOTFILES}${ST_RESET} into directory
+   ${ST_DIM}${HOME_DOTFILES_DIR}${ST_REGULAR}
 
 6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}<hostname>${ST_REGULAR} in the dotfiles:
      - copies the ${ST_DIM}hardware-configuration.nix${ST_REGULAR} file to this host directory
