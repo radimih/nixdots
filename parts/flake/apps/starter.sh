@@ -91,9 +91,7 @@ input_hostname() {
   local hostname_input=""
 
   while true; do
-    # read -r -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
-    echo -n "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): "
-    hostname_input=$(rlwrap --one-shot --pre-given "$hostname_input" cat)
+    hostname_input=$(rlwrap -o -H /dev/null -n -S "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -P "$hostname_input" cat)
     if [[ -z "$hostname_input" ]]; then continue; fi
     if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
   done
