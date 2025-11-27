@@ -10,7 +10,8 @@
           runtimeInputs = with pkgs; [
             gh
             git
-            rlwrap  # для полноценной работы команды read при вводе Github-токена в bash-скрипте starter.sh
+            rlwrap  # для замены команды read, в которой не работает редактирование строки,
+                    # так как скрипт запускается в неинтерактивном варианте bash
           ];
           text = builtins.readFile ./starter.sh;
         };
