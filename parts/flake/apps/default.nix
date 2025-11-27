@@ -10,6 +10,7 @@
           runtimeInputs = with pkgs; [
             gh
             git
+            readline  # для полноценной работы команды read при вводе Github-токена в bash-скрипте starter.sh
           ];
           text = builtins.readFile ./starter.sh;
         };
