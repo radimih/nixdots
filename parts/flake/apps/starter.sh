@@ -91,7 +91,9 @@ input_hostname() {
   local hostname_input=""
 
   while true; do
-    read -r -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+    # read -r -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+    echo -n "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): "
+    hostname_input=$(echo "$hostname_input" | rlwrap -o cat)
     if [[ -z "$hostname_input" ]]; then continue; fi
     if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
   done
@@ -204,7 +206,6 @@ verify_github_token() {
 
   print_step_msg "GitHub token verification"
 
-  set -x
   while true; do
     if [ ! -f "$TOKEN_FILE" ]; then
       echo
@@ -233,7 +234,6 @@ verify_github_token() {
       echo "$new_token" > "$TOKEN_FILE"
     fi
   done
-  set +x
 
   GITHUB_TOKEN=$(< "$TOKEN_FILE")
   export GITHUB_TOKEN
