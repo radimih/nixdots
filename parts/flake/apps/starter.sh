@@ -91,7 +91,7 @@ input_hostname() {
   local hostname_input=""
 
   while true; do
-    read -r -e -p "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -i "$hostname_input" hostname_input
+    hostname_input="$(rlwrap -H /dev/null -n -o -S "Enter new hostname (only Latin letters, numbers and symbols '-', '_'): " -P "$hostname_input" cat)"
     if [[ -z "$hostname_input" ]]; then continue; fi
     if [[ "$hostname_input" =~ ^[a-zA-Z0-9_-]+$ ]]; then break; fi
   done
@@ -204,11 +204,10 @@ verify_github_token() {
 
   print_step_msg "GitHub token verification"
 
-  set -x
   while true; do
     if [ ! -f "$TOKEN_FILE" ]; then
       echo
-      read -r -e -p "Enter GitHub token: " token
+      token="$(rlwrap -H /dev/null -n -o -S "Enter GitHub token: " cat)"
       echo "$token" > "$TOKEN_FILE"
     fi
 
@@ -229,11 +228,15 @@ verify_github_token() {
       break
     else
       echo
-      read -r -e -i "$token" -p "Edit the token: " new_token
+      # Не используется команда `read -r -e -i "$token" -p "Edit the token: " new_token`
+      # так как в read перестаёт работать редактирование строки (например, не работают
+      # стрелки) в неинтерактивном режиме bash. А именно под таким вариантом bash'а
+      # скрипт запускается внутри pkgs.writeShellApplication / pkgs.mkShellNoCC.
+      # Man page: https://github.com/hanslub42/rlwrap/wiki/rlwrap-manpage
+      new_token="$(rlwrap -H /dev/null -n -o -S "Edit the token: " -P "$token" cat)"
       echo "$new_token" > "$TOKEN_FILE"
     fi
   done
-  set +x
 
   GITHUB_TOKEN=$(< "$TOKEN_FILE")
   export GITHUB_TOKEN
