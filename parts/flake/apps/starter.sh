@@ -228,6 +228,11 @@ verify_github_token() {
       break
     else
       echo
+      # Не используется команда `read -r -e -i "$token" -p "Edit the token: " new_token`
+      # так как в read перестаёт работать редактирование строки (например, не работают
+      # стрелки) в неинтерактивном режиме bash. А именно под таким вариантом bash'а
+      # скрипт запускается внутри pkgs.writeShellApplication / pkgs.mkShellNoCC.
+      # Man page: https://github.com/hanslub42/rlwrap/wiki/rlwrap-manpage
       new_token="$(rlwrap -H /dev/null -n -o -S "Edit the token: " -P "$token" cat)"
       echo "$new_token" > "$TOKEN_FILE"
     fi
