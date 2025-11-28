@@ -205,7 +205,7 @@ verify_github_token() {
   print_step_msg "GitHub token verification"
 
   while true; do
-    if [ ! -f "$TOKEN_FILE" ]; then
+    if [[ ! -f "$TOKEN_FILE" ]]; then
       echo
       token="$(rlwrap -H /dev/null -n -o -S "Enter GitHub token: " cat)"
       echo "$token" > "$TOKEN_FILE"
