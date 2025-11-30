@@ -2,11 +2,15 @@ GIT_REPO_DOTFILES=git@github.com:radimih/nixdots.git
 HOME_DOTFILES_DIR=$HOME/1git/personal
 DOTFILES_HOSTS_SUBDIR=parts/hosts
 
-STARTER_PACKAGES="git vim"  # ВНИМАНИЕ! Предполагается, что бинарник у пакета = названию пакета
+# Пакеты в форме ассоциированного массива [<название пакета>]=<бинарник пакета>
+declare -A STARTER_PACKAGES=(
+  [git]=git
+  [vim]=vim
+)
 STARTER_FEATURES=(flakes nix-command pipe-operators)
 STARTER_NIX_MODULE=\
 '{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ '${STARTER_PACKAGES}' ];
+  environment.systemPackages = with pkgs; [ '${!STARTER_PACKAGES[*]}' ];
   nix.settings = {
     experimental-features = [ '$(printf '"%s" ' "${STARTER_FEATURES[@]}")'];
     substituters = [ "https://nix-community.cachix.org" ];
@@ -37,7 +41,7 @@ START_MSG="
 This script does the following:
 
 1. Updates the ${ST_BOLD}NixOS configuration file${ST_REGULAR} (${ST_DIM}${NIXOS_CONFIG_FILE}${ST_REGULAR}):
-     - adds ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} programs to system packages
+     - adds ${ST_DIM}${!STARTER_PACKAGES[*]}${ST_REGULAR} packages to system packages
      - enables ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features
      - adds the ${ST_UNDERLINE}nix-community.cachix.org${ST_RESET} substituter
 
@@ -113,8 +117,8 @@ update_system_config() {
   enable_starter_module
 
   if is_enabled_experimental_features && \
-     is_enabled_system_packages "$STARTER_PACKAGES"; then
-    print_line_msg "... ${ST_DIM}${STARTER_PACKAGES}${ST_REGULAR} system packages and ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features already enabled"
+     is_enabled_system_packages; then
+    print_line_msg "... ${ST_DIM}${!STARTER_PACKAGES[*]}${ST_REGULAR} system packages and ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features already enabled"
     return 0
   else
     print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
@@ -148,15 +152,12 @@ is_enabled_experimental_features() {
   grep --silent --no-messages -E "$regex_flakes" $NIX_CONFIG_FILE
 }
 
-# ВНИМАНИЕ! Работает только для пакетов, у которых бинарник называется
-# так же, как cам пакет
 is_enabled_system_packages() {
 
-  local packages="$1"
-  local file
+  local binary
 
-  for file in $packages; do
-    if [[ ! -e "/run/current-system/sw/bin/$file" ]]; then
+  for binary in ${STARTER_PACKAGES[@]}; do
+    if [[ ! -e "/run/current-system/sw/bin/$binary" ]]; then
       return 1
     fi
   done
