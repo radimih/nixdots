@@ -156,7 +156,7 @@ is_enabled_system_packages() {
 
   local binary
 
-  for binary in ${STARTER_PACKAGES[@]}; do
+  for binary in "${STARTER_PACKAGES[@]}"; do
     if [[ ! -e "/run/current-system/sw/bin/$binary" ]]; then
       return 1
     fi
