@@ -22,10 +22,13 @@
             Home Manager в режиме NixOS-модуля устанавливает их автоматически:
             https://github.com/nix-community/home-manager/blob/master/nixos/common.nix#L53-L54
           */
+
+          home.preferXdgDirectories = true;
+
           # example: https://github.com/henrysipp/nix-setup/blob/48a93d0275eba0adf48977609fc100dce8f9b49c/modules/base/system/default.nix
           home.stateVersion = "25.05";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
 
-          # Let home Manager install and manage itself
+          # Let Home Manager install and manage itself
           programs.home-manager.enable = true;
         }
       ];
