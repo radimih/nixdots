@@ -23,7 +23,7 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = ./trial-passwd.txt;
+        hashedPasswordFile = "/home/radimir/trial-passwd.txt";
         isNormalUser = true;
       };
 
