@@ -23,7 +23,7 @@ in
 
       imports = with config.flake.modules.nixos; [
         base
-        boot-secure
+        # boot-secure
         boot-visual-adi1090x
         desktop
         kitty  # FIXME: next-release: убрать, когда xdg.terminal-exec появится в home-manager
