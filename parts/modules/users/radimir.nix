@@ -23,7 +23,7 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPassword = "$y$j9T$4lWvazb5gfzVz96i0uNhU/$7t8Oi1MNeTm/5ksd/V/99Bl8bfvu1nCONNEXNOWnCF5";  # '123'
+        hashedPasswordFile = ./trial-passwd.txt;
         isNormalUser = true;
       };
 
