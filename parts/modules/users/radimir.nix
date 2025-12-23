@@ -1,5 +1,6 @@
 # flake-parts-модуль по настройке Linux-пользователя
 {
+  config',
   ...
 }:
 let
@@ -27,7 +28,7 @@ in
       };
 
       home-manager.users.${user.name}.imports = [
-        flake.modules.homeManager."user-${user.name}"
+        config'.flake.modules.homeManager."user-${user.name}"
       ];
 
       vaultix = {
