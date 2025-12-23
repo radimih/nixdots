@@ -23,7 +23,7 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = config.vaultix.secrets.${user.name}-passwd.path;
+        hashedPasswordFile = config.vaultix.secrets."${user.name}-passwd".path;
         isNormalUser = true;
       };
 
