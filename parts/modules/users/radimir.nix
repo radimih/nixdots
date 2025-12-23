@@ -1,5 +1,6 @@
 # flake-parts-модуль по настройке Linux-пользователя
 {
+  config,
   ...
 }:
 let
