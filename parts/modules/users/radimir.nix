@@ -1,6 +1,7 @@
 # flake-parts-модуль по настройке Linux-пользователя
 {
-  config,
+  # FIXME: перекрывается локальным config
+  # config,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    { osConfig, inputs, ...}:
+    { config, inputs, ...}:
     {
       users.users.${user.name} = {
         createHome = true;
@@ -23,13 +24,14 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = osConfig.vaultix.secrets."${user.name}-passwd".path;
+        hashedPasswordFile = config.vaultix.secrets."${user.name}-passwd".path;
         isNormalUser = true;
       };
 
-      home-manager.users.${user.name}.imports = [
-        config.flake.modules.homeManager."user-${user.name}"
-      ];
+      # FIXME: в локальном config нет атрибута flake
+      # home-manager.users.${user.name}.imports = [
+      #   config.flake.modules.homeManager."user-${user.name}"
+      # ];
 
       vaultix = {
         secrets = {
