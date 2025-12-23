@@ -13,7 +13,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    { pkgs, ...}:
+    { inputs, ...}:
     {
       users.users.${user.name} = {
         createHome = true;
@@ -23,13 +23,24 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = "/home/radimir/trial-passwd.txt";
+        hashedPasswordFile = config.vaultix.secrets.${user.name}-passwd.path;
         isNormalUser = true;
       };
 
       home-manager.users.${user.name}.imports = [
         config.flake.modules.homeManager."user-${user.name}"
       ];
+
+      vaultix = {
+        secrets = {
+          "${user.name}-passwd" = {
+            file = inputs.self + /secrets/${user.name}-passwd.age;
+          };
+        };
+        beforeUserborn = [
+          "${user.name}-passwd"
+        ];
+      };
     };
 
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
