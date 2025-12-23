@@ -1,6 +1,5 @@
 # flake-parts-модуль по настройке Linux-пользователя
 {
-  config,
   ...
 }:
 let
@@ -13,7 +12,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    { inputs, ...}:
+    { config, inputs, ...}:
     {
       users.users.${user.name} = {
         createHome = true;
