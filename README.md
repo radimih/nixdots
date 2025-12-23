@@ -44,17 +44,24 @@
 
     ВНИМАНИЕ! Не перегружать компьютер!
 
-1. Склонировать данный репозиторий на только что установленную систему:
+1. Подготовить git-репозиторий:
 
     ```bash
-    git clone https://github.com/radimih/nixdots.git
-    cd nixdots
+    cd 1git/personal/nixdots
+    git add --all
+    git status
+    ```
+
+1. Перешифровать секреты:
+
+    ```bash
+    nix run .?submodules=1#vaultix.app.x86_64-linux.rec
     ```
 
 1. Выполнить:
 
     ```bash
-    sudo nixos-rebuild switch --flake .
+    sudo nixos-rebuild switch --flake .#ХОСТ
     ```
 
 1. Проверить что EFI-образы теперь подписаны:
