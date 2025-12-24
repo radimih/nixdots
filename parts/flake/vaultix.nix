@@ -14,6 +14,7 @@
     # extraPackages = [ ];                   # default, optional
     # pinentryPackage = null;                # default, optional
 
-    identity = inputs.self + "/secrets/master-key.age";
+    # identity = inputs.self + "/secrets/master-key.age";
+    identity = inputs.self + "/secrets/trial.key";
   };
 }
