@@ -5,24 +5,25 @@
   ...
 }:
 {
-  flake.modules.nixos.boot-secure =
-    { lib, pkgs, ...}:
-    {
-      imports = [
-        inputs.lanzaboote.nixosModules.lanzaboote
-      ];
+  # FIXME: перестал работать Lanzaboote
+  # flake.modules.nixos.boot-secure =
+  #   { lib, pkgs, ...}:
+  #   {
+  #     imports = [
+  #       inputs.lanzaboote.nixosModules.lanzaboote
+  #     ];
 
-      boot = {
-        loader.systemd-boot.enable = lib.mkForce false;
-        lanzaboote = {
-          enable = true;
-          pkiBundle = "/var/lib/sbctl";
-        };
-      };
+  #     boot = {
+  #       loader.systemd-boot.enable = lib.mkForce false;
+  #       lanzaboote = {
+  #         enable = true;
+  #         pkiBundle = "/var/lib/sbctl";
+  #       };
+  #     };
 
-      environment.systemPackages = [
-        pkgs.sbctl
-      ];
+  #     environment.systemPackages = [
+  #       pkgs.sbctl
+  #     ];
 
-    };
+  #   };
 }
