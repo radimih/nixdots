@@ -55,6 +55,7 @@
 1. Перешифровать секреты:
 
     ```bash
+    nix run .?submodules=1#agenix-rekey.x86_64-linux.rekey -- -a
     ```
 
 1. Выполнить:
