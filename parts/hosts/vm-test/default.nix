@@ -11,6 +11,10 @@ in
   flake.modules.nixos."host-${host}" =
     { pkgs, lib, ...}:
     {
+      # --- Публичный SSH-ключ хоста
+
+      vaultix.settings.hostPubkey = ./hostkey.pub;  # формируется в parts/flake/apps/starter.sh
+
       # --- NixOS-параметры хоста
 
       services = {

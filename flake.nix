@@ -44,6 +44,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    vaultix = {
+      url = "github:milieuim/vaultix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # --- software
 
     niri = {
