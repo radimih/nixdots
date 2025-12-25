@@ -29,7 +29,7 @@
 
     import-tree.url = "github:vic/import-tree";
 
-  # FIXME: перестал работать Lanzaboote
+    # FIXME: перестал работать Lanzaboote
     # lanzaboote = {
     #   url = "github:nix-community/lanzaboote";
     #   inputs.flake-parts.follows = "flake-parts";

@@ -27,6 +27,7 @@ in
 
       imports = with config.flake.modules.nixos; [
         base
+        # FIXME: перестал работать Lanzaboote
         # boot-secure
         boot-visual-adi1090x
         desktop
