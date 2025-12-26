@@ -28,8 +28,6 @@ in
       };
 
       home-manager.users.${user.name}.imports = [
-        inputs.agenix.homeManagerModules.default
-        inputs.agenix-rekey.homeManagerModules.default
         config.flake.modules.homeManager."user-${user.name}"
       ];
     };
@@ -42,6 +40,11 @@ in
       host = osConfig.networking.hostName;
     in
     {
+      imports = [
+        inputs.agenix.homeManagerModules.default
+        inputs.agenix-rekey.homeManagerModules.default
+      ];
+
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.file.trial = {
