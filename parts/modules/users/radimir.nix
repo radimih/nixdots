@@ -13,7 +13,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    { config, inputs, ...}:
+    { inputs, ...}:
     {
       users.users.${user.name} = {
         createHome = true;
