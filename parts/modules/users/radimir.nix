@@ -28,8 +28,8 @@ in
       };
 
       home-manager.users.${user.name}.imports = [
-        inputs.agenix.nixosModules.default
-        inputs.agenix-rekey.nixosModules.default
+        inputs.agenix.homeManagerModules.default
+        inputs.agenix-rekey.homeManagerModules.default
         config.flake.modules.homeManager."user-${user.name}"
       ];
     };
