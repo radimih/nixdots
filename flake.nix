@@ -49,6 +49,11 @@
     #   inputs.pre-commit-hooks-nix.follows = "";
     # };
 
+    secrets = {
+      url = "git+ssh://git@github.com/radimih/nixdots-secrets.git?shallow=1";
+      flake = false;
+    };
+
     stylix = {
       url = "github:nix-community/stylix/release-25.05";
       inputs.flake-parts.follows = "flake-parts";
