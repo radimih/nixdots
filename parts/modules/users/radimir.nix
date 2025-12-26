@@ -33,7 +33,6 @@ in
       #   config.flake.modules.homeManager."user-${user.name}"
       # ];
 
-      # age.secrets."${user.name}-passwd".rekeyFile = inputs.secrets + ${user.name}-passwd.age;
       age.secrets."${user.name}-passwd".rekeyFile = "${inputs.secrets}/${user.name}-passwd.age";
     };
 

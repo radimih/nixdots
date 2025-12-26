@@ -18,6 +18,7 @@
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       age.rekey = {
         cacheDir = "${cacheDir}/\"$UID\"";
+        hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
         masterIdentities = [ "${inputs.secrets}/master-key.age" ];
         storageMode = "derivation";
       };
