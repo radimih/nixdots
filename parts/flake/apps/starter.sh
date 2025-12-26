@@ -380,8 +380,9 @@ prepare_host_dir() {
   print_line_msg "... copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory"
   cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
 
-  print_line_msg "... copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
-  cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
+  # agenix-rekey умеет напрямую работать с публичным ключом хоста
+  # print_line_msg "... copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
+  # cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
 }
 
 get_repo_dir() {
