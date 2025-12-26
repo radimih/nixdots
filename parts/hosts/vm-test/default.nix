@@ -11,10 +11,6 @@ in
   flake.modules.nixos."host-${host}" =
     { pkgs, lib, ...}:
     {
-      # --- Публичный SSH-ключ хоста. Нужен для шифрования секретов для этого хоста
-
-      # age.rekey.hostPubkey = builtins.readFile ./hostkey.pub;  # файл формируется в parts/flake/apps/starter.sh
-
       # --- NixOS-параметры хоста
 
       services = {

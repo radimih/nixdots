@@ -1,7 +1,6 @@
 # flake-parts-модуль по настройке Linux-пользователя
 {
-  # FIXME: перекрывается локальным config
-  # config,
+  config,
   ...
 }:
 let
@@ -24,16 +23,13 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = config.age.secrets."${user.name}-passwd".path;
+        hashedPasswordFile = "${inputs.secrets}/passwd/${user.name}";
         isNormalUser = true;
       };
 
-      # FIXME: в локальном config нет атрибута flake
-      # home-manager.users.${user.name}.imports = [
-      #   config.flake.modules.homeManager."user-${user.name}"
-      # ];
-
-      age.secrets."${user.name}-passwd".rekeyFile = "${inputs.secrets}/${user.name}-passwd.age";
+      home-manager.users.${user.name}.imports = [
+        config.flake.modules.homeManager."user-${user.name}"
+      ];
     };
 
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
@@ -45,6 +41,13 @@ in
     in
     {
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+
+      home.file.trial = {
+        source = config.age.secrets.trial.path;
+        target = "super-secret-file.txt";
+      };
+
+      age.secrets.trial.rekeyFile = "${inputs.secrets}/trial.age";
 
       xdg.userDirs = {
         # TODO: уточнить каталог для документов
