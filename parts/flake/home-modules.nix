@@ -25,23 +25,23 @@ in
           that you can reference them in this or another flake's `homeConfigurations`.
         '';
       };
-      homeModules = mkOption {
-        type = types.lazyAttrsOf types.deferredModule;
-        default = { };
-        apply = mapAttrs (
-          k: v: {
-            #
-            # _class = "homeManager";
-            _file = "${toString moduleLocation}#homeModules.${k}";
-            imports = [ v ];
-          }
-        );
-        description = ''
-          Home Manager modules.
+      # homeModules = mkOption {
+      #   type = types.lazyAttrsOf types.deferredModule;
+      #   default = { };
+      #   apply = mapAttrs (
+      #     k: v: {
+      #       #
+      #       # _class = "homeManager";
+      #       _file = "${toString moduleLocation}#homeModules.${k}";
+      #       imports = [ v ];
+      #     }
+      #   );
+      #   description = ''
+      #     Home Manager modules.
 
-          You may use this for reusable pieces of configuration, service modules, etc.
-        '';
-      };
+      #     You may use this for reusable pieces of configuration, service modules, etc.
+      #   '';
+      # };
     };
   };
 }
