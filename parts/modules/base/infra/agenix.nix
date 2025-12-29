@@ -4,6 +4,11 @@
   ...
 }:
 {
+  imports = [
+    # flake-parts.agenix-rekey: https://flake.parts/options/agenix-rekey.html
+    inputs.agenix-rekey.flakeModule
+  ];
+
   flake.modules.nixos.base =
     { ... }:
     let
