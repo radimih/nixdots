@@ -10,8 +10,8 @@
     inputs.agenix-rekey.flakeModule
   ];
 
-  flake.agenix-rekey = inputs.agenix-rekey.configure {
-    userFlake = self;
-    inherit (self) nixosConfigurations;
-  };
+  # flake.agenix-rekey = inputs.agenix-rekey.configure {
+  #   userFlake = self;
+  #   inherit (self) nixosConfigurations;
+  # };
 }
