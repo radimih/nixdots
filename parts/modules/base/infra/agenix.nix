@@ -1,11 +1,11 @@
 # https://github.com/oddlama/agenix-rekey
 {
-  inputs,
+  # inputs,
   ...
 }:
 {
   flake.modules.nixos.base =
-    { ... }:
+    { inputs, ... }:
     let
       cacheDir = "/var/tmp/agenix-rekey";
     in
@@ -30,8 +30,8 @@
       ];
     };
 
-  flake.modules.homeManager.agenix =
-    { ... }:
+  flake.modules.homeManager.base =
+    { inputs, ... }:
     {
       imports = [
         inputs.agenix.homeManagerModules.default
