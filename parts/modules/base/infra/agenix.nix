@@ -1,11 +1,11 @@
-# https://github.com/oddlama/agenix-rekey
+# Home: https://github.com/oddlama/agenix-rekey
+# Flake-parts: https://flake.parts/options/agenix-rekey.html
 {
   inputs,
   ...
 }:
 {
   imports = [
-    # flake-parts.agenix-rekey: https://flake.parts/options/agenix-rekey.html
     inputs.agenix-rekey.flakeModule
   ];
 
