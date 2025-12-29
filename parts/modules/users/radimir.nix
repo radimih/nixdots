@@ -1,8 +1,5 @@
 # flake-parts-модуль по настройке Linux-пользователя
-{
-  config,
-  ...
-}:
+topLevel:
 let
   user = {
     name = "radimir";
@@ -28,7 +25,7 @@ in
       };
 
       home-manager.users.${user.name}.imports = [
-        config.flake.modules.homeManager."user-${user.name}"
+        topLevel.config.flake.modules.homeManager."user-${user.name}"
       ];
     };
 
