@@ -1,15 +1,9 @@
 # https://github.com/oddlama/agenix-rekey
 {
   inputs,
-  self,
   ...
 }:
 {
-  flake.agenix-rekey = inputs.agenix-rekey.configure {
-    userFlake = self;
-    inherit (self) nixosConfigurations;
-  };
-
   flake.modules.nixos.base =
     { ... }:
     let
