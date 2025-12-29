@@ -36,7 +36,7 @@
     };
 
   flake.modules.homeManager.base =
-    { ... }:
+    # { ... }:
     {
       imports = [
         inputs.agenix.homeManagerModules.default
