@@ -33,6 +33,7 @@
               config.flake.modules.nixos."host-${host}"
               # --- hardware-configuration.nix, если он существует
             ] ++ lib.optional (builtins.pathExists hardConfFile) hardConfFile;
+            # TODO: specialArgs возможно не нужен
             specialArgs = {
               inherit inputs;
             };
