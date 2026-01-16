@@ -4,6 +4,9 @@
   inputs,
   ...
 }:
+let
+  cacheDir = "/var/tmp/agenix-rekey";
+in
 {
   imports = [
     inputs.agenix-rekey.flakeModule
@@ -11,13 +14,10 @@
 
   flake.modules.nixos.base =
     { ... }:
-    let
-      cacheDir = "/var/tmp/agenix-rekey";
-    in
     {
-      imports = [
-        inputs.agenix.nixosModules.default
-        inputs.agenix-rekey.nixosModules.default
+      imports = with inputs; [
+        agenix.nixosModules.default
+        agenix-rekey.nixosModules.default
       ];
 
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -35,20 +35,19 @@
       ];
     };
 
-  # flake.modules.homeManager.base =
-  #   { ... }:
-  #   {
-  #     imports = [
-  #       inputs.agenix.homeManagerModules.default
-  #       inputs.agenix-rekey.homeManagerModules.default
-  #     ];
+  flake.modules.homeManager.base =
+    { ... }:
+    {
+      imports = with inputs; [
+        agenix.homeManagerModules.default
+        agenix-rekey.homeManagerModules.default
+      ];
 
-  #     # age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  #     # age.rekey = {
-  #     #   cacheDir = "${cacheDir}/\"$UID\"";
-  #     #   hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
-  #     #   masterIdentities = [ "${inputs.secrets}/master-key.age" ];
-  #     #   storageMode = "derivation";
-  #     # };
-  #   };
+      age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      age.rekey = {
+        cacheDir = "${cacheDir}/\"$UID\"";
+        hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
+        masterIdentities = [ "${inputs.secrets}/master-key.age" ];
+        storageMode = "derivation";
+    };
 }
