@@ -12,9 +12,7 @@ in
     inputs.agenix-rekey.flakeModule
   ];
 
-  flake.modules.nixos.base =
-    { ... }:
-    {
+  flake.modules.nixos.base = {
       imports = with inputs; [
         agenix.nixosModules.default
         agenix-rekey.nixosModules.default
@@ -33,14 +31,12 @@ in
       systemd.tmpfiles.rules = [
         "d ${cacheDir} 1777 root root"
       ];
-    };
+  };
 
-  flake.modules.homeManager.base =
-    { ... }:
-    {
+  flake.modules.homeManager.base = {
       imports = with inputs; [
         agenix.homeManagerModules.default
-        # agenix-rekey.homeManagerModules.default
+        agenix-rekey.homeManagerModules.default
       ];
 
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -50,5 +46,5 @@ in
         masterIdentities = [ "${inputs.secrets}/master-key.age" ];
         storageMode = "derivation";
       };
-    };
+  };
 }
