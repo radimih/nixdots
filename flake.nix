@@ -25,8 +25,10 @@
 
     agenix-rekey = {
       url = "github:oddlama/agenix-rekey";
-      #inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
+      # ВНИМАНИЕ! Нельзя включать inputs.flake-parts.follows = "flake-parts"; - возникает ошибка о
+      # невозможности импортировать agenix-rekey.homeManagerModules.default во flake.modules.homeManager
+      # (см. agenix.nix)
     };
 
     flake-parts = {
