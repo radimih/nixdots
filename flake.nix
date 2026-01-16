@@ -13,7 +13,7 @@
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # --- Nix/NixOS infra
 
@@ -25,7 +25,7 @@
 
     agenix-rekey = {
       url = "github:oddlama/agenix-rekey";
-      inputs.flake-parts.follows = "flake-parts";
+      #inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
