@@ -40,7 +40,7 @@ in
     {
       imports = with inputs; [
         agenix.homeManagerModules.default
-        agenix-rekey.homeManagerModules.default
+        # agenix-rekey.homeManagerModules.default
       ];
 
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
