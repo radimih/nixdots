@@ -40,7 +40,7 @@ in
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.file.trial = {
-        source = config.age.secrets.trial.file;
+        source = config.age.secrets.trial.path;
         target = "super-secret-file.txt";
       };
 
