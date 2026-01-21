@@ -40,7 +40,7 @@ in
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.file.trial = {
-        source = config.age.secrets.trial.path;
+        source = "/run/user/1000/agenix/trial";  # FIXME: config.age.secrets.trial.path;
         target = "super-secret-file.txt";
       };
 
