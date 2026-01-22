@@ -10,7 +10,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    { inputs, ...}:
+    { inputs, ... }:
     {
       users.users.${user.name} = {
         createHome = true;
@@ -20,13 +20,17 @@ in
           "systemd-journal"
           "wheel"
         ];
-        hashedPasswordFile = "${inputs.secrets}/passwd/${user.name}";
+        # hashedPasswordFile = "${inputs.secrets}/passwd/${user.name}";
+        # FIXME: убрать
+        hashedPasswordFile = config.age.secrets."${user.name}-passwd".path;
         isNormalUser = true;
       };
 
       home-manager.users.${user.name}.imports = [
         topLevel.config.flake.modules.homeManager."user-${user.name}"
       ];
+      # FIXME: убрать
+      age.secrets."${user.name}-passwd".rekeyFile = "${inputs.secrets}/${user.name}-passwd.age";
     };
 
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
@@ -40,7 +44,7 @@ in
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.file.trial = {
-        source = "/run/user/1000/agenix/trial";  # FIXME: config.age.secrets.trial.path;
+        source = config.age.secrets.trial.path;
         target = "super-secret-file.txt";
       };
 
