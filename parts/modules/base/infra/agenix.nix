@@ -28,10 +28,9 @@ in
       agenix-rekey.nixosModules.default
     ];
 
-    #age = { inherit rekey; };
     age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     age.rekey.hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
-    age.rekey = rekey;
+    age.rekey = { inherit (rekey) cacheDir masterIdentities storageMode; };
 
     # https://github.com/oddlama/agenix-rekey/issues/9#issuecomment-1741764749
     nix.settings.extra-sandbox-paths = [ cacheDir ];
@@ -47,8 +46,8 @@ in
       agenix-rekey.homeManagerModules.default
     ];
 
-    age = { inherit rekey; };
     age.identityPaths = [ "~/.ssh/id_ed25519" ];
     age.rekey.hostPubkey = "~/.ssh/id_ed25519.pub";
+    age.rekey = { inherit (rekey) cacheDir masterIdentities storageMode; };
   };
 }
