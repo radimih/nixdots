@@ -37,17 +37,22 @@ in
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, inputs, osConfig, ... }:
+    { config, inputs, osConfig, pkgs, ... }:
     let
       host = osConfig.networking.hostName;
     in
     {
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
-      home.file.trial = {
-        source = config.age.secrets.trial.path;
-        target = "super-secret-file.txt";
-      };
+      home.sessionVariables = {
+        SECRET_VALUE = ''
+          $(${pkgs.coreutils}/bin/cat ${config.age.secrets.trial.path})
+        '';
+
+      # home.file.trial = {
+      #   source = config.age.secrets.trial.path;
+      #   target = "super-secret-file.txt";
+      # };
 
       age.secrets.trial.rekeyFile = "${inputs.secrets}/trial.age";
 
