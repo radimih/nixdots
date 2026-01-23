@@ -44,7 +44,7 @@ in
     {
       imports = with inputs; [
         agenix.homeManagerModules.default
-        # agenix-rekey.homeManagerModules.default
+        agenix-rekey.homeManagerModules.default
       ];
 
       age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];

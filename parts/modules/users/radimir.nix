@@ -42,6 +42,10 @@ in
       host = osConfig.networking.hostName;
     in
     {
+      imports = with inputs; [
+        agenix.homeManagerModules.default
+      ];
+
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.file.trial = {
