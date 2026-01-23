@@ -48,6 +48,7 @@ in
         SECRET_VALUE = ''
           $(${pkgs.coreutils}/bin/cat ${config.age.secrets.trial.path})
         '';
+      };
 
       # home.file.trial = {
       #   source = config.age.secrets.trial.path;
