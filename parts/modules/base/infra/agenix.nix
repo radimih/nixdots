@@ -50,5 +50,7 @@ in
       age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
       age.rekey.hostPubkey = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       age.rekey = { inherit (rekey) cacheDir masterIdentities storageMode; };
+
+      programs.bash.enable = true;
     };
 }
