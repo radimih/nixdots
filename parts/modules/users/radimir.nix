@@ -37,7 +37,7 @@ in
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, inputs, osConfig, pkgs, ... }:
+    { config, inputs, osConfig, ... }:
     let
       host = osConfig.networking.hostName;
     in
@@ -45,9 +45,7 @@ in
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       home.sessionVariables = {
-        SECRET_VALUE = ''
-          $(${pkgs.coreutils}/bin/cat ${config.age.secrets.trial.path})
-        '';
+        SECRET_VALUE = "$(< ${config.age.secrets.trial.path})";
       };
 
       # home.file.trial = {
