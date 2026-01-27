@@ -34,18 +34,15 @@ in
   flake.modules.homeManager."user-${user.name}" =
     { config, inputs, osConfig, ... }:
     let
+      # Пример доступа к общесистемной конфигурации
       host = osConfig.networking.hostName;
     in
     {
       home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
-      home.sessionVariables = {
-        SECRET_VALUE = "$(< ${config.age.secrets.trial.path})";
-      };
-
-      age.secrets.trial = {
+      age.secrets.super-secret = {
         path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
-        rekeyFile = "${inputs.secrets}/trial.age";
+        rekeyFile = "${inputs.secrets}/super-secret.age";
       };
 
       xdg.userDirs = {
