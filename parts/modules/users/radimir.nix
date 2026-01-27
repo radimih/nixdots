@@ -32,19 +32,8 @@ in
   # --- пользовательские настройки Home Manager на каждом хосте, где устанавливается пользователь
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, osConfig, secrets, ... }:
-    let
-      # Пример доступа к общесистемной конфигурации
-      host = osConfig.networking.hostName;
-    in
+    { config, ... }:
     {
-      home.file."trial/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
-
-      age.secrets.super-secret = {
-        path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
-        rekeyFile = "${secrets}/super-secret.age";
-      };
-
       xdg.userDirs = {
         # TODO: уточнить каталог для документов
         documents = "${config.home.homeDirectory}/1cloud/documents";

@@ -17,8 +17,6 @@ in
         description = user.desc;
         extraGroups = [
           "networkmanager"
-          "systemd-journal"
-          "wheel"
         ];
         hashedPasswordFile = "${secrets}/passwd/${user.name}";
         isNormalUser = true;
@@ -39,8 +37,9 @@ in
     in
     {
       # Формирование текстового файла
-      home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+      home.file."demo/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
+      # Формирование файла из секрета
       age.secrets.super-secret = {
         path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
         rekeyFile = "${secrets}/super-secret.age";
