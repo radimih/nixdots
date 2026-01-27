@@ -16,7 +16,7 @@
 
     home-manager = {
       extraSpecialArgs = {
-        inherit inputs;
+        secrets = inputs.secrets;
       };
       sharedModules = [
         {

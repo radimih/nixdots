@@ -2,8 +2,8 @@
 topLevel:
 let
   user = {
-    name = "radimir";
-    desc = "Radimir";
+    name = "demo";
+    desc = "Demo user";
   };
 in
 {
@@ -29,26 +29,21 @@ in
       ];
     };
 
-  # --- пользовательские настройки Home Manager на каждом хосте, где устанавливается пользователь
+  # --- демонстрационные пользовательские настройки Home Manager
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, osConfig, secrets ... }:
+    { config, osConfig, secrets, ... }:
     let
-      # Пример доступа к общесистемной конфигурации
+      # Доступ к общесистемной конфигурации
       host = osConfig.networking.hostName;
     in
     {
-      home.file."trial/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+      # Формирование текстового файла
+      home.file."hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       age.secrets.super-secret = {
         path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
         rekeyFile = "${secrets}/super-secret.age";
-      };
-
-      xdg.userDirs = {
-        # TODO: уточнить каталог для документов
-        documents = "${config.home.homeDirectory}/1cloud/documents";
-        download = "${config.home.homeDirectory}/1temp";
       };
     };
 }
