@@ -1,5 +1,6 @@
-# Home: https://github.com/oddlama/agenix-rekey
-# Flake-parts: https://flake.parts/options/agenix-rekey.html
+# agenix: https://github.com/ryantm/agenix
+# agenix-rekey: https://github.com/oddlama/agenix-rekey
+# agenix-rekey flake-parts: https://flake.parts/options/agenix-rekey.html
 {
   inputs,
   ...
@@ -12,7 +13,7 @@ let
     # Не используется "local", так как в этом случае перезашифрованные для хоста секреты
     # должны располагаться в каталоге относительно корня флейка (см. описание параметра
     # age.rekey.localStorageDir), следовательно, находиться в git или в git submodule.
-    # А хотелось бы обойтись без лишних git-коммитов при простом разворачивании хоста.
+    # А хотелось бы обойтись без лишних git-коммитов при простом развёртывании хоста.
     storageMode = "derivation";
   };
 in

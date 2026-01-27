@@ -10,8 +10,7 @@ in
   # --- добавление пользователя в NixOS и связывание его с Home Manager
 
   flake.modules.nixos."user-${user.name}" =
-    # FIXME: убрать config
-    { config, inputs, ... }:
+    { inputs, ... }:
     {
       users.users.${user.name} = {
         createHome = true;
@@ -21,17 +20,13 @@ in
           "systemd-journal"
           "wheel"
         ];
-        # hashedPasswordFile = "${inputs.secrets}/passwd/${user.name}";
-        # FIXME: убрать
-        hashedPasswordFile = config.age.secrets."${user.name}-passwd".path;
+        hashedPasswordFile = "${inputs.secrets}/passwd/${user.name}";
         isNormalUser = true;
       };
 
       home-manager.users.${user.name}.imports = [
         topLevel.config.flake.modules.homeManager."user-${user.name}"
       ];
-      # FIXME: убрать
-      age.secrets."${user.name}-passwd".rekeyFile = "${inputs.secrets}/${user.name}-passwd.age";
     };
 
   # --- пользовательские настройки Home Manager для каждого хоста, где устанавливается пользователь
@@ -48,12 +43,10 @@ in
         SECRET_VALUE = "$(< ${config.age.secrets.trial.path})";
       };
 
-      # home.file.trial = {
-      #   source = config.age.secrets.trial.path;
-      #   target = "super-secret-file.txt";
-      # };
-
-      age.secrets.trial.rekeyFile = "${inputs.secrets}/trial.age";
+      age.secrets.trial = {
+        path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
+        rekeyFile = "${inputs.secrets}/trial.age";
+      };
 
       xdg.userDirs = {
         # TODO: уточнить каталог для документов
