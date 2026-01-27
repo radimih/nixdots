@@ -32,7 +32,7 @@ in
   # --- пользовательские настройки Home Manager на каждом хосте, где устанавливается пользователь
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, osConfig, secrets ... }:
+    { config, osConfig, secrets, ... }:
     let
       # Пример доступа к общесистемной конфигурации
       host = osConfig.networking.hostName;
