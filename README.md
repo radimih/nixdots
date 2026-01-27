@@ -5,9 +5,9 @@
 - [flake-parts](https://github.com/hercules-ci/flake-parts)
 - [The Dendritic Pattern](https://github.com/mightyiam/dendritic)
 
-## TODO: установка на новую систему
+## TODO: установка на новый хост
 
-1. Создать временный токен доступа к GitHub для добавления ssh-ключа нового пользователя в GitHub:
+1. Создать временный токен доступа к GitHub. Нужен будет для добавления в GitHub сгенерированного на новом хосте SSH-ключа пользователя:
 
     1. [github.com](https://github.com) → Профиль → `Settings`
     → `Developer Settings`
@@ -52,9 +52,11 @@
     git status
     ```
 
-1. Перешифровать секреты:
+1. Перешифровать секреты – расшифровать секреты мастер-ключом (будет запрошен пароль к ключу) и
+   зашифровать их публичным SSH-ключом хоста:
 
     ```bash
+    nix run .#agenix-rekey.x86_64-linux.rekey
     ```
 
 1. Выполнить:

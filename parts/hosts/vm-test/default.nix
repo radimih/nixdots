@@ -3,7 +3,6 @@
   config,
   ...
 }:
-
 let
   host = builtins.baseNameOf ./.;
 in
@@ -38,6 +37,7 @@ in
       # --- настройки пользователей на уровне Home Manager на данном хосте
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
+        base
         kitty
         niri
         shell

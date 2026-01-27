@@ -17,6 +17,20 @@
 
     # --- Nix/NixOS infra
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # ВНИМАНИЕ! Нельзя включать inputs.flake-parts.follows = "flake-parts"; - возникает ошибка о
+      # невозможности импортировать agenix-rekey.homeManagerModules.default во flake.modules.homeManager
+      # (см. agenix.nix)
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -37,6 +51,11 @@
     #   # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
     #   inputs.pre-commit-hooks-nix.follows = "";
     # };
+
+    secrets = {
+      url = "git+ssh://git@github.com/radimih/nixdots-secrets.git?shallow=1";
+      flake = false;
+    };
 
     stylix = {
       url = "github:nix-community/stylix/release-25.05";

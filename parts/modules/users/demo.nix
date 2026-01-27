@@ -2,8 +2,8 @@
 topLevel:
 let
   user = {
-    name = "radimir";
-    desc = "Radimir";
+    name = "demo";
+    desc = "Demo user";
   };
 in
 {
@@ -17,8 +17,6 @@ in
         description = user.desc;
         extraGroups = [
           "networkmanager"
-          "systemd-journal"
-          "wheel"
         ];
         hashedPasswordFile = "${secrets}/passwd/${user.name}";
         isNormalUser = true;
@@ -29,15 +27,22 @@ in
       ];
     };
 
-  # --- пользовательские настройки Home Manager на каждом хосте, где устанавливается пользователь
+  # --- демонстрационные пользовательские настройки Home Manager
 
   flake.modules.homeManager."user-${user.name}" =
-    { config, ... }:
+    { config, osConfig, secrets, ... }:
+    let
+      # Доступ к общесистемной конфигурации
+      host = osConfig.networking.hostName;
+    in
     {
-      xdg.userDirs = {
-        # TODO: уточнить каталог для документов
-        documents = "${config.home.homeDirectory}/1cloud/documents";
-        download = "${config.home.homeDirectory}/1temp";
+      # Формирование текстового файла
+      home.file."demo/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+
+      # Формирование файла из секрета
+      age.secrets.super-secret = {
+        path = "${config.home.homeDirectory}/.secrets/super-secret-file.txt";
+        rekeyFile = "${secrets}/super-secret.age";
       };
     };
 }

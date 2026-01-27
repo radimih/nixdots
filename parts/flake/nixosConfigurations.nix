@@ -34,7 +34,7 @@
               # --- hardware-configuration.nix, если он существует
             ] ++ lib.optional (builtins.pathExists hardConfFile) hardConfFile;
             specialArgs = {
-              inherit inputs;
+              secrets = inputs.secrets;
             };
           };
       };
