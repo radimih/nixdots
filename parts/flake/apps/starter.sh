@@ -56,7 +56,6 @@ This script does the following:
 
 6. Prepares the ${ST_BOLD}host directory${ST_REGULAR} ${ST_DIM}${DOTFILES_HOSTS_SUBDIR}/${ST_BOLD}<hostname>${ST_REGULAR} in the dotfiles:
      - copies the ${ST_DIM}hardware-configuration.nix${ST_REGULAR} file to this host directory
-     - copies the ${ST_BOLD}host public SSH key${ST_REGULAR} to this host directory
 
 Let's go!
 "
@@ -379,10 +378,6 @@ prepare_host_dir() {
 
   print_line_msg "... copying the file ${ST_DIM}${NIXOS_HW_CONFIG_FILE}${ST_REGULAR} to this host directory"
   cp "${NIXOS_HW_CONFIG_FILE}" "$host_dir"
-
-  # agenix-rekey умеет напрямую работать с публичным ключом хоста
-  # print_line_msg "... copying the host public key ${ST_DIM}${SSH_KEYFILE_HOST}.pub${ST_REGULAR} to this host directory under the name ${ST_DIM}${pubkey_name}${ST_REGULAR}"
-  # cp $SSH_KEYFILE_HOST.pub "${host_dir}/${pubkey_name}"
 }
 
 get_repo_dir() {

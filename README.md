@@ -5,9 +5,9 @@
 - [flake-parts](https://github.com/hercules-ci/flake-parts)
 - [The Dendritic Pattern](https://github.com/mightyiam/dendritic)
 
-## TODO: установка на новую систему
+## TODO: установка на новый хост
 
-1. Создать временный токен доступа к GitHub. Нужен будет для добавления в GitHub SSH-ключа пользователя на новой системе:
+1. Создать временный токен доступа к GitHub. Нужен будет для добавления в GitHub сгенерированного на новом хосте SSH-ключа пользователя:
 
     1. [github.com](https://github.com) → Профиль → `Settings`
     → `Developer Settings`
