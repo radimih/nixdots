@@ -5,7 +5,7 @@
 - [flake-parts](https://github.com/hercules-ci/flake-parts)
 - [The Dendritic Pattern](https://github.com/mightyiam/dendritic)
 
-## TODO: установка на новый хост
+## Предварительная подготовка
 
 1. Создать временный токен доступа к GitHub. Нужен будет для добавления в GitHub сгенерированного на новом хосте SSH-ключа пользователя:
 
@@ -26,10 +26,18 @@
           - ☑ `admin:ssh_signing_key`
     1. Сохранить токен удобным способом
 
-1. Выполнить начальную подготовку:
+## Установка на новый хост
+
+1. Подключиться к сети **Wi-Fi**, если необходимо:
 
     ```bash
-    nix run github:radimih/nixdots#starter --no-write-lock-file --extra-experimental-features "flakes nix-command"
+    nmcli device wifi connect 'ИМЯ СЕТИ' password 'ПАРОЛЬ'
+    ```
+
+1. Выполнить начальную подготовку (будет выполнен скрипт `starter.sh`):
+
+    ```bash
+    nix-shell https://github.com/radimih/nixdots/archive/main.tar.gz
     ```
 
 1. Создать SecureBoot-ключи хоста и записать их в EFI-память:

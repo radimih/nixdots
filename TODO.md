@@ -1,5 +1,7 @@
 # Тудушки
 
+## Под вопросом
+
 - Сервис [angrr](https://github.com/linyinfeng/angrr) - Auto Nix GC Root Retention
   ([options](https://search.nixos.org/options?channel=unstable&query=services.angrr))
 - [FirewallD](https://firewalld.org/), a firewall daemon with D-Bus interface providing a dynamic firewall.
