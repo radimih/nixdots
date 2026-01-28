@@ -2,8 +2,8 @@
 topLevel:
 let
   user = {
-    name = "demo";
-    desc = "Demo user";
+    name = "example";
+    desc = "Example user";
   };
 in
 {
@@ -37,7 +37,7 @@ in
     in
     {
       # Формирование текстового файла
-      home.file."demo/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
+      home.file."example/hello-user.txt".text = "Hello, ${user.name}! host = ${host}.";
 
       # Формирование файла из секрета
       age.secrets.super-secret = {
