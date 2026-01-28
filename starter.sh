@@ -362,7 +362,6 @@ prepare_host_dir() {
 
   local hostname="$1"
   local host_dir
-  local pubkey_name=hostkey.pub
 
   repo_dir="$(get_repo_dir)"
   host_dir="$(get_repo_dir)/${DOTFILES_HOSTS_SUBDIR}/${hostname}"
