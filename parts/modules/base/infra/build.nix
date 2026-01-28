@@ -7,13 +7,11 @@
 	    # Выводить после команд nixos-rebuild switch/dry-activate какие пакеты изменились
         diff = {
           supportsDryActivation = true;
-          # FIXME: next-release: перейти на https://github.com/faukah/dix когда появится в stable-версии NixOS
+          # https://github.com/faukah/dix
           text = ''
-            ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+            ${pkgs.dix}/bin/dix /run/current-system "$systemConfig"
           '';
         };
       };
-
-      system.rebuild.enableNg = true;
     };
 }

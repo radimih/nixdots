@@ -26,7 +26,6 @@ in
         # boot-secure
         boot-visual-adi1090x
         desktop
-        kitty  # FIXME: next-release: убрать, когда xdg.terminal-exec появится в home-manager
         niri
         service-display-manager-ly
         service-kanata

@@ -1,13 +1,5 @@
 # GPU based terminal emulator: https://sw.kovidgoyal.net/kitty/
 {
-  flake.modules.nixos.kitty = {
-
-    xdg.terminal-exec = {
-      enable = true;
-      settings.default = [ "kitty.desktop" ];
-    };
-  };
-
   flake.modules.homeManager.kitty = {
 
     programs.kitty = {
@@ -25,10 +17,9 @@
       };
     };
 
-    # FIXME: next-release: в 25.05 нет, в master - есть. Убрать из flake.modules.nixos.kitty
-    # xdg.terminal-exec = {
-    #   enable = true;
-    #   settings.default = [ "kitty.desktop" ];
-    # };
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = [ "kitty.desktop" ];
+    };
   };
 }

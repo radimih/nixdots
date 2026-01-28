@@ -3,7 +3,7 @@
     { lib, ...}:
     {
       # Использовать systemd при загрузке с initrd
-      # FIXME: next-release: в 25.11 планируется сделать по-умолчанию: https://github.com/NixOS/nixpkgs/pull/435781
+      # TODO: next-release: планируется сделать по-умолчанию: https://github.com/NixOS/nixpkgs/pull/435781
       boot.initrd.systemd.enable = true;
 
       # Время в секундах на ожидание выбора поколения NixOS (default = 5, 0 - не показывать меню)
