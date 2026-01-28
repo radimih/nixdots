@@ -124,12 +124,12 @@ update_system_config() {
     print_line_msg "... ${ST_DIM}${!STARTER_PACKAGES[*]}${ST_REGULAR} system packages and ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features already enabled"
     return 0
   else
-    print_line_msg "--> The command ${ST_DIM}sudo nixos-rebuild switch${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
+    print_line_msg "--> The command ${ST_DIM}nixos-rebuild switch --sudo${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
     pause
     echo
   fi
 
-  sudo nixos-rebuild switch
+  nixos-rebuild switch --sudo
 }
 
 enable_starter_module() {
