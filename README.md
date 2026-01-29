@@ -28,6 +28,8 @@
 
 ## Установка на новый хост
 
+1. Включить в UEFI BIOS режим **Secure Boot**
+
 1. Подключиться к сети **Wi-Fi**, если необходимо:
 
     ```bash
@@ -39,18 +41,6 @@
     ```bash
     nix-shell https://github.com/radimih/nixdots/archive/main.tar.gz
     ```
-
-1. Создать SecureBoot-ключи хоста и записать их в EFI-память:
-
-    ```bash
-    sudo nix-shell -p sbctl
-    sbctl create-keys
-    sbctl enroll-keys --microsoft
-    sbctl status
-    exit
-    ```
-
-    ВНИМАНИЕ! Не перегружать компьютер!
 
 1. Подготовить git-репозиторий:
 
@@ -67,26 +57,23 @@
     nix run .#agenix-rekey.x86_64-linux.rekey
     ```
 
-1. Выполнить:
+1. Пересобрать систему (система будет автоматически перезагружена для генерации ключей Secure Boot и внедрения их в EFI):
 
     ```bash
     nixos-rebuild switch --sudo --flake .#ХОСТ
     ```
 
-1. Проверить что EFI-образы теперь подписаны:
+   или
 
     ```bash
-    sudo sbctl verify
+    nix flake update && sudo nixos-rebuild switch --flake .#ХОСТ
     ```
-
-1. Перезагрузиться
 
 1. Проверить:
 
     ```bash
     sudo bootctl status
     sudo sbctl status
-    sudo sbctl verify
     ```
 
 1. Внедрить в TPM2 пароль на шифрованный диск, чтобы не запрашивался при загрузке:
