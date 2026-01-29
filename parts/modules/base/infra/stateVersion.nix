@@ -1,9 +1,8 @@
 # https://search.nixos.org/options?channel=unstable&show=system.stateVersion&query=system.stateVersion
 # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-{
-  stateVersion,
-  ...
-}:
+let
+  stateVersion = "25.11";
+in
 {
   flake.modules = {
     nixos.base.system.stateVersion = stateVersion;

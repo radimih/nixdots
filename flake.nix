@@ -77,7 +77,6 @@
       lib = nixpkgs.lib;
       notImports = lib.hasSuffix "hardware-configuration.nix";
       flakeParts = (import-tree.filterNot notImports) ./parts;
-      stateVersion = "25.11";
     in
-    flake-parts.lib.mkFlake { inherit inputs stateVersion; } flakeParts;
+    flake-parts.lib.mkFlake { inherit inputs; } flakeParts;
 }
