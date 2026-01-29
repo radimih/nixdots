@@ -35,14 +35,13 @@
 
     import-tree.url = "github:vic/import-tree";
 
-    # FIXME: перестал работать Lanzaboote
-    # lanzaboote = {
-    #   url = "github:nix-community/lanzaboote";
-    #   inputs.flake-parts.follows = "flake-parts";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
-    #   inputs.pre-commit-hooks-nix.follows = "";
-    # };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # рекомендуют сами разработчики lanzaboote (см. https://github.com/nix-community/lanzaboote/blob/master/flake.nix)
+      inputs.pre-commit-hooks-nix.follows = "";
+    };
 
     secrets = {
       url = "git+ssh://git@github.com/radimih/nixdots-secrets.git?shallow=1";
