@@ -110,25 +110,13 @@ update_system_config() {
 
   print_step_msg "Updating NixOS configuration"
   echo
-  print_line_msg "--> The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
+  print_line_msg "The following ${ST_DIM}$(dirname "$NIXOS_CONFIG_FILE")/starter.nix${ST_REGULAR} module will be added to the NixOS configuration:"
   echo
   echo "$STARTER_NIX_MODULE"
+  echo
+  print_line_msg "--> The command ${ST_DIM}nixos-rebuild switch --sudo${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
   pause
-  echo
-  sudo --validate
-  echo
   enable_starter_module
-
-  if is_enabled_experimental_features && \
-     is_enabled_system_packages; then
-    print_line_msg "... ${ST_DIM}${!STARTER_PACKAGES[*]}${ST_REGULAR} system packages and ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features already enabled"
-    return 0
-  else
-    print_line_msg "--> The command ${ST_DIM}nixos-rebuild switch --sudo${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
-    pause
-    echo
-  fi
-
   nixos-rebuild switch --sudo
 }
 
@@ -145,27 +133,6 @@ enable_starter_module() {
 
   # Вставить строку '      ./starter.nix' в imports после ./hardware-configuration.nix
   sudo sed --in-place '/^\s*\.\/hardware-configuration\.nix\s*$/a\ \ \ \ \ \ .\/starter.nix' "$NIXOS_CONFIG_FILE"
-}
-
-# ВНИМАНИЕ! Проверяется только на одну экспериментальную функцию: flakes
-is_enabled_experimental_features() {
-
-  local regex_flakes='^[[:space:]]*(extra-)?experimental-features[[:space:]]*=[[:space:]]*([a-zA-Z-]+[[:space:]]+)*flakes([[:space:]]+[a-zA-Z-]+)*[[:space:]]*$'
-
-  grep --silent --no-messages -E "$regex_flakes" $NIX_CONFIG_FILE
-}
-
-is_enabled_system_packages() {
-
-  local binary
-
-  for binary in "${STARTER_PACKAGES[@]}"; do
-    if [[ ! -e "/run/current-system/sw/bin/$binary" ]]; then
-      return 1
-    fi
-  done
-
-  return 0
 }
 
 generate_ssh_keys() {
