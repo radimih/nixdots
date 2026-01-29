@@ -27,7 +27,6 @@
               # --- общие настройки для всех хостов
               {
                 networking.hostName = host;
-                system.stateVersion = "25.11";  # TODO: stateVersion: 1) одинаково для всех хостов? 2) вынести в глобальные константы?
               }
               # --- настройки, специфичные для данного хоста (см. каталог parts/hosts/{host})
               config.flake.modules.nixos."host-${host}"

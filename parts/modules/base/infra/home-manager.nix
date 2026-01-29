@@ -28,9 +28,6 @@
 
           home.preferXdgDirectories = true;
 
-          # example: https://github.com/henrysipp/nix-setup/blob/48a93d0275eba0adf48977609fc100dce8f9b49c/modules/base/system/default.nix
-          home.stateVersion = "25.11";  # TODO: stateVersion: 1) одинаково для всех пользователей? 2) вынести в глобальные константы?
-
           # Let Home Manager install and manage itself
           programs.home-manager.enable = true;
         }
