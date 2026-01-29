@@ -1,7 +1,3 @@
-let
-  nixpkgsVersion = "25.11";
-  stateVersion = "25.11";
-in
 {
   description = "My Nixos configuration flake";
 
@@ -9,7 +5,7 @@ in
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-${nixpkgsVersion}";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # --- Nix/NixOS infra
 
@@ -33,7 +29,7 @@ in
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-${nixpkgsVersion}";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,7 +50,7 @@ in
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-${nixpkgsVersion}";
+      url = "github:nix-community/stylix/release-25.11";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -81,6 +77,7 @@ in
       lib = nixpkgs.lib;
       notImports = lib.hasSuffix "hardware-configuration.nix";
       flakeParts = (import-tree.filterNot notImports) ./parts;
+      stateVersion = "25.11";
     in
     flake-parts.lib.mkFlake { inherit inputs stateVersion; } flakeParts;
 }
