@@ -116,6 +116,7 @@ update_system_config() {
   echo
   print_line_msg "--> The command ${ST_DIM}nixos-rebuild switch --sudo${ST_REGULAR} will be run to make the changes in the NixOS configuration take effect"
   pause
+  echo
   sudo --validate
   echo
   enable_starter_module
