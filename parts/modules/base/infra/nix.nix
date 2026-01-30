@@ -57,6 +57,7 @@
         ];
 
         trusted-public-keys = [
+          # ключ для mirror.yandex.ru не нужен, так как это просто зеркало cache.nixos.org
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
 
