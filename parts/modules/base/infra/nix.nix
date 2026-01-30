@@ -45,20 +45,20 @@
           "pipe-operators"
         ];
 
-        extra-substituters = [
-          "https://mirror.yandex.ru/nixos"
-          "https://nix-community.cachix.org"
-        ];
-
-        extra-trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
-
         # Включить сборку мусора во время выполнения nixos-rebuild / nix build. Сборка включается
         # когда свободного места на диске становится меньше min-free байт и будет выполняться пока
         # не станет доступно max-free байт. По-умолчанию max-free равен бесконечности, то есть
         # будет удалён весь мусор
 	      min-free = 5 * 1024 * 1024 * 1024;  # 5 Gb
+
+        substituters = [
+          "https://mirror.yandex.ru/nixos"
+          "https://nix-community.cachix.org"
+        ];
+
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
 
         # Количество секунд, в течение которых загруженный tar-архив считается актуальным
 	      tarball-ttl = 24 * 60 * 60;  # 24 часа
