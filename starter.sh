@@ -23,7 +23,6 @@ STARTER_NIX_MODULE=\
   };
 }'
 
-NIX_CONFIG_FILE=/etc/nix/nix.conf
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
 NIXOS_HW_CONFIG_FILE=/etc/nixos/hardware-configuration.nix
 SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
