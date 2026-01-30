@@ -31,9 +31,13 @@
         # их жёсткими ссылками на одну копию
         auto-optimise-store = true;
 
-        # Тайм-аут (в секундах) для установки соединений с binary cache substituter.
+        # Таймаут (в секундах) для установки соединений с binary cache substituter.
         # Значение по-умолчанию - 0 (отсутствие ограничений)
 	      connect-timeout = 5;
+
+        # Таймаут (в секундах) для получения данных с серверов во время загрузки. Nix отменяет
+        # неактивные загрузки по истечении этого таймаута. Значение по-умолчанию - 300
+        stalled-download-timeout = 30;
 
         # Отключить все глобальные flake registry (https://channels.nixos.org/flake-registry.json).
         # Останется только один системный nixpkgs, привязанный к inputs.nixpkgs (nix registry list)
