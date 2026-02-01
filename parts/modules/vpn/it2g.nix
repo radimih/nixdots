@@ -9,7 +9,7 @@
               # https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html
               connection = {
                 autoconnect = "false";
-                id = "IT2G";
+                id = "it2g";
                 type = "vpn";
               };
               ipv4 = { method = "auto"; };
