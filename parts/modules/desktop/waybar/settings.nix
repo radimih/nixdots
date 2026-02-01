@@ -27,10 +27,18 @@
 
         # ─────────────────────────────────────────────────────────┤ Right │
         modules-right = [
+          "tray"
+          "network"
           "niri/language"
           "clock#local"
           "clock#msk"
         ];
+
+        network = {
+          format-disconnected = "⚠";
+          format-ethernet = "";
+          format-wifi = "";
+        };
 
 	      "niri/language" = {
           format = "{short}";
