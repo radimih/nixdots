@@ -31,7 +31,7 @@
                 service-type = "org.freedesktop.NetworkManager.openvpn";
                 ta = "${secrets}/it2g/vpn-ta.pem";
                 ta-dir = "1";
-                user-name = "mikhailovrv"
+                user-name = "mikhailovrv";
               };
             };
           };
