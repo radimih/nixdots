@@ -42,7 +42,6 @@
 
     secrets = {
       url = "git+ssh://git@github.com/radimih/nixdots-secrets.git?shallow=1";
-      flake = false;
     };
 
     stylix = {

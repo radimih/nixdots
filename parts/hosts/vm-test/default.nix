@@ -30,12 +30,14 @@ in
         service-kanata
         service-universal-layout
         user-radimir
+        vpn-it2g
       ];
 
       # --- настройки пользователей на уровне Home Manager на данном хосте
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
         base
+        desktop
         kitty
         niri
         shell

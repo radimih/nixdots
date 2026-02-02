@@ -27,6 +27,7 @@
 
         # ─────────────────────────────────────────────────────────┤ Right │
         modules-right = [
+          "tray"
           "niri/language"
           "clock#local"
           "clock#msk"
