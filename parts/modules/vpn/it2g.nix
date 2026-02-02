@@ -20,7 +20,7 @@
               ipv4 = { method = "auto"; };
               proxy = { };
               vpn = {
-                ca = age.secrets.it2g-vpn-ca.path;
+                ca = config.age.secrets.it2g-vpn-ca.path;
                 challenge-response-flags = "2";
                 cipher = "AES-256-CBC";
                 compress = "lz4";
@@ -34,7 +34,7 @@
                 remote = secrets.it2g.vpn.server;
                 remote-cert-tls = "server";
                 service-type = "org.freedesktop.NetworkManager.openvpn";
-                ta = age.secrets.it2g-vpn-ta.path;
+                ta = config.age.secrets.it2g-vpn-ta.path;
                 ta-dir = "1";
                 user-name = secrets.it2g.vpn.user;
               };
