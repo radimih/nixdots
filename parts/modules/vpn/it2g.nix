@@ -47,12 +47,4 @@
         ];
       };
     };
-
-  flake.modules.homeManager.vpn-it2g =
-    { config, pkgs, secrets, ... }:
-    {
-      services = {
-        network-manager-applet.enable = true;
-      };
-    };
 }

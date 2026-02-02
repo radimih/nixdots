@@ -37,11 +37,11 @@ in
 
       home-manager.users.radimir.imports = with config.flake.modules.homeManager; [
         base
+        desktop
         kitty
         niri
         shell
         waybar
-        vpn-it2g
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
