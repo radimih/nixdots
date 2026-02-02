@@ -2,6 +2,11 @@
   flake.modules.nixos.vpn-it2g =
     { config, pkgs, secrets, ... }:
     {
+      age.secrets = {
+        it2g-vpn-ca.rekeyFile ="${secrets}/it2g/vpn-ca.pem.age";
+        it2g-vpn-ta.rekeyFile ="${secrets}/it2g/vpn-ta.pem.age";
+      };
+
       networking.networkmanager = {
         ensureProfiles = {
           profiles = {
@@ -15,7 +20,7 @@
               ipv4 = { method = "auto"; };
               proxy = { };
               vpn = {
-                ca = "${secrets}/it2g/vpn-ca.pem";
+                ca = age.secrets.it2g-vpn-ca.path;
                 challenge-response-flags = "2";
                 cipher = "AES-256-CBC";
                 compress = "lz4";
@@ -26,11 +31,10 @@
                 ping = "10";
                 ping-restart = "120";
                 proto-tcp = "yes";
-                # remote = "185.118.64.210:11105";
                 remote = secrets.it2g.vpn.server;
                 remote-cert-tls = "server";
                 service-type = "org.freedesktop.NetworkManager.openvpn";
-                ta = "${secrets}/it2g/vpn-ta.pem";
+                ta = age.secrets.it2g-vpn-ta.path;
                 ta-dir = "1";
                 user-name = secrets.it2g.vpn.user;
               };
