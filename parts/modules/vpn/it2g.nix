@@ -26,12 +26,13 @@
                 ping = "10";
                 ping-restart = "120";
                 proto-tcp = "yes";
-                remote = "185.118.64.210:11105";
+                # remote = "185.118.64.210:11105";
+                remote = secrets.it2g.vpn.server;
                 remote-cert-tls = "server";
                 service-type = "org.freedesktop.NetworkManager.openvpn";
                 ta = "${secrets}/it2g/vpn-ta.pem";
                 ta-dir = "1";
-                user-name = "mikhailovrv";
+                user-name = secrets.it2g.vpn.user;
               };
             };
           };
@@ -51,43 +52,3 @@
       };
     };
 }
-
-/*
-{
-  "vpn.it2g.ru_tcp" = {
-    connection = {
-      autoconnect = "false";
-      id = "vpn.it2g.ru_tcp";
-      permissions = "user:radimir:;";
-      type = "vpn";
-      uuid = "d4221ee2-036d-44e8-8146-9c7fd4556b31";
-    };
-    ipv4 = {
-      method = "auto";
-    };
-    ipv6 = {
-      addr-gen-mode = "default";
-      method = "auto";
-    };
-    proxy = { };
-    vpn = {
-      ca = "/home/radimir/.cert/nm-openvpn/vpn.it2g.ru_tcp-ca.pem";
-      challenge-response-flags = "2";
-      cipher = "AES-256-CBC";
-      compress = "lz4";
-      connection-type = "password";
-      dev = "tun";
-      float = "yes";
-      password-flags = "1";
-      ping = "10";
-      ping-restart = "120";
-      proto-tcp = "yes";
-      remote = "185.118.64.210:11105";
-      remote-cert-tls = "server";
-      service-type = "org.freedesktop.NetworkManager.openvpn";
-      ta = "/home/radimir/.cert/nm-openvpn/vpn.it2g.ru_tcp-tls-auth.pem";
-      ta-dir = "1";
-    };
-  };
-}
-*/
