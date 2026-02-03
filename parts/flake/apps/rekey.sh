@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "@hello@"
+echo "@master-key-file@"
+echo "@rekey-command@"

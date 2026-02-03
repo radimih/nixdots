@@ -13,9 +13,8 @@
           ];
           text = builtins.readFile (
             pkgs.replaceVars ./rekey.sh {
-                # masterKeyFile = "${inputs.secrets.outPath}/master-key.age";
-                # rekeyCommand = "nix run .#agenix-rekey.${system}.rekey";
-                hello = "world";
+                master-key-file = "${inputs.secrets.outPath}/master-key.age";
+                rekey-command = "nix run .#agenix-rekey.${system}.rekey";
               }
           );
         };
