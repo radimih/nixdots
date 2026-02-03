@@ -13,7 +13,7 @@
           # text = builtins.readFile ./rekey.sh;
           text = ''
             echo Hello!
-          ''
+          '';
         };
       };
     };
