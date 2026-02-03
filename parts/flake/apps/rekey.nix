@@ -9,6 +9,7 @@
         program = pkgs.writeShellApplication {
           name = "rekey.sh";
           runtimeInputs = with pkgs; [
+            age
             expect
           ];
           text = builtins.readFile (
