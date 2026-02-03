@@ -11,8 +11,8 @@
           substitutedScript = pkgs.replaceVars {
             src = ./rekey.sh;
             vars = {
-              master-key-file = "${inputs.secrets.outPath}/master-key.age";
-              agenix-rekey-command = "nix run .#agenix-rekey.${system}.rekey";
+              masterKeyFile = "${inputs.secrets.outPath}/master-key.age";
+              rekeyCommand = "nix run .#agenix-rekey.${system}.rekey";
             };
           };
         in
