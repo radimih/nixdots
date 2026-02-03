@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   perSystem =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       apps.rekey = {
         meta.description = "Rekey";
@@ -13,7 +14,8 @@
           # text = builtins.readFile ./rekey.sh;
           text = ''
             echo Hello!
-            echo ${builtins.head config.age.rekey.masterIdentities}
+            # echo ${builtins.head config.age.rekey.masterIdentities}
+            echo ${inputs.secrets}/master-key.age
           '';
         };
       };
