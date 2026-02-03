@@ -1,19 +1,24 @@
 { inputs, ... }:
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     {
-      apps.app2 = {
-        meta.description = "app2";
+      apps.rekey = {
+        meta.description = "Rekey";
         type = "app";
         program = pkgs.writeShellApplication {
-          name = "app2.sh";
+          name = "rekey.sh";
           runtimeInputs = with pkgs; [
             expect
           ];
-          text = ''
-            echo It is app2!
-          '';
+          text =
+          let
+            qqq = pkgs.replaceVars ./rekey.sh {
+                master-key-file = "${inputs.secrets.outPath}/master-key.age";
+                rekey-command = "nix run .#agenix-rekey.${system}.rekey";
+              };
+          in
+            builtins.readFile qqq;
         };
       };
     };
