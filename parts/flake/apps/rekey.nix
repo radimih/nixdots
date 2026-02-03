@@ -10,7 +10,7 @@
         let
           substitutedScript = pkgs.replaceVars {
             src = ./rekey.sh;
-            vars = {
+            replacements = {
               masterKeyFile = "${inputs.secrets.outPath}/master-key.age";
               rekeyCommand = "nix run .#agenix-rekey.${system}.rekey";
             };
