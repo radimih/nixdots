@@ -13,7 +13,7 @@
           ];
           text = ''
             echo Hello! It is app1
-            echo ${inputs.secrets}/master-key.age
+            echo ${inputs.secrets.outPath}/master-key.age
           '';
         };
       };
