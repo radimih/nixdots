@@ -6,24 +6,18 @@
       apps.rekey = {
         meta.description = "Rekey";
         type = "app";
-        program =
-        let
-          substitutedScript = pkgs.replaceVars {
-            src = ./rekey.sh;
-            replacements = {
-              # masterKeyFile = "${inputs.secrets.outPath}/master-key.age";
-              # rekeyCommand = "nix run .#agenix-rekey.${system}.rekey";
-              hello = "world";
-            };
-          };
-        in
-        pkgs.writeShellApplication {
+        program = pkgs.writeShellApplication {
           name = "rekey.sh";
           runtimeInputs = with pkgs; [
             expect
           ];
-          # text = builtins.readFile substitutedScript;
-          text = ''${substitutedScript}'';
+          text = builtins.readFile (
+            pkgs.replaceVars ./rekey.sh {
+                # masterKeyFile = "${inputs.secrets.outPath}/master-key.age";
+                # rekeyCommand = "nix run .#agenix-rekey.${system}.rekey";
+                hello = "world";
+              }
+          );
         };
       };
     };
