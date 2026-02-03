@@ -2,18 +2,18 @@
   perSystem =
     { pkgs, ... }:
     {
-      apps.starter = {
-        meta.description = "Hello";
+      apps.rekey = {
+        meta.description = "Rekey";
         type = "app";
         program = pkgs.writeShellApplication {
-          name = "starter.sh";
+          name = "rekey.sh";
           runtimeInputs = with pkgs; [
-            gh
-            git
-            rlwrap  # для замены команды read, в которой не работает редактирование строки,
-                    # так как скрипт запускается в неинтерактивном варианте bash
+            expect
           ];
-          text = builtins.readFile ./starter.sh;
+          # text = builtins.readFile ./rekey.sh;
+          test = ''
+            echo Hello!
+          ''
         };
       };
     };
