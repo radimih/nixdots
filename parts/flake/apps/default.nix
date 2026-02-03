@@ -3,6 +3,6 @@
   perSystem =
     { pkgs, ... }:
     {
-      apps.rekey = import ./rekey.nix;
+      apps.rekey = import ./rekey.nix inputs pkgs;
     };
 }
