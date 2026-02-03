@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
-  meta.description = "Rekey";
+  # meta.description = "Rekey";
   type = "app";
   program = pkgs.writeShellApplication {
     name = "rekey.sh";
