@@ -22,7 +22,7 @@
           runtimeInputs = with pkgs; [
             expect
           ];
-          text = builtins.readFile substitutedScript;
+          text = builtins.readFile substitutedScript.outPath;
         };
       };
     };
