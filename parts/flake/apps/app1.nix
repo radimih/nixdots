@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   perSystem =
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     {
       apps.app1 = {
         meta.description = "app1";
@@ -12,7 +12,7 @@
             expect
           ];
           text = ''
-            echo Hello! It is app1
+            echo Hello, ${system}!
             echo ${inputs.secrets.outPath}/master-key.age
           '';
         };
