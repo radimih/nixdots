@@ -11,7 +11,7 @@
             expect
           ];
           # text = builtins.readFile ./rekey.sh;
-          test = ''
+          text = ''
             echo Hello!
           ''
         };
