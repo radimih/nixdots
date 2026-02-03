@@ -12,7 +12,7 @@
             expect
           ];
           text = ''
-            echo Hello! It's app1
+            echo Hello! It is app1
             echo ${inputs.secrets}/master-key.age
           '';
         };
@@ -27,7 +27,7 @@
             expect
           ];
           text = ''
-            echo It's app2!
+            echo It is app2!
           '';
         };
       };
