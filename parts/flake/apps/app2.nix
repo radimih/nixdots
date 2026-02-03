@@ -3,7 +3,7 @@
   perSystem =
     { pkgs, system, ... }:
     {
-      apps.rekey = {
+      apps.app2 = {
         meta.description = "Rekey";
         type = "app";
         program = pkgs.writeShellApplication {
