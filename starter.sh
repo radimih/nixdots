@@ -17,7 +17,12 @@ STARTER_NIX_MODULE=\
   environment.systemPackages = with pkgs; [ '${!STARTER_PACKAGES[*]}' ];
   nix.settings = {
     experimental-features = [ '$(printf '"%s" ' "${STARTER_FEATURES[@]}")'];
-    substituters = [ "https://nix-community.cachix.org" ];
+    connect-timeout = 5;
+    stalled-download-timeout = 10;
+    substituters = [
+      "https://mirror.yandex.ru/nixos"
+      "https://nix-community.cachix.org"
+    ];
     trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     trusted-users = [ "@wheel" ];
   };

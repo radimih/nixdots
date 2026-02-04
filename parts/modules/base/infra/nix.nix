@@ -37,7 +37,7 @@
 
         # Таймаут (в секундах) для получения данных с серверов во время загрузки. Nix отменяет
         # неактивные загрузки по истечении этого таймаута. Значение по-умолчанию - 300
-        stalled-download-timeout = 30;
+        stalled-download-timeout = 10;
 
         # Отключить все глобальные flake registry (https://channels.nixos.org/flake-registry.json).
         # Останется только один системный nixpkgs, привязанный к inputs.nixpkgs (nix registry list)
