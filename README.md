@@ -54,7 +54,7 @@
    зашифровать их публичными SSH-ключами хоста и пользователя:
 
     ```bash
-    nix run .#agenix-rekey.x86_64-linux.rekey
+    nix run .#rekey
     ```
 
 1. Пересобрать систему (система будет автоматически перезагружена для генерации ключей Secure Boot и внедрения их в EFI):
@@ -69,10 +69,9 @@
     nix flake update && sudo nixos-rebuild switch --flake .#ХОСТ
     ```
 
-1. Проверить:
+1. Проверить статус **Secure Boot**:
 
     ```bash
-    sudo bootctl status
     sudo sbctl status
     ```
 
