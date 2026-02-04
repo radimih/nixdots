@@ -54,7 +54,7 @@ rekey() {
     set timeout 300
     spawn $REKEY_COMMAND
     expect {
-      -re "Enter passphrase.*:" {
+      -re "Type passphrase.*:" {
         send "$AGE_KEY_PASSPHRASE\r"
         exp_continue
       }
