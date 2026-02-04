@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 TPM2_COMMAND=\
 'sudo systemd-cryptenroll \
   --wipe-slot=tpm2 \
