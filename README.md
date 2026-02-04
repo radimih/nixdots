@@ -69,10 +69,9 @@
     nix flake update && sudo nixos-rebuild switch --flake .#ХОСТ
     ```
 
-1. Проверить:
+1. Проверить статус **Secure Boot**:
 
     ```bash
-    sudo bootctl status
     sudo sbctl status
     ```
 
