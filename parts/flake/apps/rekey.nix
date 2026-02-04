@@ -13,10 +13,15 @@
             expect
           ];
           text = builtins.readFile (
-            pkgs.replaceVars ./rekey.sh {
+            pkgs.replaceVarsWith {
+              src = ./rekey.sh;
+              dir = "bin";
+              isExecutable = true;
+              replacements = {
                 master-key-file = "${inputs.secrets.outPath}/master-key.age";
                 rekey-command = "nix run .#agenix-rekey.${system}.rekey";
-              }
+              };
+            };
           );
         };
       };
