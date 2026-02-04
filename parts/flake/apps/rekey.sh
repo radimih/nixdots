@@ -1,8 +1,6 @@
-#!/bin/bash
-set -euo pipefail
-
-MASTER_KEY_FILE=./master-key.age
-REKEY_COMMAND=./trial-age-script.sh
+# Substitutions from rekey.nix
+MASTER_KEY_FILE=@master-key-file@
+REKEY_COMMAND=@rekey-command@
 
 CL_GREEN='\033[0;32m'
 CL_NO='\033[0m'
