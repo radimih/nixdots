@@ -1,34 +1,90 @@
-read -p "Введите пароль для ключа: " password
-echo
+#!/bin/bash
+set -euo pipefail
 
-export AGE_KEY_PASSPHRASE="$password"
-unset password
+MASTER_KEY_FILE=./master-key.age
+REKEY_COMMAND=./trial-age-script.sh
 
-if ! expect - "@master-key-file@" <<'EOF' 2>/dev/null; then
-  set timeout 30
-  set key_file [lindex $argv 0]
-  set passphrase $env(AGE_KEY_PASSPHRASE)
+CL_GREEN='\033[0;32m'
+CL_NO='\033[0m'
 
-  spawn age -d -o /dev/null "$key_file"
+main() {
+  # set AGE_KEY_PASSPHRASE environment variable
+  input_password
+  # run agenix-rekey with password substitution
+  rekey
+}
 
-  expect {
-    -re "(?i)passphrase" {
-      send "$passphrase\r"
-      exp_continue
-    }
-    timeout {
-      puts stderr "Таймаут: не получен запрос пароля за 30 секунд"
-      exit 1
-    }
-    eof
-  }
-  catch wait result
-  exit [lindex $result 3]
+input_password() {
+
+  local password=""
+
+  print_step_msg "Enter master password"
+
+  while true; do
+    read -p "Enter passphrase for master key: " password
+
+    if expect <<EOF > /dev/null; then
+      set timeout 30
+      spawn age -d -o /dev/null "$MASTER_KEY_FILE"
+      expect {
+        -re "Enter passphrase:" {
+          send "$password\r"
+          exp_continue
+        }
+        timeout {
+          exit 1
+        }
+        eof
+      }
+      catch wait result
+      exit [lindex \$result 3]
 EOF
-    echo "Ошибка: расшифровка не удалась (код возврата: $?)"
-    unset AGE_KEY_PASSPHRASE
-    exit 1
-fi
+      break
+    else
+      echo "Incorrect passphrase, please try again"
+      echo
+    fi
+  done
+  AGE_KEY_PASSPHRASE="$password"
+}
 
-unset AGE_KEY_PASSPHRASE
+rekey() {
 
+  print_step_msg "Run agenix-rekey"
+
+  expect <<EOF
+    set timeout 300
+    spawn $REKEY_COMMAND
+    expect {
+      -re "Enter passphrase.*:" {
+        send "$AGE_KEY_PASSPHRASE\r"
+        exp_continue
+      }
+      timeout {
+        exit 1
+      }
+      eof
+    }
+    catch wait result
+    exit [lindex \$result 3]
+EOF
+}
+
+print_step_msg() {
+
+  local msg="┤ $1 │"
+  local width=90
+
+  local len=${#msg}
+  local pad=$((width - len))
+
+  local filler="─"
+  while (( ${#filler} < pad )); do
+      filler+="$filler"
+  done
+  filler="${filler:0:$pad}"
+
+  printf "\\n${CL_GREEN}%s%s${CL_NO}\\n\\n" "$filler" "$msg"
+}
+
+main
