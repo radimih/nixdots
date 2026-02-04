@@ -19,7 +19,7 @@ input_password() {
   print_step_msg "Enter master password"
 
   while true; do
-    read -p "Enter passphrase for master key: " password
+    read -r -p "Enter passphrase for master key: " password
 
     if expect <<EOF > /dev/null; then
       set timeout 30
