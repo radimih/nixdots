@@ -21,7 +21,7 @@
                 master-key-file = "${inputs.secrets.outPath}/master-key.age";
                 rekey-command = "nix run .#agenix-rekey.${system}.rekey";
               };
-            };
+            }
           );
         };
       };
