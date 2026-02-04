@@ -3,7 +3,7 @@
   perSystem =
     { pkgs, system, ... }:
     {
-      apps.rekey = {
+      apps.tpm2 = {
         meta.description = "Enroll the password for the encrypted disk into TPM2 memory";
         type = "app";
         program = pkgs.writeShellApplication {
