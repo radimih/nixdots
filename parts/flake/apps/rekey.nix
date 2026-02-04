@@ -15,7 +15,7 @@
           text = builtins.readFile (
             pkgs.replaceVarsWith {
               src = ./rekey.sh;
-              dir = "bin";
+              # dir = "bin";
               isExecutable = true;
               replacements = {
                 master-key-file = "${inputs.secrets.outPath}/master-key.age";
