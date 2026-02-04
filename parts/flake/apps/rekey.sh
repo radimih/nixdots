@@ -68,7 +68,7 @@ rekey() {
 EOF
 }
 
-print_step_print_error_msg() {
+print_error_msg() {
 
   echo
   echo -e "${CL_RED}$1${CL_NO}"
