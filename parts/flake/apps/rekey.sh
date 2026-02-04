@@ -4,6 +4,7 @@ REKEY_COMMAND="@rekey-command@"
 
 CL_GREEN='\033[0;32m'
 CL_NO='\033[0m'
+CL_RED='\033[0;31m'
 
 main() {
   # set AGE_KEY_PASSPHRASE environment variable
@@ -39,8 +40,7 @@ input_password() {
 EOF
       break
     else
-      echo "Incorrect passphrase, please try again"
-      echo
+      print_error_msg "Incorrect passphrase, please try again"
     fi
   done
   AGE_KEY_PASSPHRASE="$password"
@@ -68,7 +68,14 @@ rekey() {
 EOF
 }
 
-print_step_msg() {
+print_step_print_error_msg() {
+
+  echo
+  echo -e "${CL_RED}$1${CL_NO}"
+  echo
+}
+
+msg() {
 
   local msg="┤ $1 │"
   local width=90
