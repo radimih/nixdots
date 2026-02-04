@@ -75,7 +75,7 @@ print_error_msg() {
   echo
 }
 
-msg() {
+print_step_msg() {
 
   local msg="┤ $1 │"
   local width=90
