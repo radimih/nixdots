@@ -37,7 +37,6 @@
           # Включить Wayland-режим для распространённых GUI libs:
           # https://wiki.archlinux.org/title/Wayland#GUI_libraries
           CLUTTER_BACKEND = "wayland";
-          GDK_BACKEND = "wayland";
           QT_QPA_PLATFORM = "wayland";
           SDL_VIDEODRIVER = "wayland";
 
