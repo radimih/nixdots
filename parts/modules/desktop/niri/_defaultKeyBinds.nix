@@ -1,6 +1,6 @@
 # Привязки клавиш по-умолчанию
 # ----------------------------
-#   - первоисточник: https://github.com/YaLTeR/niri/blob/main/resources/default-config.kdl
+#   - первоисточник: https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl
 #   - Nix-версия: https://github.com/ViZiD/dotfiles/blob/master/modules/graphical/wayland/niri/defaultKeyBind.nix
 {
   # Keys consist of modifiers separated by + signs, followed by an XKB key name

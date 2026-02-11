@@ -1,4 +1,4 @@
-# Scrollable-tiling Wayland compositor Niri: https://github.com/YaLTeR/niri
+# Niri: https://github.com/niri-wm/niri
 # Flake: https://github.com/sodiboo/niri-flake
 {
   flake.modules.homeManager.niri =

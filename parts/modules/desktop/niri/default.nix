@@ -1,4 +1,4 @@
-# Niri: https://github.com/YaLTeR/niri
+# Niri: https://github.com/niri-wm/niri
 # Flake: https://github.com/sodiboo/niri-flake
 {
   inputs,
@@ -25,6 +25,8 @@
       # TODO: next-release: в nixpkgs master уже реализовано что-то подобное:
       # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/programs/wayland/niri.nix
       # ВНИМАНИЕ! Модуль из nixpkgs отключается в niri-flake
+      # Настройки ниже не срабатывают: файл /run/current-system/sw/share/xdg-desktop-portal/niri-portals.conf
+      # перетирается в https://github.com/sodiboo/niri-flake/blob/main/flake.nix#L192 файлом из пакета pkgs.niri
       xdg.portal = {
         config.niri = {
           default = ["gnome" "gtk"];
@@ -33,7 +35,7 @@
           "org.freedesktop.impl.portal.ScreenCast" = "gnome";
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
-        # BUG: при включении gtk-portal перестаёт с первого раза запускаться Waybar
+        # BUG: при включении xdg-desktop-portal-gtk перестаёт с первого раза запускаться Waybar
         # extraPortals = with pkgs; [
         #   xdg-desktop-portal-gtk
         # ];
