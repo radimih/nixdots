@@ -1,4 +1,4 @@
-# Scrollable-tiling Wayland compositor Niri: https://github.com/YaLTeR/niri
+# Niri: https://github.com/YaLTeR/niri
 # Flake: https://github.com/sodiboo/niri-flake
 {
   inputs,
@@ -22,6 +22,9 @@
         package = pkgs.niri;
       };
 
+      # TODO: next-release: в nixpkgs master уже реализовано что-то подобное:
+      # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/programs/wayland/niri.nix
+      # ВНИМАНИЕ! Модуль из nixpkgs отключается в niri-flake
       xdg.portal = {
         config.niri = {
           default = ["gnome" "gtk"];
@@ -30,10 +33,10 @@
           "org.freedesktop.impl.portal.ScreenCast" = "gnome";
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gnome
-          xdg-desktop-portal-gtk
-        ];
+        # BUG: при включении gtk-portal перестаёт с первого раза запускаться Waybar
+        # extraPortals = with pkgs; [
+        #   xdg-desktop-portal-gtk
+        # ];
       };
     };
 
