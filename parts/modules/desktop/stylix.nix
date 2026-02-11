@@ -39,7 +39,7 @@
           };
         };
 
-        image = ./wallpapers/cold-coast.jpg;
+        image = ./wallpapers/cold-coast-1920x1080.png;
 
         opacity = {
           terminal = 0.8;
