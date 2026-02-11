@@ -1,4 +1,4 @@
-# Scrollable-tiling Wayland compositor Niri: https://github.com/YaLTeR/niri
+# Niri: https://github.com/YaLTeR/niri
 # Flake: https://github.com/sodiboo/niri-flake
 {
   flake.modules.homeManager.niri =
@@ -22,10 +22,6 @@
         };
 
         prefer-no-csd = true;
-
-        spawn-at-startup = [
-          { command = [ "${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}" ]; }
-        ];
       };
     };
 }

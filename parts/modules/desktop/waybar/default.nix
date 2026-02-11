@@ -5,12 +5,15 @@
     programs.waybar.enable = true;
   };
 
-  flake.modules.homeManager.niri = {
+  flake.modules.homeManager.niri =
+    { config, lib, pkgs, ... }:
+    {
 
-    programs.niri.settings = {
-      spawn-at-startup = [
-        { command = [ "waybar" ]; }
-      ];
-    };
+      programs.niri.settings = {
+        spawn-at-startup = [
+          { command = [ "waybar" ]; }
+          { command = [ "${lib.getExe pkgs.swaybg}" "--image" "${config.stylix.image}" ]; }
+        ];
+      };
   };
 }
