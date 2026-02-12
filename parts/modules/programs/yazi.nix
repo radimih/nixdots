@@ -13,6 +13,9 @@
     {
       programs.yazi = {
         enable = true;
+        plugins = with pkgs; {
+          full-border = yaziPlugins.full-border;
+        };
         settings = {
           mgr = {
             linemode = "size";
