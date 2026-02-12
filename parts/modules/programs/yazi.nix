@@ -28,7 +28,7 @@
               sort_dir_first = true;
               sort_reverse = false;
               sort_sensitive = false;
-            }:
+            };
           };
         };
       };
