@@ -30,6 +30,7 @@ in
         service-kanata
         user-radimir
         vpn-it2g
+        yazi
       ];
 
       # --- настройки пользователей на уровне Home Manager на данном хосте
@@ -41,6 +42,7 @@ in
         niri
         shell
         waybar
+        yazi
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
