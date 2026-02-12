@@ -13,9 +13,19 @@
     {
       programs.yazi = {
         enable = true;
-        plugins = with pkgs; {
-          full-border = yaziPlugins.full-border;
+
+        initLua = ''
+          require("full-border"):setup({ type = ui.Border.ROUNDED })
+          require("git"):setup()
+        '';
+
+        plugins = {
+          inherit (pkgs.yaziPlugins)
+            full-border
+            git
+            ;
         };
+
         settings = {
           mgr = {
             linemode = "size";
