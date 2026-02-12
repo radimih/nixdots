@@ -15,11 +15,11 @@
         enable = true;
         settings = {
           yazi = {
-            # linemode = "none";
+            linemode = "size";
             ratio = [
               1
               4
-              3
+              4
             ];
             show_hidden = true;
             show_symlink = true;
