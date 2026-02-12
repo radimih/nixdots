@@ -28,7 +28,6 @@ in
         niri
         service-display-manager-ly
         service-kanata
-        service-universal-layout
         user-radimir
         vpn-it2g
       ];
