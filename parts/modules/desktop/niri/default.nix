@@ -14,7 +14,6 @@
 
       environment.systemPackages = with pkgs; [
         fuzzel
-        yazi
       ];
 
       programs.niri = {

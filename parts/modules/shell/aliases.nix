@@ -28,7 +28,6 @@
         grep = "rg";
         lt = "eza --tree --level=2";
         tree = "eza --tree";
-        yz = "yazi";
     };
   };
 }
