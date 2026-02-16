@@ -47,7 +47,7 @@
             {
               id = "SessionMenu";
             }
-          ]
+          ];
         };
 
         desktopWidgets.enabled = false;
