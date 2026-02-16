@@ -28,10 +28,7 @@
           ];
           right = [
             {
-              id = "Tray"
-            }
-            {
-              id = "";
+              id = "Tray";
             }
             {
               id = "ControlCenter";
