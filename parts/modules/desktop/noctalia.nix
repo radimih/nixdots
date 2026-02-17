@@ -5,7 +5,7 @@
 }:
 {
   flake.modules.homeManager.noctalia =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       imports = [
         inputs.noctalia.homeModules.default
@@ -16,10 +16,17 @@
         systemd.enable = true;
 
         settings = {
-          settingsVersion = 53;
+          appLauncher = {
+            enableSettingsSearch = false;
+            terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec} -e";
+          };
+
           bar = {
             widgets = {
               left = [
+                {
+                  id = "Launcher";
+                }
                 {
                   id = "Workspace";
                 }
@@ -59,9 +66,12 @@
 
           dock.enabled = false;
 
-          hooks.screenLock = "niri msg action switch-layout 0";
+          hooks = {
+            enabled = true;
+            screenLock = "niri msg action switch-layout 0";
+          };
 
-          location.name = "Kemerovo";
+          location.name = "Kemerovo, Russia";
 
           notifications = {
             enableKeyboardLayoutToast = false;
