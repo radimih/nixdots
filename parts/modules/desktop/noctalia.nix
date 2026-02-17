@@ -55,6 +55,23 @@
             };
           };
 
+          desktopWidgets.enabled = false;
+
+          dock.enabled = false;
+
+          hooks.screenLock = "niri msg action switch-layout 0";
+
+          location.name = "Kemerovo";
+
+          notifications = {
+            enableKeyboardLayoutToast = false;
+          };
+
+          sessionMenu = {
+            enableCountdown = false;
+            largeButtonsLayout = "grid";
+          };
+
           wallpaper.enabled = false;
         };
       };
