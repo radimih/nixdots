@@ -83,6 +83,11 @@
 
           dock.enabled = false;
 
+          general = {
+            animationDisabled = false;
+            animationSpeed = 1.8;
+          };
+
           hooks = {
             enabled = true;
             screenLock = "niri msg action switch-layout 0";
