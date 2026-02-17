@@ -18,7 +18,7 @@
         settings = {
           appLauncher = {
             enableSettingsSearch = false;
-            terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec} -e";
+            terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec}";
           };
 
           bar = {

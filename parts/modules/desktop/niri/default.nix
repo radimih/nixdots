@@ -12,10 +12,6 @@
         inputs.niri.nixosModules.niri
       ];
 
-      environment.systemPackages = with pkgs; [
-        fuzzel
-      ];
-
       programs.niri = {
         enable = true;
         package = pkgs.niri;
