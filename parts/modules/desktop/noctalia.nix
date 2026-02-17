@@ -16,6 +16,7 @@
         systemd.enable = true;
 
         settings = {
+          settingsVersion = 1;
           bar = {
             left = [
               {
