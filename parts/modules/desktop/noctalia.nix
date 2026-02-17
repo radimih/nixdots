@@ -18,39 +18,41 @@
         settings = {
           settingsVersion = 53;
           bar = {
-            left = [
-              {
-                id = "Workspace";
-              }
-            ];
-            center = [
-              {
-                id = "ActiveWindow";
-                maxWidth = 200;
-              }
-            ];
-            right = [
-              {
-                id = "Tray";
-              }
-              {
-                id = "ControlCenter";
-              }
-              {
-                id = "NotificationHistory";
-              }
-              {
-                id = "KeyboardLayout";
-                showIcon = false;
-              }
-              {
-                id = "Clock";
-                formatHorizontal = "HH:mm";
-              }
-              {
-                id = "SessionMenu";
-              }
-            ];
+            widgets = {
+              left = [
+                {
+                  id = "Workspace";
+                }
+              ];
+              center = [
+                {
+                  id = "ActiveWindow";
+                  maxWidth = 200;
+                }
+              ];
+              right = [
+                {
+                  id = "Tray";
+                }
+                {
+                  id = "ControlCenter";
+                }
+                {
+                  id = "NotificationHistory";
+                }
+                {
+                  id = "KeyboardLayout";
+                  showIcon = false;
+                }
+                {
+                  id = "Clock";
+                  formatHorizontal = "HH:mm";
+                }
+                {
+                  id = "SessionMenu";
+                }
+              ];
+            };
           };
 
           wallpaper.enabled = false;
