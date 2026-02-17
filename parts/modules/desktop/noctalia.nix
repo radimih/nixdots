@@ -11,6 +11,14 @@
         inputs.noctalia.homeModules.default
       ];
 
+      programs.niri.settings.binds = {
+        "Mod+A" = {
+          action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+          repeat = false;
+          hotkey-overlay.title = "App Launcher";
+        };
+      };
+
       programs.noctalia-shell = {
         enable = true;
         systemd.enable = true;
