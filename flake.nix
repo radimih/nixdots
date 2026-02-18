@@ -6,6 +6,7 @@
     # --- nixpkgs
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- Nix/NixOS infra
 
@@ -55,6 +56,11 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.4.3";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # --- other

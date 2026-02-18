@@ -16,7 +16,7 @@
         enable = true;
 
         # https://github.com/tinted-theming/schemes
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/flat.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/blueish.yaml";
 
         # https://github.com/ful1e5/Bibata_Cursor
         cursor = {
@@ -42,6 +42,8 @@
         image = ./wallpapers/cold-coast-1920x1080.png;
 
         opacity = {
+          desktop = 0.93;
+          popups = 1.0;
           terminal = 0.8;
         };
 

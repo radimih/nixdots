@@ -1,0 +1,123 @@
+# Noctalia: Quickshell based desktop shell: https://github.com/noctalia-dev/noctalia-shell
+{
+  inputs,
+  ...
+}:
+{
+  flake.modules.homeManager.noctalia =
+    { lib, pkgs, ... }:
+    {
+      imports = [
+        inputs.noctalia.homeModules.default
+      ];
+
+      programs.niri.settings = {
+
+        binds = {
+          "Mod+A" = {
+            action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+            repeat = false;
+            hotkey-overlay.title = "App Launcher";
+          };
+        };
+
+        # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
+        debug = {
+          honor-xdg-activation-with-invalid-serial = [];
+        };
+      };
+
+      programs.noctalia-shell = {
+
+        enable = true;
+        systemd.enable = true;
+
+        colors =
+          let
+            # Взять dark-тему из https://github.com/noctalia-dev/noctalia-shell/tree/main/Assets/ColorScheme
+            colorsTheme =
+              builtins.readFile "${inputs.noctalia.outPath}/Assets/ColorScheme/Tokyo-Night/Tokyo-Night.json"
+              |> builtins.fromJSON
+              |> (attrs: attrs.dark)
+              |> (attrs: builtins.removeAttrs attrs ["terminal"]);
+          in
+          # Использовать "родную" тему от Noctalia, вместо темы из Stylix
+          lib.mkForce colorsTheme;
+
+        settings = {
+          appLauncher = {
+            enableSettingsSearch = false;
+            terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec}";
+          };
+
+          bar = {
+            widgets = {
+              left = [
+                {
+                  id = "Launcher";
+                }
+                {
+                  id = "Workspace";
+                }
+              ];
+              center = [
+                {
+                  id = "ActiveWindow";
+                  maxWidth = 200;
+                }
+              ];
+              right = [
+                {
+                  id = "Tray";
+                }
+                {
+                  id = "ControlCenter";
+                }
+                {
+                  id = "NotificationHistory";
+                }
+                {
+                  id = "KeyboardLayout";
+                  showIcon = false;
+                }
+                {
+                  id = "Clock";
+                  formatHorizontal = "HH:mm";
+                }
+                {
+                  id = "SessionMenu";
+                }
+              ];
+            };
+          };
+
+          desktopWidgets.enabled = false;
+
+          dock.enabled = false;
+
+          general = {
+            animationDisabled = false;
+            animationSpeed = 1.8;
+          };
+
+          hooks = {
+            enabled = true;
+            screenLock = "niri msg action switch-layout 0";
+          };
+
+          location.name = "Kemerovo, Russia";
+
+          notifications = {
+            enableKeyboardLayoutToast = false;
+          };
+
+          sessionMenu = {
+            enableCountdown = false;
+            largeButtonsLayout = "grid";
+          };
+
+          wallpaper.enabled = false;
+        };
+      };
+    };
+}
