@@ -17,7 +17,7 @@
 
         # https://github.com/tinted-theming/schemes
         # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
 
         # https://github.com/ful1e5/Bibata_Cursor
         cursor = {
