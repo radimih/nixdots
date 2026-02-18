@@ -16,7 +16,7 @@
         enable = true;
 
         # https://github.com/tinted-theming/schemes
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
 
         # https://github.com/ful1e5/Bibata_Cursor
         cursor = {
