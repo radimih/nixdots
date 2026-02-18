@@ -41,6 +41,7 @@
               |> (attrs: attrs.dark)
               |> (attrs: builtins.removeAttrs attrs ["terminal"]);
           in
+          # Использовать "родную" тему от Noctalia, вместо темы из Stylix
           lib.mkForce colorsTheme;
 
         settings = {
