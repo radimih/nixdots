@@ -43,7 +43,7 @@
 
         opacity = {
           desktop = 0.93;
-          popups = 1;
+          popups = 1.0;
           terminal = 0.8;
         };
 
