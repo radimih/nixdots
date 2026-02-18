@@ -1,4 +1,4 @@
-# https://docs.noctalia.dev/
+# Noctalia: Quickshell based desktop shell: https://github.com/noctalia-dev/noctalia-shell
 {
   inputs,
   ...
