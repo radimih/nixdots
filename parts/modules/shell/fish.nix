@@ -17,8 +17,11 @@
           set fish_cursor_replace_one  underscore
           set fish_cursor_visual       block
 
-          # fzf-fish: освободить комбинацию Ctrl+V (Search Variables) --> Alt+Ctrl+V
+          # плагин fzf-fish: освободить комбинацию Ctrl+V (Search Variables) --> Alt+Ctrl+V
           fzf_configure_bindings --variables=\e\cv
+
+          # плагин sponge: удалять из истории команды, которые завершились с ошибкой, только при выходе из оболочки
+          set sponge_purge_only_on_exit true
         '';
         plugins =
           let
