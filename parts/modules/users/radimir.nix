@@ -46,7 +46,7 @@ in
             ];
             git-includes = inputs:
               inputs
-              |> map (entry:
+              |> builtins.map (entry:
                 let
                   mkInclude = pattern: {
                     condition = "hasconfig:remote.*.url:${pattern}";
@@ -59,7 +59,7 @@ in
                   (mkInclude "git@${entry.domain}:*/**")
                   (mkInclude "https://${entry.domain}/**")
                 ])
-              |> concatLists;
+              |> builtins.concatLists;
           in
           git-includes users;
 
