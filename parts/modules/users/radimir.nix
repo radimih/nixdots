@@ -64,6 +64,10 @@ in
           git-includes users;
 
         settings = {
+          diff = {
+            algorithm = "histogram";
+            renames = true;
+          };
           fetch = {
             all = true;
             prune = true;
@@ -79,7 +83,7 @@ in
           };
         };
 
-        # Подписывание всех коммитов SSH-ключом пользователя
+        # Подписывание всех создаваемых тегов и коммитов SSH-ключом пользователя
         signing = {
           format = "ssh";
           key = "~/.ssh/id_ed25519";
