@@ -41,8 +41,8 @@ in
         includes =
           let
             users = [
-              { domain = "github.com"; email = ""; name = ""; }
-              { domain = "git.it2g.ru"; email = ""; name = ""; }
+              { domain = "github.com"; email = "radimir@mail.ru"; name = "Radimir Mikhailov"; }
+              { domain = "git.it2g.ru"; email = "mikhailovrv@it2g.ru"; name = "Михайлов Радимир"; }
             ];
             git-includes = inputs:
               inputs
@@ -69,8 +69,17 @@ in
             prune = true;
             pruneTags = true;
           };
+          init.defaultBranch = "main";
+          pull.rebase = true;
+          push.autoSetupRemote = true;
+          rebase.autoStash = true;
+          rerere = {
+            autoUpdate = true;
+            enabled = true;
+          };
         };
 
+        # Подписывание всех коммитов SSH-ключом пользователя
         signing = {
           format = "ssh";
           key = "~/.ssh/id_ed25519";
