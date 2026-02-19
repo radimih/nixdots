@@ -17,8 +17,11 @@
           set fish_cursor_replace_one  underscore
           set fish_cursor_visual       block
 
-          # fzf-fish: освободить комбинацию Ctrl+V (Search Variables) --> Alt+Ctrl+V
+          # плагин fzf-fish: освободить комбинацию Ctrl+V (Search Variables) --> Alt+Ctrl+V
           fzf_configure_bindings --variables=\e\cv
+
+          # плагин sponge:
+          set sponge_delay 4
         '';
         plugins =
           let
