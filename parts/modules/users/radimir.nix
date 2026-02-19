@@ -34,6 +34,63 @@ in
   flake.modules.homeManager."user-${user.name}" =
     { config, ... }:
     {
+      programs.git = {
+        enable = true;
+
+        # user.email/name в зависимости от того, с каким удалённым репозиторием работаем
+        includes =
+          let
+            users = [
+              { domain = "github.com"; email = "radimir@mail.ru"; name = "Radimir Mikhailov"; }
+              { domain = "git.it2g.ru"; email = "mikhailovrv@it2g.ru"; name = "Михайлов Радимир"; }
+            ];
+            git-includes = inputs:
+              inputs
+              |> builtins.map (entry:
+                let
+                  mkInclude = pattern: {
+                    condition = "hasconfig:remote.*.url:${pattern}";
+                    contents = {
+                      user.email = entry.email;
+                      user.name = entry.name;
+                    };
+                  };
+                in [
+                  (mkInclude "git@${entry.domain}:*/**")
+                  (mkInclude "https://${entry.domain}/**")
+                ])
+              |> builtins.concatLists;
+          in
+          git-includes users;
+
+        settings = {
+          diff = {
+            algorithm = "histogram";
+            renames = true;
+          };
+          fetch = {
+            all = true;
+            prune = true;
+            pruneTags = true;
+          };
+          init.defaultBranch = "main";
+          pull.rebase = true;
+          push.autoSetupRemote = true;
+          rebase.autoStash = true;
+          rerere = {
+            autoUpdate = true;
+            enabled = true;
+          };
+        };
+
+        # Подписывание всех создаваемых тегов и коммитов SSH-ключом пользователя
+        signing = {
+          format = "ssh";
+          key = "~/.ssh/id_ed25519";
+          signByDefault = true;
+        };
+      };
+
       xdg.userDirs = {
         # TODO: уточнить каталог для документов
         documents = "${config.home.homeDirectory}/1cloud/documents";
