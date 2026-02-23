@@ -16,9 +16,10 @@ STARTER_NIX_MODULE=\
 '{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [ '${!STARTER_PACKAGES[*]}' ];
   nix.settings = {
+    connect-timeout = 5;                       # default: 0 (infinite timeout)
+    stalled-download-timeout = 10;             # default: 300 sec
+    download-buffer-size = 128 * 1024 * 1024;  # default: 64 Mb
     experimental-features = [ '$(printf '"%s" ' "${STARTER_FEATURES[@]}")'];
-    connect-timeout = 5;
-    stalled-download-timeout = 10;
     substituters = [
       "https://mirror.yandex.ru/nixos"
       "https://nix-community.cachix.org"
