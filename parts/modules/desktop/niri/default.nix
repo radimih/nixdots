@@ -56,6 +56,11 @@
           # Отключить оформление окон Qt-приложений своими средствами. Этим займётся Wayland Compositor
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         };
+
+        # Временно, см. services/network-manager-applet.nix
+        spawn-at-startup = [
+          { command = ["systemctl" "--user" "restart" "network-manager-applet"]; }
+        ];
       };
     };
 }
