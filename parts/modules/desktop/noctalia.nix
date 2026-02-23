@@ -55,9 +55,6 @@
             widgets = {
               left = [
                 {
-                  id = "Launcher";
-                }
-                {
                   id = "Workspace";
                 }
               ];
