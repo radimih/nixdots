@@ -19,7 +19,7 @@
         base16Scheme = "${pkgs.base16-schemes}/share/themes/blueish.yaml";
 
         override = {
-          base08 = "FB0120";  # error: зелёный на красный
+          base08 = "F7768E";  # error: зелёный на красный
           base0B = "4CE587";  # text: жёлтый на зелёный
         };
 
