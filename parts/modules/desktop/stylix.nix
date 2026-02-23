@@ -17,6 +17,10 @@
 
         # https://github.com/tinted-theming/schemes
         base16Scheme = "${pkgs.base16-schemes}/share/themes/blueish.yaml";
+        override = {
+          base08 = "F7768E";  # цвет error: зелёный поменять на красный (взят из темы Tokyo Night by Noctalia)
+          base0B = "4CE587";  # цвет text: жёлтый поменять на зелёный
+        };
 
         # https://github.com/ful1e5/Bibata_Cursor
         cursor = {

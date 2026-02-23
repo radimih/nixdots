@@ -40,8 +40,8 @@ in
         desktop
         kitty
         niri
+        noctalia
         shell
-        waybar
         yazi
       ] ++ [
         {
