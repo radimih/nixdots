@@ -61,7 +61,7 @@
               center = [
                 {
                   id = "ActiveWindow";
-                  maxWidth = 200;
+                  maxWidth = 300;
                 }
               ];
               right = [
