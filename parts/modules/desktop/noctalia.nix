@@ -67,12 +67,18 @@
               right = [
                 {
                   id = "Tray";
+                  blacklist = [
+                    "nm-applet"
+                  ];
                 }
                 {
-                  id = "ControlCenter";
+                  id = "VPN";
                 }
                 {
                   id = "NotificationHistory";
+                }
+                {
+                  id = "ControlCenter";
                 }
                 {
                   id = "KeyboardLayout";
