@@ -32,16 +32,17 @@
         enable = true;
         systemd.enable = true;
 
+        # Использовать "родную" тему от Noctalia, вместо темы из Stylix
         colors =
           let
-            # Взять dark-тему из https://github.com/noctalia-dev/noctalia-shell/tree/main/Assets/ColorScheme
+            # Взять из темы цветовую схему dark и убрать цвета для терминала
+            # JSON-файлы тем: https://github.com/noctalia-dev/noctalia-shell/tree/main/Assets/ColorScheme
             colorsTheme =
               builtins.readFile "${inputs.noctalia.outPath}/Assets/ColorScheme/Tokyo-Night/Tokyo-Night.json"
               |> builtins.fromJSON
               |> (attrs: attrs.dark)
               |> (attrs: builtins.removeAttrs attrs ["terminal"]);
           in
-          # Использовать "родную" тему от Noctalia, вместо темы из Stylix
           lib.mkForce colorsTheme;
 
         settings = {
