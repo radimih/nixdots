@@ -20,7 +20,7 @@
 
         override = {
           base08 = "F7768E";  # error: зелёный на красный
-          # base0B = "4CE587";  # text: жёлтый на зелёный
+          base0B = "4CE587";  # text: жёлтый на зелёный
         };
 
         # https://github.com/ful1e5/Bibata_Cursor
