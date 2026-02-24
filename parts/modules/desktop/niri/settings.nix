@@ -22,6 +22,9 @@
         };
 
         prefer-no-csd = true;
+
+        # Отключить запись скриншотов на диск
+        screenshot-path = null;
       };
     };
 }
