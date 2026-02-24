@@ -9,6 +9,14 @@
     {
       programs.niri.settings.binds = defaultKeyBinds // {
 
+        "Mod+?".action.show-hotkey-overlay = { };
+
+        "Mod+A" = {
+          action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+          repeat = false;
+          hotkey-overlay.title = "App Launcher";
+        };
+
         "Mod+Return" = {
           action.spawn = "${lib.getExe pkgs.xdg-terminal-exec}";
           repeat = false;
