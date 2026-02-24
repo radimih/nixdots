@@ -15,11 +15,14 @@ STARTER_FEATURES=(flakes nix-command pipe-operators)
 STARTER_NIX_MODULE=\
 '{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [ '${!STARTER_PACKAGES[*]}' ];
+
   nix.settings = {
-    connect-timeout = 5;                       # default: 0 (infinite timeout)
+    connect-timeout = 5;                       # default: 0 sec (infinite timeout)
     stalled-download-timeout = 10;             # default: 300 sec
     download-buffer-size = 128 * 1024 * 1024;  # default: 64 Mb
+
     experimental-features = [ '$(printf '"%s" ' "${STARTER_FEATURES[@]}")'];
+
     substituters = [
       "https://mirror.yandex.ru/nixos"
       "https://nix-community.cachix.org"
