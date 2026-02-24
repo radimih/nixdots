@@ -9,7 +9,8 @@
     {
       programs.niri.settings.binds = defaultKeyBinds // {
 
-        "Mod+?".action.show-hotkey-overlay = { };
+        # Shift+7 = '?` в раскладке Universal
+        "Mod+Shift+7".action.show-hotkey-overlay = { };
 
         "Mod+A" = {
           action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
