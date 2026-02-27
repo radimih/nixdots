@@ -9,19 +9,25 @@
     {
       programs.niri.settings.binds = defaultKeyBinds // {
 
+        "Mod+Return" = {
+          action.spawn = "${lib.getExe pkgs.xdg-terminal-exec}";
+          repeat = false;
+          hotkey-overlay.title = "Open Terminal";
+        };
+
         # Shift+7 = '?` в раскладке Universal
         "Mod+Shift+7".action.show-hotkey-overlay = { };
 
         "Mod+A" = {
           action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
           repeat = false;
-          hotkey-overlay.title = "App Launcher";
+          hotkey-overlay.title = "Open App Launcher";
         };
 
-        "Mod+Return" = {
-          action.spawn = "${lib.getExe pkgs.xdg-terminal-exec}";
+        "Mod+V" = {
+          action.spawn = [ "${lib.getExe pkgs.xdg-terminal-exec}" "--app-id" "clipse" "clipse" ];
           repeat = false;
-          hotkey-overlay.title = "Open a Terminal";
+          hotkey-overlay.title = "Open Clipboard history";
         };
       };
     };
