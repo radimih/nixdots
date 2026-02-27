@@ -37,6 +37,13 @@
           matches = [
             { app-id = "^clipse$"; }
           ];
+          default-floating-position = {
+            x = 0;
+            y = 0;
+            relative-to = "top";
+          };
+          default-column-width.proportion = 0.3;
+          default-window-height.proportion = 0.4;
           open-floating = true;
         }
       ];
