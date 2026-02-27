@@ -44,7 +44,7 @@
           };
           default-column-width.proportion = 0.5;
           default-window-height.proportion = 0.4;
-          opacity = 1;
+          opacity = 1.0;
           open-floating = true;
         }
       ];
