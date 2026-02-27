@@ -14,7 +14,8 @@
 
     services.clipse = {
       enable = true;
-      enableDescription = false;
+      # TODO: next-release: параметр появился в версии clipse 1.2
+      # enableDescription = false;
       imageDisplay.type = "kitty";
     };
 
