@@ -14,6 +14,7 @@
 
     services.clipse = {
       enable = true;
+      enableDescription = false;
       imageDisplay.type = "kitty";
     };
 
