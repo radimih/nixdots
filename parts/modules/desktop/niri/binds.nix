@@ -25,7 +25,7 @@
         };
 
         "Mod+V" = {
-          action.spawn = [ "${lib.getExe pkgs.xdg-terminal-exec}" "clipse" ];
+          action.spawn = [ "${lib.getExe pkgs.xdg-terminal-exec}" "--app-id=clipse" "--" "clipse" ];
           repeat = false;
           hotkey-overlay.title = "Open Clipboard history";
         };

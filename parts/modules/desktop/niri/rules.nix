@@ -35,7 +35,7 @@
 
         {
           matches = [
-            { title = "clipse"; }
+            { app-id = "clipse"; }
           ];
           open-floating = true;
         }
