@@ -14,6 +14,7 @@
 
     services.clipse = {
       enable = true;
+      imageDisplay.type = "kitty";
     };
 
     services.wl-clip-persist.enable = true;
