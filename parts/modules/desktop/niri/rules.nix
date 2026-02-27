@@ -43,7 +43,7 @@
             relative-to = "top";
           };
           default-column-width.proportion = 0.4;
-          default-window-height.proportion = 0.5;
+          default-window-height.proportion = 0.6;
           opacity = 1.0;
           open-floating = true;
         }
