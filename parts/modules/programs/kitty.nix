@@ -17,6 +17,8 @@
       };
     };
 
+    services.clipse.imageDisplay.type = "kitty";
+
     xdg.terminal-exec = {
       enable = true;
       settings.default = [ "kitty.desktop" ];

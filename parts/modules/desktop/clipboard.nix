@@ -16,7 +16,7 @@
       enable = true;
       # TODO: next-release: параметр появился в версии clipse 1.2
       # enableDescription = false;
-      imageDisplay.type = "kitty";
+      historySize = 20;
     };
 
     services.wl-clip-persist.enable = true;
