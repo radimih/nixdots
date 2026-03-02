@@ -7,7 +7,7 @@
       # https://sw.kovidgoyal.net/kitty/actions/
       keybindings = {
         "ctrl+c" = "copy_and_clear_or_interrupt";
-        "ctrl+v" = "paste_selection_or_clipboard";
+        "ctrl+v" = "paste_from_clipboard";
       };
       # https://sw.kovidgoyal.net/kitty/conf/
       settings = {
