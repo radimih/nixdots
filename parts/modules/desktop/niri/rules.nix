@@ -5,17 +5,6 @@
 
     programs.niri.settings = {
 
-      layer-rules = [
-        {
-          # Параметры для background-слоя. Название слоя зависит от wallpaper-утилиты.
-          # Для swaybg это 'wallpaper'. Посмотреть доступные слои: niri msg layers
-          matches = [
-            { namespace ="^wallpaper$"; }
-          ];
-          place-within-backdrop = true;
-        }
-      ];
-
       window-rules = [
 
 	      # Сделать скруглёнными все углы всех окон
