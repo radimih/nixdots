@@ -7,7 +7,7 @@
       # https://sw.kovidgoyal.net/kitty/actions/
       keybindings = {
         "ctrl+c" = "copy_and_clear_or_interrupt";
-        "ctrl+v" = "paste_selection_or_clipboard";
+        "ctrl+v" = "paste_from_clipboard";
       };
       # https://sw.kovidgoyal.net/kitty/conf/
       settings = {
@@ -16,6 +16,8 @@
         window_padding_width = "0 2"; # отступы снизу-сверху и справа-слева
       };
     };
+
+    services.clipse.imageDisplay.type = "kitty";
 
     xdg.terminal-exec = {
       enable = true;

@@ -17,6 +17,7 @@
       ];
 
       window-rules = [
+
 	      # Сделать скруглёнными все углы всех окон
         {
           geometry-corner-radius =
@@ -30,6 +31,21 @@
             top-right = r;
           };
           clip-to-geometry = true;
+        }
+
+        {
+          matches = [
+            { app-id = "^clipse$"; }
+          ];
+          default-floating-position = {
+            x = 0;
+            y = 20;
+            relative-to = "top";
+          };
+          default-column-width.proportion = 0.4;
+          default-window-height.proportion = 0.6;
+          opacity = 1.0;
+          open-floating = true;
         }
       ];
     };

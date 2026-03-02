@@ -274,8 +274,9 @@
   "Mod+Shift+Equal".action.set-window-height = "+10%";
 
   # Move the focused window between the floating and the tiling layout.
-  "Mod+V".action.toggle-window-floating = { };
-  "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
+  # TODO: комбинация занята Clipboard history
+  # "Mod+V".action.toggle-window-floating = { };
+  # "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
 
   # Toggle tabbed column display mode.
   # Windows in this column will appear as vertical tabs,
