@@ -18,7 +18,5 @@
       # enableDescription = false;
       historySize = 20;
     };
-
-    services.wl-clip-persist.enable = true;
   };
 }
