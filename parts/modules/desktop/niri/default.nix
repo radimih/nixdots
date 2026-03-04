@@ -57,9 +57,11 @@
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         };
 
-        # Временно, см. services/network-manager-applet.nix
         spawn-at-startup = [
-          { command = ["systemctl" "--user" "restart" "network-manager-applet"]; }
+          # TODO: next-release: служба не запускается с первого раза
+          { command = [ "systemctl" "--user" "restart" "clipse" ]; }
+          # TODO: next-release: служба не запускается с первого раза
+          { command = [ "systemctl" "--user" "restart" "network-manager-applet" ]; }
         ];
       };
     };
