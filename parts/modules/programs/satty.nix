@@ -2,7 +2,7 @@
 {
   flake.modules.homeManager.satty =
     { lib, pkgs, ... }:
-
+    {
       programs.satty = {
         enable = true;
         settings = {
@@ -20,4 +20,5 @@
           };
         };
       };
+    };
 }
