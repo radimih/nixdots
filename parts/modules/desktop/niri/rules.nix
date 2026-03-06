@@ -7,7 +7,7 @@
 
       window-rules = [
 
-	      # У всех окон скруглённые все углы
+	      # У всех окон скруглены все углы
         {
           geometry-corner-radius =
           let
@@ -30,6 +30,7 @@
           shadow.enable = true;
         }
 
+        # Размер и расположение окна истории буфера обмена
         {
           matches = [
             { app-id = "^clipse$"; }
