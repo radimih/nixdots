@@ -291,7 +291,8 @@
   # Mod+Space       { switch-layout "next" }
   # Mod+Shift+Space { switch-layout "prev" }
 
-  "Print".action.screenshot = { };
+  # TODO: комбинация переопределяется
+  # "Print".action.screenshot = { };
   "Ctrl+Print".action.screenshot-screen = { };
   "Alt+Print".action.screenshot-window = { };
 

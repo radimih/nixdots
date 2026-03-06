@@ -41,6 +41,7 @@ in
         kitty
         niri
         noctalia
+        satty
         shell
         yazi
       ] ++ [

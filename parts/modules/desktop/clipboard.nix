@@ -12,6 +12,7 @@
 
   flake.modules.homeManager.desktop = {
 
+    # TUI clipboard manager: https://github.com/savedra1/clipse
     services.clipse = {
       enable = true;
       # TODO: next-release: параметр появился в версии clipse 1.2
