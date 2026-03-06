@@ -11,7 +11,7 @@
 
         "Print" = {
           # TODO: next-release: использовать clipse -pause 1s (с версии 1.2), чтобы скриншот всего экрана не попадал в историю буфера обмена
-          action.spawn = ''
+          action.spawn-sh = ''
             ${lib.getExe pkgs.niri} msg action screenshot-screen && sleep 0.5
             ${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image/png | ${lib.getExe pkgs.satty} --filename -
           '';
