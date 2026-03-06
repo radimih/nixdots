@@ -7,7 +7,7 @@
 
       window-rules = [
 
-	      # Сделать скруглёнными все углы всех окон
+	      # У всех окон скруглённые все углы
         {
           geometry-corner-radius =
           let
@@ -20,6 +20,14 @@
             top-right = r;
           };
           clip-to-geometry = true;
+        }
+
+        # Все floating-окна с тенями
+        {
+          matches = [
+            { is-floating = true; }
+          ];
+          shadow.enable = true;
         }
 
         {
