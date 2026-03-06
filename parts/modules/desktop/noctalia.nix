@@ -104,6 +104,9 @@
 
           notifications = {
             enableKeyboardLayoutToast = false;
+            lowUrgencyDuration = 1;
+            normalUrgencyDuration = 3;
+            criticalUrgencyDuration = 5;
           };
 
           sessionMenu = {
