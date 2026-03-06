@@ -7,7 +7,7 @@
 
       window-rules = [
 
-	      # Сделать скруглёнными все углы всех окон
+	      # У всех окон скруглены все углы
         {
           geometry-corner-radius =
           let
@@ -22,6 +22,15 @@
           clip-to-geometry = true;
         }
 
+        # Все floating-окна с тенями
+        {
+          matches = [
+            { is-floating = true; }
+          ];
+          shadow.enable = true;
+        }
+
+        # Размер и расположение окна истории буфера обмена
         {
           matches = [
             { app-id = "^clipse$"; }
