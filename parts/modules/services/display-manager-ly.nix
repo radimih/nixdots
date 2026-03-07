@@ -8,7 +8,7 @@
       # https://github.com/fairyglade/ly/blob/master/res/config.ini
       settings = {
         animation = "matrix";
-        asterisk = "•";
+        # asterisk = "•";
         brightness_down_key = null;
         brightness_up_key = null;
         clear_password = true;
