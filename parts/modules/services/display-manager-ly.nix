@@ -13,8 +13,7 @@
         brightness_up_key = null;
         clear_password = true;
         clock = "%d.%m.%Y %T";
-        cmatrix_min_codepoint = "0x3000";
-        cmatrix_max_codepoint = "0x30FF";
+        hide_version_string = true;
         vi_mode = true;
       };
       x11Support = false;
