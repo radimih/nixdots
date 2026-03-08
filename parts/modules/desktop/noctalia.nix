@@ -100,6 +100,16 @@
             screenLock = "niri msg action switch-layout 0";
           };
 
+          idle = {
+            enabled = true;
+            fadeDuration = 5;  # секунд, в течение которых можно прервать действие
+            # После указанного количества секунд бездействия пользователя произвести
+            # соответствующее действие (0 - не производить данное действие):
+            lockTimeout = 10 * 60;
+            screenOffTimeout = 0;
+            suspendTimeout = 30 * 60;
+          };
+
           location.name = "Kemerovo, Russia";
 
           notifications = {
