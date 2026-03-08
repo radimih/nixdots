@@ -93,6 +93,8 @@
           general = {
             animationDisabled = false;
             animationSpeed = 1.8;
+            compactLockScreen = true;
+            lockScreenAnimations = true;
           };
 
           hooks = {
