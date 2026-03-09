@@ -124,6 +124,15 @@
           sessionMenu = {
             enableCountdown = false;
             largeButtonsLayout = "grid";
+            powerOptions = [
+              { action = "lock"; enabled = true; keybind = "1"; }
+              { action = "suspend"; enabled = true; keybind = "2"; }
+              { action = "logout"; enabled = true; keybind = "3"; }
+              { action = "reboot"; enabled = true; keybind = "4"; }
+              { action = "rebootToUefi"; enabled = true; keybind = "5"; }
+              { action = "shutdown"; enabled = true; keybind = "6"; }
+              { action = "hibernate"; enabled = false; keybind = "7"; }
+            ]
           };
 
           wallpaper.enabled = false;
