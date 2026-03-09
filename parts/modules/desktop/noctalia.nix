@@ -132,7 +132,7 @@
               { action = "rebootToUefi"; enabled = true; keybind = "5"; }
               { action = "shutdown"; enabled = true; keybind = "6"; }
               { action = "hibernate"; enabled = false; keybind = "7"; }
-            ]
+            ];
           };
 
           wallpaper.enabled = false;
