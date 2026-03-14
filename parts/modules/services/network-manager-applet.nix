@@ -1,8 +1,13 @@
 {
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.desktop =
+    { pkgs, ... }:
+    {
+      home.packages = [
+        pkgs.networkmanagerapplet
+      ];
 
-    services = {
-      network-manager-applet.enable = true;
+      services = {
+        network-manager-applet.enable = true;
+      };
     };
-  };
 }
