@@ -36,6 +36,19 @@
           in
           lib.mkForce colorsTheme;
 
+        plugins.states = {
+          network-manager-vpn = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+
+        pluginsSettings = {
+          network-manager-vpn = {
+            displayMode = "alwaysHide";
+          };
+        };
+
         settings = {
           appLauncher = {
             enableSettingsSearch = false;
@@ -63,7 +76,7 @@
                   ];
                 }
                 {
-                  id = "VPN";
+                  id = "plugin:network-manager-vpn";
                 }
                 {
                   id = "NotificationHistory";
