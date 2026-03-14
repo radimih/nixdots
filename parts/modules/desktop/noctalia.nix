@@ -130,8 +130,8 @@
           notifications = {
             enableKeyboardLayoutToast = false;
             lowUrgencyDuration = 1;
-            normalUrgencyDuration = 3;
-            criticalUrgencyDuration = 5;
+            normalUrgencyDuration = 2;
+            criticalUrgencyDuration = 4;
           };
 
           sessionMenu = {
