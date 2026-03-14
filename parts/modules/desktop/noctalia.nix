@@ -43,7 +43,7 @@
           };
         };
 
-        pluginsSettings = {
+        pluginSettings = {
           network-manager-vpn = {
             displayMode = "alwaysHide";
           };
