@@ -7,7 +7,7 @@
 
       window-rules = [
 
-	      # У всех окон скруглены все углы
+        # У всех окон скруглены все углы
         {
           geometry-corner-radius =
           let
