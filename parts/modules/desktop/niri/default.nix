@@ -31,9 +31,10 @@
           "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
         };
         # BUG: при включении xdg-desktop-portal-gtk перестаёт с первого раза запускаться Waybar
-        # extraPortals = with pkgs; [
-        #   xdg-desktop-portal-gtk
-        # ];
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gnome
+          xdg-desktop-portal-gtk
+        ];
       };
     };
 
