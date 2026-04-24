@@ -74,7 +74,7 @@ in
             pruneTags = true;
           };
           init.defaultBranch = "main";
-          pull.rebase = true;
+          pull.rebase = false;
           push.autoSetupRemote = true;
           rebase.autoStash = true;
           rerere = {
