@@ -5,7 +5,7 @@
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- Nix/NixOS infra
@@ -30,7 +30,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,6 +46,7 @@
     };
 
     stylix = {
+      # TODO: next-release: https://github.com/nix-community/stylix/issues/2325
       url = "github:nix-community/stylix/release-25.11";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";

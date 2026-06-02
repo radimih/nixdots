@@ -22,6 +22,7 @@
         desktop = null;
         music = null;
         pictures = null;
+        projects = null;
         publicShare = null;
         templates = null;
         videos = null;

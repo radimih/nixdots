@@ -154,6 +154,9 @@ generate_ssh_keys() {
   sudo --validate
   echo
 
+  # TODO: next-release: вместо генерации ключа для хоста использовать в starter.nix опции:
+  #       services.openssh.generateHostKeys = true
+  #       services.openssh.hostKeys = [...]
   generate_ssh_key "$hostname" "$SSH_KEYFILE_HOST" sudo
   generate_ssh_key "$hostname" "$SSH_KEYFILE_USER"
 

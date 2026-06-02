@@ -15,8 +15,7 @@
             fullscreen = true;
             initial-tool = "crop";
             primary-highlighter = "freehand";
-            # TODO: next-release: новый параметр в 0.20.1, default = 1.1
-            # zoom-factor = 1.0;
+            zoom-factor = 1.0;
           };
         };
       };
