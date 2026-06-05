@@ -274,8 +274,8 @@ add_key_to_github() {
 
     # Если на GitHub нет такого ключа
     if [[ -z "$github_key_title" ]]; then
-      # Если на GitHub есть другой ключ с таким именем (фактически происходит замена ключа)
-      if echo "$github_keys" | awk '{ print $1 }' | grep -q "$new_key_title"; then
+      # Если на GitHub есть другой ключ с таким именем и типом (фактически происходит замена ключа)
+      if echo "$github_keys" | awk -v title="$new_key_title" -v type="$key_type" '$1 == title && $6 == type { found=1 } END { exit !found }'; then
         print_line_msg "... replacing user's public SSH key for ${ST_DIM}$key_type${ST_REGULAR}"
         remove_key_from_github "$new_key_title" "$key_type" "$github_keys"
       fi
@@ -316,7 +316,6 @@ remove_key_from_github() {
       -H "X-GitHub-Api-Version: 2022-11-28" \
       /user/ssh_signing_keys/"$key_id"
   else
-    echo key_id=$key_id
     gh ssh-key delete "$key_id" --yes
   fi
 }
