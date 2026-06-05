@@ -7,27 +7,29 @@
     };
   };
 
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.desktop =
+    { lib, ...}:
+    {
 
-    home.preferXdgDirectories = true;
+      home.preferXdgDirectories = true;
 
-    xdg = {
-      enable = true;
-      userDirs = {
+      xdg = {
         enable = true;
-        createDirectories = true;
-      };
-      # Оставить только documents и download
-      userDirs = {
-        desktop = null;
-        music = null;
-        pictures = null;
-        projects = null;
-        publicShare = null;
-        templates = null;
-        videos = null;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+        };
+        # Оставить только documents и download
+        userDirs = {
+          desktop = lib.mkDefault null;
+          music = lib.mkDefault null;
+          pictures = lib.mkDefault null;
+          projects = lib.mkDefault null;
+          publicShare = lib.mkDefault null;
+          templates = lib.mkDefault null;
+          videos = lib.mkDefault null;
+        };
       };
     };
-  };
 }
 
