@@ -46,8 +46,7 @@
     };
 
     stylix = {
-      # TODO: next-release: https://github.com/nix-community/stylix/issues/2325
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/release-26.05";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
