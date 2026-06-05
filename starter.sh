@@ -316,6 +316,7 @@ remove_key_from_github() {
       -H "X-GitHub-Api-Version: 2022-11-28" \
       /user/ssh_signing_keys/"$key_id"
   else
+    echo key_id=$key_id
     gh ssh-key delete "$key_id" --yes
   fi
 }
