@@ -71,10 +71,11 @@
     {
       flake-parts,
       import-tree,
-      lib,
+      nixpkgs,
       ...
     }@inputs:
     let
+      lib = nixpkgs.lib;
       notImports = lib.hasSuffix "hardware-configuration.nix";
       flakeParts = (import-tree.filterNot notImports) ./parts;
     in
