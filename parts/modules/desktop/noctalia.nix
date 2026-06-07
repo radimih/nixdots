@@ -21,6 +21,7 @@
       programs.noctalia-shell = {
 
         enable = true;
+        package = pkgs.noctalia-shell;
         systemd.enable = true;
 
         # Использовать "родную" тему от Noctalia, вместо темы из Stylix
