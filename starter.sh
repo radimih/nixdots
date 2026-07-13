@@ -30,6 +30,16 @@ STARTER_NIX_MODULE=\
     trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     trusted-users = [ "@wheel" ];
   };
+
+  # Necessary for secret management (agenix, sops)
+  services.openssh = {
+    generateHostKeys = true;
+    hostKeys = [
+      {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+    ];
 }'
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
