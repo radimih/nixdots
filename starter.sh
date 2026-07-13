@@ -40,6 +40,7 @@ STARTER_NIX_MODULE=\
         type = "ed25519";
       }
     ];
+  };
 }'
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
