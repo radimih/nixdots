@@ -1,4 +1,4 @@
-# Noctalia: Quickshell based desktop shell: https://github.com/noctalia-dev/noctalia-shell
+# Noctalia: Quickshell based desktop shell: https://github.com/noctalia-dev/noctalia
 {
   inputs,
   ...
@@ -11,7 +11,7 @@
         inputs.noctalia.homeModules.default
       ];
 
-      # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
+      # https://docs.noctalia.dev/v4/getting-started/compositor-settings/niri/
       programs.niri.settings = {
         debug = {
           honor-xdg-activation-with-invalid-serial = [];
@@ -28,7 +28,7 @@
         colors =
           let
             # Взять из темы цветовую схему dark и убрать цвета для терминала
-            # JSON-файлы тем: https://github.com/noctalia-dev/noctalia-shell/tree/main/Assets/ColorScheme
+            # JSON-файлы тем: https://github.com/noctalia-dev/noctalia/tree/legacy-v4/Assets/ColorScheme
             colorsTheme =
               builtins.readFile "${inputs.noctalia.outPath}/Assets/ColorScheme/Tokyo-Night/Tokyo-Night.json"
               |> builtins.fromJSON
@@ -40,7 +40,7 @@
         plugins.states = {
           network-manager-vpn = {
             enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            sourceUrl = "https://github.com/noctalia-dev/legacy-v4-plugins";
           };
         };
 
