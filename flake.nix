@@ -5,7 +5,7 @@
 
     # --- nixpkgs
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- Nix/NixOS infra
@@ -19,7 +19,7 @@
     agenix-rekey = {
       url = "github:oddlama/agenix-rekey";
       inputs.nixpkgs.follows = "nixpkgs";
-      # ВНИМАНИЕ! Нельзя включать inputs.flake-parts.follows = "flake-parts"; - возникает ошибка о
+      # BUG: Нельзя включать inputs.flake-parts.follows = "flake-parts"; - возникает ошибка о
       # невозможности импортировать agenix-rekey.homeManagerModules.default во flake.modules.homeManager
       # (см. agenix.nix)
     };
@@ -30,7 +30,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,7 +46,7 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/release-26.05";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -59,8 +59,9 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell?ref=v4.6.7";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:noctalia-dev/noctalia?ref=v4.7.6";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "nixpkgs";
     };
 
     # --- other

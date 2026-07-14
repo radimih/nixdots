@@ -92,9 +92,9 @@ in
       };
 
       xdg.userDirs = {
-        # TODO: уточнить каталог для документов
-        documents = "${config.home.homeDirectory}/1cloud/documents";
+        documents = "${config.home.homeDirectory}/1cloud/yandex/documents";
         download = "${config.home.homeDirectory}/1temp";
+        projects = "${config.home.homeDirectory}/1git";
       };
     };
 }
