@@ -162,7 +162,6 @@ generate_ssh_key() {
   local keyfile="$SSH_KEYFILE_USER"
 
   print_step_msg "Generating user SSH key"
-  echo
   print_line_msg "--> Generate ${ST_DIM}$keyfile${ST_REGULAR}..."
 
   if [[ -f $keyfile ]]; then
