@@ -22,15 +22,18 @@ in
     inputs.agenix-rekey.flakeModule
   ];
 
-  flake.modules.nixos.base = {
-
+  flake.modules.nixos.base =
+  let
+    hostKeyPath = "/etc/ssh/ssh_host_ed25519_key";
+  in
+  {
     imports = with inputs; [
       agenix.nixosModules.default
       agenix-rekey.nixosModules.default
     ];
 
-    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    age.rekey.hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
+    age.identityPaths = [ hostKeyPath ];
+    age.rekey.hostPubkey = "${hostKeyPath}.pub";
     age.rekey = { inherit (rekey) cacheDir masterIdentities storageMode; };
 
     # https://github.com/oddlama/agenix-rekey/issues/9#issuecomment-1741764749
@@ -38,6 +41,16 @@ in
     systemd.tmpfiles.rules = [
       "d ${cacheDir} 1777 root root"
     ];
+
+    services.openssh = {
+      generateHostKeys = true;
+      hostKeys = [
+        {
+          path = hostKeyPath;
+          type = "ed25519";
+        }
+      ];
+    };
   };
 
   flake.modules.homeManager.base =

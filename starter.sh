@@ -31,7 +31,6 @@ STARTER_NIX_MODULE=\
     trusted-users = [ "@wheel" ];
   };
 
-  # Necessary for secret management (agenix, sops)
   services.openssh = {
     generateHostKeys = true;
     hostKeys = [
@@ -45,7 +44,6 @@ STARTER_NIX_MODULE=\
 
 NIXOS_CONFIG_FILE=/etc/nixos/configuration.nix
 NIXOS_HW_CONFIG_FILE=/etc/nixos/hardware-configuration.nix
-SSH_KEYFILE_HOST=/etc/ssh/ssh_host_ed25519_key
 SSH_KEYFILE_USER=$HOME/.ssh/id_ed25519
 TOKEN_FILE=$HOME/github.token
 
@@ -66,9 +64,10 @@ This script does the following:
 1. Updates the ${ST_BOLD}NixOS configuration file${ST_REGULAR} (${ST_DIM}${NIXOS_CONFIG_FILE}${ST_REGULAR}):
      - adds ${ST_DIM}${!STARTER_PACKAGES[*]}${ST_REGULAR} packages to system packages
      - enables ${ST_DIM}${STARTER_FEATURES[*]}${ST_REGULAR} experimental features
+     - enables automatic generation of ${ST_BOLD}SSH host keys${ST_REGULAR}
      - adds the ${ST_UNDERLINE}nix-community.cachix.org${ST_RESET} substituter
 
-2. Generates host and user ${ST_BOLD}SSH keys${ST_REGULAR} if they do not exist
+2. Generates ${ST_BOLD}SSH user key${ST_REGULAR} if it does not exist
 
 3. Receives the ${ST_BOLD}GitHub token${ST_REGULAR} from the user and verifies it
 
@@ -98,7 +97,7 @@ main() {
 
   update_system_config
   pause
-  generate_ssh_keys "$hostname"
+  generate_ssh_key "$hostname"
   pause
   verify_github_token
   pause
@@ -157,41 +156,22 @@ enable_starter_module() {
   sudo sed --in-place '/^\s*\.\/hardware-configuration\.nix\s*$/a\ \ \ \ \ \ .\/starter.nix' "$NIXOS_CONFIG_FILE"
 }
 
-generate_ssh_keys() {
-
-  local hostname=$1
-
-  print_step_msg "Generating host and user SSH keys"
-  sudo --validate
-  echo
-
-  # TODO: next-release: вместо генерации ключа для хоста использовать в starter.nix опции:
-  #       services.openssh.generateHostKeys = true
-  #       services.openssh.hostKeys = [...]
-  generate_ssh_key "$hostname" "$SSH_KEYFILE_HOST" sudo
-  generate_ssh_key "$hostname" "$SSH_KEYFILE_USER"
-
-  print_line_msg "host's public key: $(< "$SSH_KEYFILE_HOST.pub")"
-  print_line_msg "user's public key: $(< "$SSH_KEYFILE_USER.pub")"
-}
-
 generate_ssh_key() {
 
   local hostname=$1
-  local keyfile=$2
-  local sudo=${3:-}
+  local keyfile="$SSH_KEYFILE_USER"
 
+  print_step_msg "Generating user SSH key"
+  echo
   print_line_msg "--> Generate ${ST_DIM}$keyfile${ST_REGULAR}..."
 
-  [[ -z "$sudo" ]] && username=$USER || username=host
-
   if [[ -f $keyfile ]]; then
-    $sudo ssh-keygen -f "$keyfile" -c -C "$username@$hostname" -q > /dev/null
+    ssh-keygen -f "$keyfile" -c -C "$USER@$hostname" -q > /dev/null
     print_line_msg "... SSH key ${ST_DIM}$keyfile${ST_REGULAR} already exists, updated key comment"
   else
     echo
     # Сгенерировать ключ без защиты паролем
-    $sudo ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$username@$hostname"
+    ssh-keygen -t ed25519 -N "" -f "$keyfile" -C "$USER@$hostname"
   fi
   echo
 }
