@@ -45,6 +45,15 @@
     cd 1git/personal/nixdots
     ```
 
+1. Перенести опции `boot.initrd.luks.devices."<UUID>".device` со старого файла `/etc/nixos/configuration.nix`
+   в новый файл `hardware-configuration.nix`:
+
+    ```bash
+    vim /etc/nixos/configuration.nix parts/hosts/<hostname>/hardware-configuration.nix
+    ```
+
+   TODO: реализовать в `starter.nix`
+
 1. Перешифровать секреты – расшифровать секреты мастер-ключом (будет запрошен пароль к ключу) и
    зашифровать их публичными SSH-ключами хоста и пользователя:
 
