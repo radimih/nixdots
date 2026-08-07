@@ -37,8 +37,11 @@
     import-tree.url = "github:vic/import-tree";
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      # FIXME: lanzaboote: не попадает в кэш, если установлен follows.
+      #        При этом время сборки системы увеличивается на 5 минут,
+      #        а /nix/store увеличивается на 3,8 Гб.
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     secrets = {
