@@ -23,6 +23,9 @@ STARTER_NIX_MODULE=\
 
     experimental-features = [ '$(printf '"%s" ' "${STARTER_FEATURES[@]}")'];
 
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+
     substituters = [
       "https://mirror.yandex.ru/nixos"
       "https://nix-community.cachix.org"
