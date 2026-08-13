@@ -4,13 +4,6 @@
   ...
 }:
 {
-  flake.modules.nixos.noctalia = {
-    nix.settings = {
-      extra-substituters = [ "https://noctalia.cachix.org" ];
-      extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
-    };
-  };
-
   flake.modules.homeManager.noctalia =
     { lib, pkgs, ... }:
     {
@@ -33,7 +26,7 @@
               { app-id = "dev.noctalia.Noctalia"; }
             ];
             default-column-width.fixed = 1080;
-            default-window-height.fixed = 920;
+            default-window-height.fixed = 720;
             open-floating = true;
           }
         ];
@@ -41,6 +34,22 @@
 
       programs.noctalia = {
         enable = true;
+
+        settings = {
+
+          theme = {
+            mode = "dark";
+            pure_black_dark = true;
+            source = "wallpaper";
+          };
+
+          wallpaper = {
+            enabled = true;
+            default.path = ./wallpapers/cold-coast-1920x1080.png;
+            directory = ./wallpapers;
+            fill_mode = "stretch";
+          };
+        };
       };
     };
 }
