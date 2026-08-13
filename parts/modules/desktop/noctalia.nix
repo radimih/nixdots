@@ -17,7 +17,7 @@
           honor-xdg-activation-with-invalid-serial = [];
         };
         spawn-at-startup = [
-          { command = [ "noctalia" ]; }
+          { argv = [ "noctalia" ]; }
         ];
         window-rules = [
           # Floating Noctalia settings window
