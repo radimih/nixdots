@@ -19,6 +19,14 @@
         spawn-at-startup = [
           { argv = [ "noctalia" ]; }
         ];
+        layer-rules = [
+          {
+            matches = [
+              { namespace = "^noctalia-wallpaper"; }
+            ];
+            place-within-backdrop = true;
+          }
+        ];
         window-rules = [
           # Floating Noctalia settings window
           {
@@ -36,6 +44,17 @@
         enable = true;
 
         settings = {
+
+          backdrop.enabled = true;
+
+          bar = {
+            order = [ "main" ];
+            main = {
+              concave_edge_corners = false;
+              margin_ends = 0;
+              radius = 0;
+            };
+          };
 
           theme = {
             mode = "dark";
