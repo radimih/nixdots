@@ -45,8 +45,6 @@
 
         settings = {
 
-          backdrop.enabled = true;
-
           bar = {
             order = [ "main" ];
             main = {
@@ -67,7 +65,8 @@
             default.path = ./wallpapers/cold-coast-1920x1080.png;
             directory = ./wallpapers;
             fill_mode = "stretch";
-            last.path = ./wallpapers/cold-coast-1920x1080.png;
+            transition = [ "fade" ];
+            transition_on_startup = true;
           };
         };
       };
