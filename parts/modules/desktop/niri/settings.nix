@@ -15,8 +15,7 @@
         };
 
         layout = {
-          # background-color = "transparent";
-          background-color = "#000000";
+          background-color = "transparent";
           border.width = 2;
           focus-ring.enable = false;
           gaps = 8;
