@@ -52,7 +52,6 @@
 
         settings = {
           appLauncher = {
-            enableSettingsSearch = false;
             terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec}";
           };
 
@@ -100,37 +99,11 @@
             };
           };
 
-          idle = {
-            enabled = true;
-            fadeDuration = 5;  # секунд, в течение которых можно прервать действие
-            # После указанного количества секунд бездействия пользователя произвести
-            # соответствующее действие (0 - не производить данное действие):
-            lockTimeout = 10 * 60;
-            screenOffTimeout = 0;
-            suspendTimeout = 30 * 60;
-          };
-
-          location.name = "Kemerovo, Russia";
-
           notifications = {
             enableKeyboardLayoutToast = false;
             lowUrgencyDuration = 1;
             normalUrgencyDuration = 2;
             criticalUrgencyDuration = 4;
-          };
-
-          sessionMenu = {
-            enableCountdown = false;
-            largeButtonsLayout = "grid";
-            powerOptions = [
-              { action = "lock"; enabled = true; keybind = "1"; }
-              { action = "suspend"; enabled = true; keybind = "2"; }
-              { action = "logout"; enabled = true; keybind = "3"; }
-              { action = "reboot"; enabled = true; keybind = "4"; }
-              { action = "rebootToUefi"; enabled = true; keybind = "5"; }
-              { action = "shutdown"; enabled = true; keybind = "6"; }
-              { action = "hibernate"; enabled = false; keybind = "7"; }
-            ];
           };
         };
       };

@@ -49,14 +49,41 @@
             order = [ "main" ];
             main = {
               concave_edge_corners = false;
+              font_family = "Iosevka Nerd Font Propo";
               margin_ends = 0;
               radius = 0;
+              widget_spacing = 8;
             };
           };
 
           hooks = {
             session_locked = "niri msg action switch-layout 0";
           };
+
+          idle = {
+            behavior_order = [ "lock" "screen-off" "lock-and-suspend" ];
+            behavior = {
+              lock = {
+                action = "lock";
+                enabled = true;
+                timeout = 10 * 60; # seconds
+              };
+              lock-and-suspend = {
+                action = "lock_and_suspend";
+                enabled = true;
+                timeout = 30 * 60; # seconds
+              };
+              screen-off = {
+                action = "screen_off";
+                enabled = false;
+                timeout = 11 * 60; # seconds
+              };
+            };
+            # Временной отрезок, в течение которого можно прервать действие
+            pre_action_fade_seconds = 5;
+          };
+
+          location.address = "Kemerovo, Russia";
 
           lockscreen = {
             blur_intensity = 0.30;
@@ -80,6 +107,15 @@
             fill_mode = "stretch";
             transition = [ "fade" ];
             transition_on_startup = true;
+          };
+
+          widget = {
+            keyboard_layout = {
+              show_glyph = false;
+            };
+            session = {
+              color = "error";
+            };
           };
         };
       };
