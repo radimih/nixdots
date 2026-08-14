@@ -54,6 +54,19 @@
             };
           };
 
+          hooks = {
+            session_locked = "niri msg action switch-layout 0";
+          };
+
+          lockscreen = {
+            blur_intensity = 0.30;
+            tint_intensity = 0.30;
+          };
+
+          shell = {
+            animation.speed = 1.8;
+          };
+
           theme = {
             mode = "dark";
             pure_black_dark = true;

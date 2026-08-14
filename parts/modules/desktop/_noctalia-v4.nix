@@ -100,22 +100,6 @@
             };
           };
 
-          desktopWidgets.enabled = false;
-
-          dock.enabled = false;
-
-          general = {
-            animationDisabled = false;
-            animationSpeed = 1.8;
-            compactLockScreen = true;
-            lockScreenAnimations = true;
-          };
-
-          hooks = {
-            enabled = true;
-            screenLock = "niri msg action switch-layout 0";
-          };
-
           idle = {
             enabled = true;
             fadeDuration = 5;  # секунд, в течение которых можно прервать действие
@@ -148,8 +132,6 @@
               { action = "hibernate"; enabled = false; keybind = "7"; }
             ];
           };
-
-          wallpaper.enabled = false;
         };
       };
     };
