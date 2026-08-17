@@ -89,7 +89,7 @@
                   padding = 6.0;
                   widget_spacing = 5;
                 }
-              ]
+              ];
             };
           };
 
