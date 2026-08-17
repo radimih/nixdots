@@ -7,17 +7,6 @@
   flake.modules.homeManager.noctalia =
     { lib, pkgs, ... }:
     {
-      imports = [
-        inputs.noctalia.homeModules.default
-      ];
-
-      # https://docs.noctalia.dev/v4/getting-started/compositor-settings/niri/
-      programs.niri.settings = {
-        debug = {
-          honor-xdg-activation-with-invalid-serial = [];
-        };
-      };
-
       programs.noctalia-shell = {
 
         enable = true;
@@ -37,66 +26,9 @@
           in
           lib.mkForce colorsTheme;
 
-        plugins.states = {
-          network-manager-vpn = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/legacy-v4-plugins";
-          };
-        };
-
-        pluginSettings = {
-          network-manager-vpn = {
-            displayMode = "alwaysHide";
-          };
-        };
-
         settings = {
           appLauncher = {
             terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec}";
-          };
-
-          bar = {
-            widgets = {
-              left = [
-                {
-                  id = "Workspace";
-                }
-              ];
-              center = [
-                {
-                  id = "ActiveWindow";
-                  maxWidth = 300;
-                }
-              ];
-              right = [
-                {
-                  id = "Tray";
-                  blacklist = [
-                    "nm-applet"
-                  ];
-                }
-                {
-                  id = "plugin:network-manager-vpn";
-                }
-                {
-                  id = "NotificationHistory";
-                }
-                {
-                  id = "ControlCenter";
-                }
-                {
-                  id = "KeyboardLayout";
-                  showIcon = false;
-                }
-                {
-                  id = "Clock";
-                  formatHorizontal = "HH:mm";
-                }
-                {
-                  id = "SessionMenu";
-                }
-              ];
-            };
           };
 
           notifications = {

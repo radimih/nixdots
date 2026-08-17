@@ -53,10 +53,48 @@
               margin_ends = 0;
               radius = 0;
               widget_spacing = 8;
+              # --- widgets
+              start = [
+                "launcher"
+                "workspaces"
+              ];
+              center = [
+                "active_window"
+              ];
+              end = [
+                "tray"
+                "notifications"
+                "clipboard"
+                "network"
+                "bluetooth"
+                "battery"
+                "control-center"
+                "keyboard_layout"
+                "group:clocks"
+                "session"
+              ];
+              capsule_group = [
+                {
+                  id = "clocks";
+                  members = [
+                    "clock"
+                    "clock_moscow"
+                  ];
+                  enable = true;
+                  accordion = false;
+                  accordion_direction = "end";
+                  border = "";
+                  fill = "surface";
+                  opacity = 1.0;
+                  padding = 6.0;
+                  widget_spacing = 5;
+                }
+              ]
             };
           };
 
           hooks = {
+            # Перед блокировкой экрана переключить раскладку клавиатуры на US
             session_locked = "niri msg action switch-layout 0";
           };
 
@@ -76,7 +114,7 @@
               screen-off = {
                 action = "screen_off";
                 enabled = false;
-                timeout = 11 * 60; # seconds
+                timeout = 15 * 60; # seconds
               };
             };
             # Временной отрезок, в течение которого можно прервать действие
@@ -110,11 +148,29 @@
           };
 
           widget = {
+            active_window = {
+              max_length = 300;
+            };
+            clock_moscow = {
+              font_weight = 300;
+              format = "{:%H}";
+              scale = 0.85;
+              timezone = "Europe/Moscow";
+              type = "clock";
+            };
             keyboard_layout = {
               show_glyph = false;
             };
+            network = {
+              show_label = false;
+            };
             session = {
               color = "error";
+            };
+            tray = {
+              hidden = [
+                "nm-applet"
+              ];
             };
           };
         };
