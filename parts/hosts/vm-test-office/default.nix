@@ -47,6 +47,7 @@ in
       ] ++ [
         {
           # home.file."hello-host.txt".text = "Привет, radimir! From the ${host} host. Double";
+          programs.noctalia.settings.idle.behavior.lock-and-suspend.enabled = lib.mkForce false;
         }
       ];
     };

@@ -10,11 +10,7 @@
       programs.niri.settings.binds = defaultKeyBinds // {
 
         "Print" = {
-          # TODO: next-release: использовать clipse -pause 1s (с версии 1.2), чтобы скриншот всего экрана не попадал в историю буфера обмена
-          action.spawn-sh = ''
-            ${lib.getExe pkgs.niri} msg action screenshot-screen && sleep 0.5
-            ${lib.getExe' pkgs.wl-clipboard "wl-paste"} --type image/png | ${lib.getExe pkgs.satty} --filename -
-          '';
+          action.spawn = [ "noctalia" "msg" "screenshot-region" ];
           repeat = false;
         };
 
@@ -28,15 +24,15 @@
         "Mod+Shift+7".action.show-hotkey-overlay = { };
 
         "Mod+A" = {
-          action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+          action.spawn = [ "noctalia" "msg" "panel-toggle" "launcher" ];
           repeat = false;
-          hotkey-overlay.title = "Open App Launcher";
+          hotkey-overlay.title = "Open Noctalia App Launcher";
         };
 
         "Mod+V" = {
-          action.spawn = [ "${lib.getExe pkgs.xdg-terminal-exec}" "--app-id=clipse" "--" "clipse" ];
+          action.spawn = [ "noctalia" "msg" "panel-toggle" "clipboard" ];
           repeat = false;
-          hotkey-overlay.title = "Open Clipboard history";
+          hotkey-overlay.title = "Open Noctalia Clipboard history";
         };
       };
     };

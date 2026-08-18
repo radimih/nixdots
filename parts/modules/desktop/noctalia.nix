@@ -1,155 +1,195 @@
-# Noctalia: Quickshell based desktop shell: https://github.com/noctalia-dev/noctalia
+# Noctalia: native Wayland desktop shell (https://docs.noctalia.dev/)
 {
   inputs,
   ...
 }:
 {
   flake.modules.homeManager.noctalia =
-    { lib, pkgs, ... }:
+    { config, lib, pkgs, ... }:
     {
       imports = [
         inputs.noctalia.homeModules.default
       ];
 
-      # https://docs.noctalia.dev/v4/getting-started/compositor-settings/niri/
+      # https://docs.noctalia.dev/noctalia/compositor-settings/niri/
       programs.niri.settings = {
         debug = {
           honor-xdg-activation-with-invalid-serial = [];
         };
+        spawn-at-startup = [
+          { argv = [ "noctalia" ]; }
+        ];
+        layer-rules = [
+          {
+            matches = [
+              { namespace = "^noctalia-wallpaper"; }
+            ];
+            place-within-backdrop = true;
+          }
+        ];
+        window-rules = [
+          # Floating Noctalia settings window
+          {
+            matches = [
+              { app-id = "dev.noctalia.Noctalia"; }
+            ];
+            default-column-width.fixed = 1080;
+            default-window-height.fixed = 720;
+            open-floating = true;
+          }
+        ];
       };
 
-      programs.noctalia-shell = {
-
+      programs.noctalia = {
         enable = true;
-        package = pkgs.noctalia-shell;
-        systemd.enable = true;
-
-        # Использовать "родную" тему от Noctalia, вместо темы из Stylix
-        colors =
-          let
-            # Взять из темы цветовую схему dark и убрать цвета для терминала
-            # JSON-файлы тем: https://github.com/noctalia-dev/noctalia/tree/legacy-v4/Assets/ColorScheme
-            colorsTheme =
-              builtins.readFile "${inputs.noctalia.outPath}/Assets/ColorScheme/Tokyo-Night/Tokyo-Night.json"
-              |> builtins.fromJSON
-              |> (attrs: attrs.dark)
-              |> (attrs: builtins.removeAttrs attrs ["terminal"]);
-          in
-          lib.mkForce colorsTheme;
-
-        plugins.states = {
-          network-manager-vpn = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/legacy-v4-plugins";
-          };
-        };
-
-        pluginSettings = {
-          network-manager-vpn = {
-            displayMode = "alwaysHide";
-          };
-        };
 
         settings = {
-          appLauncher = {
-            enableSettingsSearch = false;
-            terminalCommand = "${lib.getExe pkgs.xdg-terminal-exec}";
-          };
 
           bar = {
-            widgets = {
-              left = [
-                {
-                  id = "Workspace";
-                }
+            order = [ "main" ];
+            main = {
+              concave_edge_corners = false;
+              font_family = "Iosevka Nerd Font Propo";
+              margin_ends = 0;
+              radius = 0;
+              widget_spacing = 8;
+              # --- widgets
+              start = [
+                "launcher"
+                "workspaces"
               ];
               center = [
-                {
-                  id = "ActiveWindow";
-                  maxWidth = 300;
-                }
+                "active_window"
               ];
-              right = [
+              end = [
+                "tray"
+                "notifications"
+                "clipboard"
+                "network"
+                "bluetooth"
+                "battery"
+                "control-center"
+                "keyboard_layout"
+                "group:clocks"
+                "session"
+              ];
+              capsule_group = [
                 {
-                  id = "Tray";
-                  blacklist = [
-                    "nm-applet"
+                  id = "clocks";
+                  members = [
+                    "clock"
+                    "clock_moscow"
                   ];
-                }
-                {
-                  id = "plugin:network-manager-vpn";
-                }
-                {
-                  id = "NotificationHistory";
-                }
-                {
-                  id = "ControlCenter";
-                }
-                {
-                  id = "KeyboardLayout";
-                  showIcon = false;
-                }
-                {
-                  id = "Clock";
-                  formatHorizontal = "HH:mm";
-                }
-                {
-                  id = "SessionMenu";
+                  enable = true;
+                  accordion = false;
+                  accordion_direction = "end";
+                  border = "";
+                  fill = "surface";
+                  opacity = 1.0;
+                  padding = 6.0;
+                  widget_spacing = 5;
                 }
               ];
             };
           };
 
-          desktopWidgets.enabled = false;
-
-          dock.enabled = false;
-
-          general = {
-            animationDisabled = false;
-            animationSpeed = 1.8;
-            compactLockScreen = true;
-            lockScreenAnimations = true;
-          };
+          desktop_widgets.enabled = false;
 
           hooks = {
-            enabled = true;
-            screenLock = "niri msg action switch-layout 0";
+            # Перед блокировкой экрана переключить раскладку клавиатуры на US
+            session_locked = "niri msg action switch-layout 0";
           };
 
           idle = {
+            behavior_order = [ "lock" "screen-off" "lock-and-suspend" ];
+            behavior = {
+              lock = {
+                action = "lock";
+                enabled = true;
+                timeout = 10 * 60; # seconds
+              };
+              lock-and-suspend = {
+                action = "lock_and_suspend";
+                enabled = true;
+                timeout = 30 * 60; # seconds
+              };
+              screen-off = {
+                action = "screen_off";
+                enabled = false;
+                timeout = 15 * 60; # seconds
+              };
+            };
+            # Временной отрезок, в течение которого можно прервать действие
+            pre_action_fade_seconds = 5;
+          };
+
+          # TODO: вынести в отдельный параметр
+          location.address = "Kemerovo, Russia";
+
+          lockscreen = {
+            blur_intensity = 0.30;
+            tint_intensity = 0.30;
+          };
+
+          shell = {
+            animation.speed = 1.8;
+            clipboard_confirm_clear_history = false;
+            clipboard_history_max_entries = 50;
+            polkit_agent = true;
+            screenshot = {
+              confirm_region = true;
+              copy_to_clipboard = false;
+              # Необходимо указать существующий каталог, иначе создаётся каталог
+              # по-умолчанию ~/Pictures даже при save_to_file = false
+              directory = "${config.xdg.userDirs.download}";
+              pipe_command = "${lib.getExe pkgs.satty} --filename -";
+              pipe_to_command = true;
+              save_to_file = false;
+            };
+          };
+
+          theme = {
+            mode = "dark";
+            pure_black_dark = true;
+            source = "wallpaper";
+          };
+
+          # FIXME: wallpaper не устанавливается
+          wallpaper = {
             enabled = true;
-            fadeDuration = 5;  # секунд, в течение которых можно прервать действие
-            # После указанного количества секунд бездействия пользователя произвести
-            # соответствующее действие (0 - не производить данное действие):
-            lockTimeout = 10 * 60;
-            screenOffTimeout = 0;
-            suspendTimeout = 30 * 60;
+            default.path = ./wallpapers/cold-coast-1920x1080.png;
+            directory = ./wallpapers;
+            fill_mode = "stretch";
+            transition = [ "fade" ];
+            transition_on_startup = true;
           };
 
-          location.name = "Kemerovo, Russia";
-
-          notifications = {
-            enableKeyboardLayoutToast = false;
-            lowUrgencyDuration = 1;
-            normalUrgencyDuration = 2;
-            criticalUrgencyDuration = 4;
+          widget = {
+            active_window = {
+              max_length = 300;
+            };
+            clock_moscow = {
+              font_weight = 300;
+              format = "{:%H}";
+              scale = 0.85;
+              timezone = "Europe/Moscow";
+              type = "clock";
+            };
+            keyboard_layout = {
+              show_glyph = false;
+            };
+            network = {
+              show_label = false;
+            };
+            session = {
+              color = "error";
+            };
+            tray = {
+              hidden = [
+                "nm-applet"
+              ];
+            };
           };
-
-          sessionMenu = {
-            enableCountdown = false;
-            largeButtonsLayout = "grid";
-            powerOptions = [
-              { action = "lock"; enabled = true; keybind = "1"; }
-              { action = "suspend"; enabled = true; keybind = "2"; }
-              { action = "logout"; enabled = true; keybind = "3"; }
-              { action = "reboot"; enabled = true; keybind = "4"; }
-              { action = "rebootToUefi"; enabled = true; keybind = "5"; }
-              { action = "shutdown"; enabled = true; keybind = "6"; }
-              { action = "hibernate"; enabled = false; keybind = "7"; }
-            ];
-          };
-
-          wallpaper.enabled = false;
         };
       };
     };

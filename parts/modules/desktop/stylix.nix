@@ -43,8 +43,6 @@
           };
         };
 
-        image = ./wallpapers/cold-coast-1920x1080.png;
-
         opacity = {
           desktop = 0.93;
           popups = 1.0;
