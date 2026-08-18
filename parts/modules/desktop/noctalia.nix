@@ -5,7 +5,7 @@
 }:
 {
   flake.modules.homeManager.noctalia =
-    { lib, pkgs, ... }:
+    { config, lib, pkgs, ... }:
     {
       imports = [
         inputs.noctalia.homeModules.default
@@ -93,6 +93,8 @@
             };
           };
 
+          desktop_widgets.enabled = false;
+
           hooks = {
             # Перед блокировкой экрана переключить раскладку клавиатуры на US
             session_locked = "niri msg action switch-layout 0";
@@ -132,9 +134,13 @@
             animation.speed = 1.8;
             clipboard_confirm_clear_history = false;
             clipboard_history_max_entries = 50;
+            polkit_agent = true;
             screenshot = {
               confirm_region = true;
               copy_to_clipboard = false;
+              # Необходимо указать, чтобы не создавался каталог ~/Pictures
+              # даже при save_to_file = false
+              directory = "${config.xdg.userDirs.download}";
               pipe_command = "${lib.getExe pkgs.satty} --filename -";
               pipe_to_command = true;
               save_to_file = false;
