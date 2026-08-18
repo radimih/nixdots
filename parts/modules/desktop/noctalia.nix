@@ -138,8 +138,8 @@
             screenshot = {
               confirm_region = true;
               copy_to_clipboard = false;
-              # Необходимо указать, чтобы не создавался каталог ~/Pictures
-              # даже при save_to_file = false
+              # Необходимо указать существующий каталог, иначе создаётся каталог
+              # по-умолчанию ~/Pictures даже при save_to_file = false
               directory = "${config.xdg.userDirs.download}";
               pipe_command = "${lib.getExe pkgs.satty} --filename -";
               pipe_to_command = true;
