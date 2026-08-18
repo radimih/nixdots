@@ -130,6 +130,15 @@
 
           shell = {
             animation.speed = 1.8;
+            clipboard_confirm_clear_history = false;
+            clipboard_history_max_entries = 50;
+            screenshot = {
+              confirm_region = true;
+              copy_to_clipboard = false;
+              pipe_command = "${lib.getExe pkgs.satty} --filename -";
+              pipe_to_command = true;
+              save_to_file = false;
+            }
           };
 
           theme = {
