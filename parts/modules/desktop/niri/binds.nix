@@ -28,7 +28,7 @@
         "Mod+Shift+7".action.show-hotkey-overlay = { };
 
         "Mod+A" = {
-          action.spawn = [ "noctalia-shell" "ipc" "call" "launcher" "toggle" ];
+          action.spawn = [ "noctalia" "msg" "panel-toggle" "launcher" ]
           repeat = false;
           hotkey-overlay.title = "Open App Launcher";
         };
