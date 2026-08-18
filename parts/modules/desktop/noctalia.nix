@@ -138,7 +138,7 @@
               pipe_command = "${lib.getExe pkgs.satty} --filename -";
               pipe_to_command = true;
               save_to_file = false;
-            }
+            };
           };
 
           theme = {
