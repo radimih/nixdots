@@ -123,6 +123,7 @@
             pre_action_fade_seconds = 5;
           };
 
+          # TODO: вынести в отдельный параметр
           location.address = "Kemerovo, Russia";
 
           lockscreen = {
@@ -153,6 +154,7 @@
             source = "wallpaper";
           };
 
+          # FIXME: wallpaper не устанавливается
           wallpaper = {
             enabled = true;
             default.path = ./wallpapers/cold-coast-1920x1080.png;
