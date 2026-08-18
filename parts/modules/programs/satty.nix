@@ -12,8 +12,9 @@
             copy-command = "${lib.getExe' pkgs.wl-clipboard "wl-copy"}";
             disable-notifications = true;
             early-exit = true;
-            fullscreen = true;
-            initial-tool = "crop";
+            # fullscreen = true;
+            initial-tool = "arrow";
+            input-scale = 1.0;
             primary-highlighter = "freehand";
             zoom-factor = 1.0;
           };
