@@ -395,11 +395,14 @@ print_step_msg() {
   local len=${#msg}
   local pad=$((width - len))
 
-  local filler="─"
-  while (( ${#filler} < pad )); do
+  local filler=""
+  if (( pad > 0 )); then
+    filler="─"
+    while (( ${#filler} < pad )); do
       filler+="$filler"
-  done
-  filler="${filler:0:$pad}"
+    done
+    filler="${filler:0:$pad}"
+  fi
 
   printf "\\n${CL_GREEN}%s%s${CL_NO}\\n\\n" "$filler" "$msg"
 }
