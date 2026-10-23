@@ -4,6 +4,8 @@
 
     programs.kitty = {
       enable = true;
+      # https://sw.kovidgoyal.net/kitty/kittens/diff/
+      enableGitIntegration = true;
       # https://sw.kovidgoyal.net/kitty/actions/
       keybindings = {
         "ctrl+c" = "copy_and_clear_or_interrupt";
